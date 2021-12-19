@@ -4,13 +4,11 @@
 
 默认情况下，打开27015端口最合适，为了方便windows用户创建本地docker服务器，还增加了2333和2334两个端口（原因等会介绍）
 
-By default, you'll want to allow both incoming TCP and UDP traffic on port 27015.
-
 ```
 docker run -p 27015:27015/tcp -p 27015:27015/udp --name l4d2 -v /home/morzlee/map/:/map/ morzlee/l4d2
 ```
 
-如果是Windows系统，只需要在docker创建容器时增加一个volumes对应就行，如下图：
+如果是Windows系统，首先docker pull morzlee/l4d2 把docker镜像拉取出来，然后在在docker创建容器时增加一个volumes对应就行，如下图：
 
 ![image-20211219114215492](https://github.com/fantasylidong/AnneServer/blob/main/image-20211219114215492.png)
 
