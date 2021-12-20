@@ -8,24 +8,24 @@
 ln  -s  /map/*  l4d2/left4dead2/addons/
 
 # plugins Config
-if "$plugin"= "anna"; then
-    cp -r AnnaServer/* l4d2/
-	echo "sv_tags anna" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
+#!/bin/bash 
+if [ "$plugin" = "anna" ]
+then
+    cp -v -r AnnaServer/* l4d2/
 fi
 
-if "$plugin"= "neko"; then
-    cp -r neko/* l4d2/left4dead2/
-	echo "sv_tags neko" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
+if [ "$plugin" = "neko" ]
+then
+    cp -v -r neko/* l4d2/
 fi
 
-if "$plugin"= "sirplease"; then
-    cp -r L4D2-Competitive-Rework/* l4d2/left4dead2/
-	echo "sv_tags sirplease" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
+if [ "$plugin" = "sirplease" ]
+then
+    cp -v -r L4D2-Competitive-Rework/* l4d2/left4dead2/
 fi
-
 
 #plugins admin setting
-echo "\"$steamid\" \"99:z\"" >> /home/louis/l4d2/left4dead2/addons/sourcemod/config/admins_simple.ini
+echo "\"$steamid\" \"99:z\"" >> /home/louis/l4d2/left4dead2/addons/sourcemod/configs/admins_simple.ini
 
 # Start Game
 cd l4d2 && ./srcds_run -console -game left4dead2 -tickrate 100 -port "$PORT" +maxplayers "$PLAYERS" +map "$MAP"
