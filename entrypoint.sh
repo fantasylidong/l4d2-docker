@@ -10,9 +10,11 @@ ln  -s  /map/*  l4d2/left4dead2/addons/
 # Server Config
 if "$plugin"= "anna"; then
     cp -r AnnaServer/* l4d2/
-    
+fi
+
 if "$plugin"= "neko"; then
     cp -r neko/* l4d2/left4dead2/
+fi
 
 # Start Game
 cd l4d2 && ./srcds_run -console -game left4dead2 -tickrate 100 -port "$PORT" +maxplayers "$PLAYERS" +map "$MAP"
