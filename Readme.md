@@ -5,7 +5,7 @@
 默认情况下，打开27015端口最合适，为了方便windows用户创建本地docker服务器，还增加了2333和2334两个端口（原因等会介绍）
 
 ```
-docker run -p 2333:2333/tcp -p 2333:2333/udp -e PORT=2333 -e MAP="c2m1_highway" -e REGION=255 -e HOSTNAME="LEO" -e plugin="anna" -e steamid="STEAM_1:1:121430603" -v "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Left 4 Dead 2\\left4dead2\\addons":"/map" --name anna morzlee/l4d2
+docker run -p 2333:2333/tcp -p 2333:2333/udp -e PORT=2333 -e MAP="c2m1_highway" -e REGION=255 -e HOSTNAME="LEO" -e plugin="anne" -e steamid="STEAM_1:1:121430603" -v "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Left 4 Dead 2\\left4dead2\\addons":"/map" --name anne morzlee/l4d2
 ```
 
 如果是Windows系统，首先docker pull morzlee/l4d2 把docker镜像拉取出来，然后在在docker创建容器时增加一个volumes对应就行，如下图：
@@ -42,7 +42,7 @@ e.g. 如果你的服务器在欧洲:
 
 ## 插件选择
 
-有3种插件可以选择，分别是Anna药役和neko多特和sirplease药抗
+有3种插件可以选择，分别是Anne药役和neko多特和sirplease药抗
 
 sirplease github address: https://github.com/SirPlease/L4D2-Competitive-Rework
 
@@ -56,7 +56,7 @@ neko Github address: https://github.com/himenekocn/NekoSpecials-L4D2
 
 | type            |
 | --------------- |
-| anna            |
+| anne            |
 | neko            |
 | sirplease       |
 | custombyyouself |

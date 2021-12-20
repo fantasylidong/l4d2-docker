@@ -31,7 +31,7 @@ ENV PORT=2333 \
     MAP="c2m1_highway" \
     REGION=255 \
     HOSTNAME="leo fighting" \
-    plugin="anna" \
+    plugin="anne" \
 	steamid="STEAM_1:1:121430603"
 
 ADD entrypoint.sh entrypoint.sh

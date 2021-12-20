@@ -9,9 +9,9 @@ ln  -s  /map/*  l4d2/left4dead2/addons/
 
 # plugins Config
 #!/bin/bash 
-if [ "$plugin" = "anna" ]
+if [ "$plugin" = "anne" ]
 then
-    cp -v -r /home/louis/AnnaServer/* l4d2/
+    cp -v -r /home/louis/AnneServer/* l4d2/
 fi
 
 if [ "$plugin" = "neko" ]

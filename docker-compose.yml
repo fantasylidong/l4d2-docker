@@ -14,5 +14,5 @@ services:
     environment:
       - HOSTNAME=leo
       - REGION=255
-      - PLUGIN=anna
+      - PLUGIN=anne
       - steamid=STEAM_1:1:121430603

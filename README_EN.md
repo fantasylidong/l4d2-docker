@@ -3,7 +3,7 @@
 ## Ports
 By default, you'll want to allow both incoming TCP and UDP traffic on port 27015. 
 
-`docker run -p 2333:2333/tcp -p 2333:2333/udp -e PORT=2333 -e MAP="c2m1_highway" -e REGION=255 -e HOSTNAME="LEO" -e plugin="anna" -e steamid="STEAM_1:1:121430603" -v "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Left 4 Dead 2\\left4dead2\\addons":"/map" --name anna morzlee/l4d2`
+`docker run -p 2333:2333/tcp -p 2333:2333/udp -e PORT=2333 -e MAP="c2m1_highway" -e REGION=255 -e HOSTNAME="LEO" -e plugin="anne" -e steamid="STEAM_1:1:121430603" -v "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Left 4 Dead 2\\left4dead2\\addons":"/map" --name anne morzlee/l4d2`
 
 ### Changing the port
 To change the port used inside the container change the `PORT` environment variable, then map the new ports instead.
@@ -48,7 +48,7 @@ Default plugins package is anna.
 
 | type          | mean                             |
 | ------------- | -------------------------------- |
-| anna(default) | anna plugins package             |
+| anne(default) | anna plugins package             |
 | neko          | neko plugins package             |
 | sirplease     | sirplease versus plugins package |
 | none          | don't install plugins            |
