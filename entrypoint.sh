@@ -8,20 +8,22 @@
 ln  -s  /map/*  l4d2/left4dead2/addons/
 
 # plugins Config
-#!/bin/bash 
 if [ "$plugin" = "anne" ]
 then
     cp -v -r /home/louis/AnneServer/* l4d2/
+	echo "anne plugins packge installed"
 fi
 
 if [ "$plugin" = "neko" ]
 then
-    cp -v -r /home/louis/neko/* l4d2/
+    cp -v -r /home/louis/neko/* l4d2/left4dead2/
+	echo "neko plugins packge installed"
 fi
 
 if [ "$plugin" = "sirplease" ]
 then
     cp -v -r /home/louis/L4D2-Competitive-Rework/* l4d2/left4dead2/
+	echo "sirplease plugins packge installed"
 fi
 
 #plugins admin setting
