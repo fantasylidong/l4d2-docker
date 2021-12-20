@@ -15,7 +15,7 @@ RUN mkdir -p .steam/sdk32/ && ln -s ~/linux32/steamclient.so ~/.steam/sdk32/stea
 RUN ./steamcmd.sh +login anonymous +force_install_dir ./l4d2 +app_update 222860 +quit
 RUN git clone https://github.com/fantasylidong/AnneServer.git
 RUN git clone https://github.com/fantasylidong/neko.git
-RUN git clone https://github.com/SirPlease/L4D2-Competitive-Rework.git
+RUN git clone https://github.com/fantasylidong/L4D2-Competitive-Rework.git
 
 EXPOSE 2334/tcp
 EXPOSE 2334/udp
