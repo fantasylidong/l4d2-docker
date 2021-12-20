@@ -10,14 +10,17 @@ ln  -s  /map/*  l4d2/left4dead2/addons/
 # plugins Config
 if "$plugin"= "anna"; then
     cp -r AnnaServer/* l4d2/
+	echo "sv_tags anna" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 fi
 
 if "$plugin"= "neko"; then
     cp -r neko/* l4d2/left4dead2/
+	echo "sv_tags neko" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 fi
 
 if "$plugin"= "sirplease"; then
     cp -r L4D2-Competitive-Rework/* l4d2/left4dead2/
+	echo "sv_tags sirplease" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 fi
 
 
