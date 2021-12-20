@@ -5,7 +5,7 @@
 默认情况下，打开27015端口最合适，为了方便windows用户创建本地docker服务器，还增加了2333和2334两个端口（原因等会介绍）
 
 ```
-docker run -p 27015:27015/tcp -p 27015:27015/udp --name l4d2 -v /home/morzlee/map/:/map/ morzlee/l4d2
+docker run -p 2333:2333/tcp -p 2333:2333/udp -e PORT=2333 -e MAP="c2m1_highway" -e REGION=255 -e HOSTNAME="LEO" -e plugin="anna" -e steamid="STEAM_1:1:121430603" -v "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Left 4 Dead 2\\left4dead2\\addons":"/map" --name anna morzlee/l4d2
 ```
 
 如果是Windows系统，首先docker pull morzlee/l4d2 把docker镜像拉取出来，然后在在docker创建容器时增加一个volumes对应就行，如下图：

@@ -11,17 +11,17 @@ ln  -s  /map/*  l4d2/left4dead2/addons/
 #!/bin/bash 
 if [ "$plugin" = "anna" ]
 then
-    cp -v -r AnnaServer/* l4d2/
+    cp -v -r /home/louis/AnnaServer/* l4d2/
 fi
 
 if [ "$plugin" = "neko" ]
 then
-    cp -v -r neko/* l4d2/
+    cp -v -r /home/louis/neko/* l4d2/
 fi
 
 if [ "$plugin" = "sirplease" ]
 then
-    cp -v -r L4D2-Competitive-Rework/* l4d2/left4dead2/
+    cp -v -r /home/louis/L4D2-Competitive-Rework/* l4d2/left4dead2/
 fi
 
 #plugins admin setting
