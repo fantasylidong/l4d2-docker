@@ -42,7 +42,9 @@ e.g. 如果你的服务器在欧洲:
 
 ## 插件选择
 
-有两种插件可以选择，分别是Anna药役和neko多特
+有3种插件可以选择，分别是Anna药役和neko多特和sirplease药抗
+
+sirplease github address: https://github.com/SirPlease/L4D2-Competitive-Rework
 
 Anna Github address: https://github.com/Caibiii/AnneServer 
 
@@ -52,8 +54,21 @@ neko Github address: https://github.com/himenekocn/NekoSpecials-L4D2
 
 `docker run -e plugin=anna`...
 
+| type            |
+| --------------- |
+| anna            |
+| neko            |
+| sirplease       |
+| custombyyouself |
+
 ## 第三方地图
 
 使用了软连接来解决插件和地图在同一个文件夹不好管理的问题
 
 你只需要将想挂载的volumes挂载到容器内的/map文件夹里会自动进行软连接（记得文件只能有一个小数点，backtoschool.2.vpk 这种文件读不出来
+
+## 插件管理员设置
+
+只要设置好环境变量 steamid就可以了，把你在游戏的steamid 写入环境变量
+
+我为了自己方便，默认值全部写的我自己steamid，注意修改

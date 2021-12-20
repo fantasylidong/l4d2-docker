@@ -35,14 +35,29 @@ e.g. If your server was in Europe:
 `docker run -e REGION=3`...
 
 ## plugins type
-There are two types plugins to choose.
-One plugins package is anna, other is neko.
+There are three types plugins to choose.
+
+sirplease github address: https://github.com/SirPlease/L4D2-Competitive-Rework
+
 anna github address: https://github.com/Caibiii/AnneServer
 neko github address: https://github.com/himenekocn/NekoSpecials-L4D2
 
 Default plugins package is anna.
 
+`docker run -e plugin=anna`...
+
+| type          | mean                             |
+| ------------- | -------------------------------- |
+| anna(default) | anna plugins package             |
+| neko          | neko plugins package             |
+| sirplease     | sirplease versus plugins package |
+| none          | don't install plugins            |
+
 ## Custom Addons
 Softlink l4d2 maps to addons folder.
 It would more convenience while you want add custom map. Exspecially when you have sourcemod plugins.
 you just need mount your extra map folder to docker container /map . 
+
+## plugins admin setting
+
+Just set an environment variable 'steamid' with your steamid form game console.

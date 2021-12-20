@@ -9,7 +9,10 @@ services:
     - "27015:27015/udp"
     - "2334:2334"
     - "2334:2334/udp"
+    - "2335:2335"
+    - "2335:2335/udp"
     environment:
       - HOSTNAME=leo
       - REGION=255
       - PLUGIN=anna
+      - steamid=STEAM_1:1:121430603

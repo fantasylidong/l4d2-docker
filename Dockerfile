@@ -13,8 +13,9 @@ RUN wget http://media.steampowered.com/installer/steamcmd_linux.tar.gz && tar -x
 RUN mkdir -p .steam/sdk32/ && ln -s ~/linux32/steamclient.so ~/.steam/sdk32/steamclient.so \
     && mkdir -p .steam/sdk64/ && ln -s ~/linux64/steamclient.so ~/.steam/sdk64/steamclient.so
 RUN ./steamcmd.sh +login anonymous +force_install_dir ./l4d2 +app_update 222860 +quit
-RUN git clone https://github.com/fantasylidong/AnneServer
+RUN git clone https://github.com/fantasylidong/AnneServer.git
 RUN git clone https://github.com/fantasylidong/neko.git
+RUN git clone https://github.com/SirPlease/L4D2-Competitive-Rework.git
 
 EXPOSE 2334/tcp
 EXPOSE 2334/udp
@@ -22,13 +23,16 @@ EXPOSE 2333/tcp
 EXPOSE 2333/udp
 EXPOSE 27015/tcp
 EXPOSE 27015/udp
+EXPOSE 2335/tcp
+EXPOSE 2335/udp
 
 ENV PORT=2333 \
     PLAYERS=8 \
     MAP="c2m1_highway" \
     REGION=255 \
     HOSTNAME="leo fighting" \
-    plugin="anna"
+    plugin="anna" \
+	steamid="STEAM_1:1:121430603"
 
 ADD entrypoint.sh entrypoint.sh
 ENTRYPOINT ./entrypoint.sh
