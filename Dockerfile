@@ -32,7 +32,8 @@ ENV PORT=2333 \
     REGION=255 \
     HOSTNAME="leo fighting" \
     plugin="anne" \
-	steamid="STEAM_1:1:121430603"
+	steamid="STEAM_1:1:121430603" \
+	index="first"
 
 ADD entrypoint.sh entrypoint.sh
 ENTRYPOINT ./entrypoint.sh

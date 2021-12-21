@@ -8,26 +8,30 @@
 ln  -s  /map/*  l4d2/left4dead2/addons/
 
 # plugins Config
-if [ "$plugin" = "anne" ]
+if [ "$index" = "first"]
 then
-    cp  -r /home/louis/AnneServer/* l4d2/
-	echo "anne plugins packge installed"
-fi
+	if [ "$plugin" = "anne" ]
+	then
+		cp  -r /home/louis/AnneServer/* l4d2/
+		echo "anne plugins packge installed"
+	fi
 
-if [ "$plugin" = "neko" ]
-then
-    cp  -r /home/louis/neko/* l4d2/left4dead2/
-	echo "neko plugins packge installed"
-fi
+	if [ "$plugin" = "neko" ]
+	then
+		cp  -r /home/louis/neko/* l4d2/left4dead2/
+		echo "neko plugins packge installed"
+	fi
 
-if [ "$plugin" = "sirplease" ]
-then
-    cp  -r /home/louis/L4D2-Competitive-Rework/* l4d2/left4dead2/
-	echo "sirplease plugins packge installed"
-fi
+	if [ "$plugin" = "sirplease" ]
+	then
+		cp  -r /home/louis/L4D2-Competitive-Rework/* l4d2/left4dead2/
+		echo "sirplease plugins packge installed"
+	fi
 
-#plugins admin setting
-echo "\"$steamid\" \"99:z\"" >> /home/louis/l4d2/left4dead2/addons/sourcemod/configs/admins_simple.ini
+	#plugins admin setting
+	echo "\"$steamid\" \"99:z\"" >> /home/louis/l4d2/left4dead2/addons/sourcemod/configs/admins_simple.ini
+	echo "$HOSTNAME" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
+	index = "second"
 
 # Start Game
 cd l4d2 && ./srcds_run -console -game left4dead2 -tickrate 100 -port "$PORT" +maxplayers "$PLAYERS" +map "$MAP"
