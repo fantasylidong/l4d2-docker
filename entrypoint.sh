@@ -32,6 +32,7 @@ then
 	echo "\"$steamid\" \"99:z\"" >> /home/louis/l4d2/left4dead2/addons/sourcemod/configs/admins_simple.ini
 	echo "$HOSTNAME" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 	index = "second"
+fi
 
 # Start Game
 cd l4d2 && ./srcds_run -console -game left4dead2 -tickrate 100 -port "$PORT" +maxplayers "$PLAYERS" +map "$MAP"
