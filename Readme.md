@@ -5,7 +5,7 @@
 默认情况下，打开27015端口最合适，为了方便windows用户创建本地docker服务器，还增加了2333和2334两个端口（原因等会介绍）
 
 ```
-docker run -p 2333:2333/tcp -p 2333:2333/udp -e PORT=2333 -e MAP="c2m1_highway" -e REGION=255 -e HOSTNAME="LEO" -e plugin="anne" -e steamid="STEAM_1:1:121430603" -v "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Left 4 Dead 2\\left4dead2\\addons":"/map" --name anne morzlee/l4d2
+docker run -p 2333:2333/tcp -p 2333:2333/udp -e PORT=2333 -e MAP="c2m1_highway" -e REGION=255 -e HOSTNAME="LEO" -e password="123456" -e steamgroup="25622692,26419628" -e plugin="anne" -e steamid="STEAM_1:1:121430603" -v "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Left 4 Dead 2\\left4dead2\\addons":"/map" --name anne morzlee/l4d2
 ```
 
 如果是Windows系统，首先docker pull morzlee/l4d2 把docker镜像拉取出来，然后在在docker创建容器时增加一个volumes对应就行，如下图：
@@ -71,4 +71,8 @@ neko Github address: https://github.com/himenekocn/NekoSpecials-L4D2
 
 只要设置好环境变量 steamid就可以了，把你在游戏的steamid 写入环境变量
 
-我为了自己方便，默认值全部写的我自己steamid，注意修改
+steamgroup填写自己群组的值，多个可以用英文逗号连接
+
+password方便自己使用rcon server manage自己管理
+
+我为了自己方便，默认值全部写的我自己的值，注意修改
