@@ -8,7 +8,7 @@
 ln  -s  /map/*  l4d2/left4dead2/addons/
 
 # plugins Config
-if [ "$index" = "first"]
+if [ "$index" = "first" ]
 then
 	if [ "$plugin" = "anne" ]
 	then
