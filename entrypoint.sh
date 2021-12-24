@@ -27,7 +27,13 @@ then
 		cp  -r /home/louis/L4D2-Competitive-Rework/* l4d2/left4dead2/
 		echo "sirplease plugins packge installed"
 	fi
-
+	
+	if [ "$plugin" = "hardneko" ]
+	then
+		cp  -r /home/louis/hardneko/* l4d2/left4dead2/
+		echo "hardneko plugins packge installed"
+	fi
+	
 	#plugins admin setting
 	echo "\"$steamid\" \"99:z\"" >> /home/louis/l4d2/left4dead2/addons/sourcemod/configs/admins_simple.ini
 	echo "hostname \"$HOSTNAME\"" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
