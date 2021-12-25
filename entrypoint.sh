@@ -15,6 +15,11 @@ then
 		cp  -r /home/louis/AnneServer/* l4d2/
 		echo "anne plugins packge installed"
 	fi
+	if [ "$plugin" = "anne_old" ]
+	then
+		cp  -r /home/louis/anne_old/* l4d2/
+		echo "anne_old plugins packge installed"
+	fi
 
 	if [ "$plugin" = "neko" ]
 	then
