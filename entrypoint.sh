@@ -44,7 +44,7 @@ then
 	echo "hostname \"$HOSTNAME\"" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 	echo "sv_steamgroup \"$steamgroup\"" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 	echo "rcon_password \"$password\"" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
-	index="second"
+	export index="second"
 fi
 
 # Start Game
