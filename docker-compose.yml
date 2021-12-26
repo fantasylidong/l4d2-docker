@@ -20,4 +20,3 @@ services:
       - steamid=STEAM_1:1:121430603
       - steamgroup=25622692,26419628
       - password=123456
-      - index="first"

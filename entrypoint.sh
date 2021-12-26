@@ -8,32 +8,33 @@
 ln  -s  /map/*  l4d2/left4dead2/addons/
 
 # plugins Config
-if [ "$index" = "first" ]
+if [ ! -d "/home/louis/l4d2/left4dead2/addons/sourcemod/" ];
 then
-	if [ "$plugin" = "anne" ]
+	if [ "$plugin" = "anne" ];
 	then
 		cp  -r /home/louis/AnneServer/* l4d2/
 		echo "anne plugins packge installed"
 	fi
-	if [ "$plugin" = "anne_old" ]
+	
+	if [ "$plugin" = "anne_old" ];
 	then
 		cp  -r /home/louis/anne_old/* l4d2/
 		echo "anne_old plugins packge installed"
 	fi
 
-	if [ "$plugin" = "neko" ]
+	if [ "$plugin" = "neko" ];
 	then
 		cp  -r /home/louis/neko/* l4d2/left4dead2/
 		echo "neko plugins packge installed"
 	fi
 
-	if [ "$plugin" = "sirplease" ]
+	if [ "$plugin" = "sirplease" ];
 	then
 		cp  -r /home/louis/L4D2-Competitive-Rework/* l4d2/left4dead2/
 		echo "sirplease plugins packge installed"
 	fi
 	
-	if [ "$plugin" = "hardneko" ]
+	if [ "$plugin" = "hardneko" ];
 	then
 		cp  -r /home/louis/hardneko/* l4d2/left4dead2/
 		echo "hardneko plugins packge installed"
@@ -44,7 +45,6 @@ then
 	echo "hostname \"$HOSTNAME\"" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 	echo "sv_steamgroup \"$steamgroup\"" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 	echo "rcon_password \"$password\"" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
-	export index="second"
 fi
 
 # Start Game

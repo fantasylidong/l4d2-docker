@@ -37,7 +37,6 @@ ENV PORT=2333 \
     HOSTNAME="leo fighting" \
     plugin="anne" \
 	steamid="STEAM_1:1:121430603" \
-	index="first" \
 	password="123456" \
 	steamgroup="25622692,26419628"
 
