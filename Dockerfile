@@ -19,16 +19,8 @@ RUN git clone https://github.com/fantasylidong/neko.git
 RUN git clone https://github.com/fantasylidong/hardneko.git
 RUN git clone https://github.com/fantasylidong/L4D2-Competitive-Rework.git
 
-EXPOSE 2334/tcp
-EXPOSE 2334/udp
-EXPOSE 2333/tcp
-EXPOSE 2333/udp
 EXPOSE 27015/tcp
 EXPOSE 27015/udp
-EXPOSE 2335/tcp
-EXPOSE 2335/udp
-EXPOSE 2336/tcp
-EXPOSE 2336/udp
 
 ENV PORT=2333 \
     PLAYERS=8 \
