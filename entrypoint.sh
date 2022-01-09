@@ -31,7 +31,7 @@ then
 	if [ "$plugin" = "sirplease" ];
 	then
 		cp  -r /home/louis/L4D2-Competitive-Rework/* l4d2/left4dead2/
-		echo "sirplease plugins packge installed"
+		echo "sirplease1 plugins packge installed"
 	fi
 	
 	if [ "$plugin" = "hardneko" ];
