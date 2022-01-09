@@ -49,4 +49,4 @@ then
 fi
 
 # Start Game
-cd l4d2 && ./srcds_run -console -game left4dead2 -tickrate 100 -port "$PORT" +maxplayers "$PLAYERS" +map "$MAP"
+cd l4d2 && ./srcds_run -console -game left4dead2 -tickrate 240 -frametime 0.037 -frametime_override 0.037 -port "$PORT" +maxplayers "$PLAYERS" +map "$MAP"
