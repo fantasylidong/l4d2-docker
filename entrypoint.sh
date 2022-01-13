@@ -27,7 +27,13 @@ then
 		cp  -r /home/louis/neko/* l4d2/left4dead2/
 		echo "neko plugins packge installed"
 	fi
-
+	
+	if [ "$plugin" = "funneko" ];
+	then
+		cp  -r /home/louis/funneko/* l4d2/left4dead2/
+		echo "funneko plugins packge installed"
+	fi
+	
 	if [ "$plugin" = "sirplease" ];
 	then
 		cp  -r /home/louis/L4D2-Competitive-Rework/* l4d2/left4dead2/
