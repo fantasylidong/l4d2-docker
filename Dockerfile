@@ -17,7 +17,7 @@ RUN git clone -b test https://github.com/fantasylidong/anne_old.git AnneServer
 RUN git clone https://github.com/fantasylidong/anne_old.git
 RUN git clone -b mysql https://github.com/fantasylidong/neko.git
 RUN git clone https://github.com/fantasylidong/hardcoop.git
-RUN git clone -b nekotest https://github.com/fantasylidong/neko.git funneko
+RUN git clone -b nekotest https://github.com/fantasylidong/neko.git oldneko
 RUN git clone https://github.com/fantasylidong/L4D2-Competitive-Rework.git
 
 EXPOSE 27015/tcp

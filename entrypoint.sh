@@ -28,10 +28,10 @@ then
 		echo "neko plugins packge installed"
 	fi
 	
-	if [ "$plugin" = "funneko" ];
+	if [ "$plugin" = "oldneko" ];
 	then
-		cp  -r /home/louis/funneko/* l4d2/left4dead2/
-		echo "funneko plugins packge installed"
+		cp  -r /home/louis/oldneko/* l4d2/left4dead2/
+		echo "oldneko plugins packge installed"
 	fi
 	
 	if [ "$plugin" = "sirplease" ];
@@ -40,10 +40,10 @@ then
 		echo "sirplease1 plugins packge installed"
 	fi
 	
-	if [ "$plugin" = "hardneko" ];
+	if [ "$plugin" = "hardcoop" ];
 	then
-		cp  -r /home/louis/hardneko/* l4d2/left4dead2/
-		echo "hardneko plugins packge installed"
+		cp  -r /home/louis/hardcoop/* l4d2/left4dead2/
+		echo "hardcoop plugins packge installed"
 	fi
 	
 	#plugins admin setting
