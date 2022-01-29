@@ -13,11 +13,9 @@ RUN wget http://media.steampowered.com/installer/steamcmd_linux.tar.gz && tar -x
 RUN mkdir -p .steam/sdk32/ && ln -s ~/linux32/steamclient.so ~/.steam/sdk32/steamclient.so \
     && mkdir -p .steam/sdk64/ && ln -s ~/linux64/steamclient.so ~/.steam/sdk64/steamclient.so
 RUN ./steamcmd.sh +login anonymous +force_install_dir ./l4d2 +app_update 222860 +quit
-RUN git clone -b test https://github.com/fantasylidong/anne_old.git AnneServer
-RUN git clone https://github.com/fantasylidong/anne_old.git
+RUN git clone -b all https://github.com/fantasylidong/anne_old.git
 RUN git clone -b mysql https://github.com/fantasylidong/neko.git
 RUN git clone https://github.com/fantasylidong/hardcoop.git
-RUN git clone -b nekotest https://github.com/fantasylidong/neko.git oldneko
 RUN git clone https://github.com/fantasylidong/L4D2-Competitive-Rework.git
 
 EXPOSE 27015/tcp
