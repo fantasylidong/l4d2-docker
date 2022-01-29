@@ -12,26 +12,14 @@ if [ ! -d "/home/louis/l4d2/left4dead2/addons/sourcemod/" ];
 then
 	if [ "$plugin" = "anne" ];
 	then
-		cp  -r /home/louis/AnneServer/* l4d2/
+		cp  -r /home/louis/anne/* l4d2/
 		echo "anne plugins packge installed"
-	fi
-	
-	if [ "$plugin" = "anne_old" ];
-	then
-		cp  -r /home/louis/anne_old/* l4d2/
-		echo "anne_old plugins packge installed"
 	fi
 
 	if [ "$plugin" = "neko" ];
 	then
 		cp  -r /home/louis/neko/* l4d2/left4dead2/
 		echo "neko plugins packge installed"
-	fi
-	
-	if [ "$plugin" = "oldneko" ];
-	then
-		cp  -r /home/louis/oldneko/* l4d2/left4dead2/
-		echo "oldneko plugins packge installed"
 	fi
 	
 	if [ "$plugin" = "sirplease" ];
