@@ -15,6 +15,12 @@ then
 		cp  -r /home/louis/anne/* l4d2/
 		echo "anne plugins packge installed"
 	fi
+	
+	if [ "$plugin" = "zonemod" ];
+	then
+		cp  -r /home/louis/zonemod/* l4d2/
+		echo "anne zonemod plugins packge installed"
+	fi
 
 	if [ "$plugin" = "neko" ];
 	then
