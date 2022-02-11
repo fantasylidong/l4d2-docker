@@ -13,7 +13,6 @@ RUN wget http://media.steampowered.com/installer/steamcmd_linux.tar.gz && tar -x
 RUN mkdir -p .steam/sdk32/ && ln -s ~/linux32/steamclient.so ~/.steam/sdk32/steamclient.so \
     && mkdir -p .steam/sdk64/ && ln -s ~/linux64/steamclient.so ~/.steam/sdk64/steamclient.so
 RUN ./steamcmd.sh +login anonymous +force_install_dir ./l4d2 +app_update 222860 +quit
-RUN git clone https://github.com/fantasylidong/anne.git
 RUN git clone -b zonemod https://github.com/fantasylidong/anne.git zonemod
 RUN git clone -b mysql https://github.com/fantasylidong/neko.git
 RUN git clone https://github.com/fantasylidong/hardcoop.git
