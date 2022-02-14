@@ -10,7 +10,7 @@ ln  -s  /map/*  l4d2/left4dead2/addons/
 # plugins Config
 if [ ! -d "/home/louis/l4d2/left4dead2/addons/sourcemod/" ];
 then
-	if [ $stripper =1 ];
+	if [ "stripper" = "true" ];
 	then
 		chmod 777 /home/louis/l4d2/left4dead2/cfg/stripper/
 		chown -R louis:louis /home/louis/l4d2/left4dead2/cfg/stripper/
