@@ -10,16 +10,17 @@ ln  -s  /map/*  l4d2/left4dead2/addons/
 # plugins Config
 if [ ! -d "/home/louis/l4d2/left4dead2/addons/sourcemod/" ];
 then
+	if [ $stripper =1 ];
+	then
+		chmod 777 /home/louis/l4d2/left4dead2/cfg/stripper/
+		chown -R louis:louis /home/louis/l4d2/left4dead2/cfg/stripper/
+		rm -rf /home/louis/left4dead2/cfg/stripper/Zonemod/
+	fi
+	
 	if [ "$plugin" = "anne" ];
 	then
 		cp  -r /home/louis/anne/* l4d2/
 		echo "anne plugins packge installed"
-	fi
-	
-	if [ "$plugin" = "zonemod" ];
-	then
-		cp  -r /home/louis/zonemod/* l4d2/
-		echo "anne zonemod plugins packge installed"
 	fi
 
 	if [ "$plugin" = "neko" ];
@@ -39,9 +40,6 @@ then
 		cp  -r /home/louis/hardcoop/* l4d2/left4dead2/
 		echo "hardcoop plugins packge installed"
 	fi
-	
-	chmod 777 /home/louis/l4d2/left4dead2/cfg/stripper/
-	chown -R louis:louis /home/louis/l4d2/left4dead2/cfg/stripper/
 	
 	#plugins admin setting
 	echo "sv_region \"$REGION\"" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
