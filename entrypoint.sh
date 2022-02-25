@@ -10,17 +10,12 @@ ln  -s  /map/*  l4d2/left4dead2/addons/
 # plugins Config
 if [ ! -d "/home/louis/l4d2/left4dead2/addons/sourcemod/" ];
 then
-	if [ "stripper" = "true" ];
-	then
-		chmod 777 /home/louis/l4d2/left4dead2/cfg/stripper/
-		chown -R louis:louis /home/louis/l4d2/left4dead2/cfg/stripper/
-		rm -rf /home/louis/left4dead2/cfg/stripper/Zonemod/
-	fi
-	
 	if [ "$plugin" = "anne" ];
 	then
 		cp  -r /home/louis/anne/* l4d2/
 		echo "anne plugins packge installed"
+                ln -s /map/rpg/RPGSave.txt l4d2/left4dead2/addons/sourcemod/data/
+                ln -s /map/stripper/Zonemod/ l4d2/left4dead2/cfg/stripper/
 	fi
 
 	if [ "$plugin" = "neko" ];
