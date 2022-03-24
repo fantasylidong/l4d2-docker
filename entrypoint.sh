@@ -15,8 +15,14 @@ then
 		cp  -r /home/louis/anne/* l4d2/
 		echo "anne plugins packge installed"
                 ln -s /map/rpg/RPGSave.txt l4d2/left4dead2/addons/sourcemod/data/
-                ln -s /map/stripper/Zonemod/ l4d2/left4dead2/cfg/stripper/
 	fi
+
+	if [ "$plugin" = "purecoop" ];
+	then
+		cp  -r /home/louis/purecoop/* l4d2/left4dead2/
+		echo "purecoop plugins packge installed"
+	fi
+
 
 	if [ "$plugin" = "neko" ];
 	then
