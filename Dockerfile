@@ -3,9 +3,7 @@ FROM debian
 RUN dpkg --add-architecture i386 && apt-get update
 RUN apt-get install -y curl wget file tar bzip2 gzip unzip bsdmainutils python3 util-linux ca-certificates binutils bc jq tmux netcat lib32gcc-s1 lib32stdc++6 git nano
 
-RUN useradd louis
-RUN mkdir /home/louis
-WORKDIR /home/louis
+RUN adduser /home/louis
 RUN su - louis
 
 RUN wget http://media.steampowered.com/installer/steamcmd_linux.tar.gz && tar -xzf steamcmd_linux.tar.gz \
