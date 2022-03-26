@@ -1,8 +1,7 @@
-FROM amazonlinux:2
+FROM debian
 
-RUN yum -y install curl nano nload top screen git ps wget tar bzip2 gzip unzip zlib zlib.i686 lib32z1 python3 binutils bc jq tmux glibc.i686 libstdc++ libstdc++.i686 \
-    shadow-utils util-linux file nmap-ncat iproute SDL2.i686 SDL2.x86_64 sed \
-    && yum -y update --security
+RUN dpkg --add-architecture i386 && apt-get update
+RUN apt install curl wget file tar bzip2 gzip unzip bsdmainutils python3 util-linux ca-certificates binutils bc jq tmux netcat lib32gcc1 lib32stdc++6 git nano
 
 RUN useradd louis
 WORKDIR /home/louis
