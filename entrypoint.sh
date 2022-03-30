@@ -31,7 +31,7 @@ then
 	
 	if [ "$plugin" = "PureMoreSIRealism" ];
 	then
-		cp  -r /home/louis/PureMoreSIRealism/* l4d2/
+		cp  -r /home/louis/PureMoreSIRealism/* l4d2/left4dead2/
 		echo "PureMoreSIRealism plugins packge installed"
 	fi
 	
