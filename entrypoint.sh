@@ -14,7 +14,6 @@ then
 	then
 		cp  -r /home/louis/anne/* l4d2/
 		echo "anne plugins packge installed"
-                ln -s /map/rpg/RPGSave.txt l4d2/left4dead2/addons/sourcemod/data/
 	fi
 
 	if [ "$plugin" = "purecoop" ];
@@ -30,10 +29,10 @@ then
 		echo "neko plugins packge installed"
 	fi
 	
-	if [ "$plugin" = "sirplease" ];
+	if [ "$plugin" = "PureMoreSIRealism" ];
 	then
-		cp  -r /home/louis/L4D2-Competitive-Rework/* l4d2/left4dead2/
-		echo "sirplease1 plugins packge installed"
+		cp  -r /home/louis/PureMoreSIRealism/* l4d2/
+		echo "PureMoreSIRealism plugins packge installed"
 	fi
 	
 	if [ "$plugin" = "hardcoop" ];
