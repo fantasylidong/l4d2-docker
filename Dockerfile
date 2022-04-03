@@ -22,7 +22,6 @@ RUN git clone -b zonemod https://github.com/fantasylidong/anne.git
 RUN git clone https://github.com/fantasylidong/purecoop.git
 RUN git clone -b mysql https://github.com/fantasylidong/neko.git
 RUN git clone https://github.com/fantasylidong/hardcoop.git
-RUN git clone https://github.com/fantasylidong/PureMoreSIRealism.git
 
 EXPOSE 27015/tcp
 EXPOSE 27015/udp
