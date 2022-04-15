@@ -27,4 +27,4 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: morzlee/l4d2:4-5
+          tags: morzlee/l4d2:4-15
