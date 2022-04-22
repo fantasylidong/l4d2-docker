@@ -6,7 +6,7 @@
 #It would more convenience while you want add custom map. Exspecially when you have sourcemod plugins
 #you just need mount your extra map folder to docker container /map . 
 ln  -s  /map/*  l4d2/left4dead2/addons/
-
+ln  -s  /map2/*  l4d2/left4dead2/addons/
 # plugins Config
 if [ ! -d "/home/louis/l4d2/left4dead2/addons/sourcemod/" ];
 then
