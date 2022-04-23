@@ -35,16 +35,15 @@ then
 		echo "PureMoreSIRealism plugins packge installed"
 	fi
 	
-	if [ "$plugin" = "hardcoop" ];
+	if [ "$plugin" = "zone" ];
 	then
-		cp  -r /home/louis/hardcoop/* l4d2/left4dead2/
-		echo "hardcoop plugins packge installed"
+		cp  -r /home/louis/L4D2-Competitive-Rework/* l4d2/left4dead2/
+		echo "zone plugins packge installed"
 	fi
 	
 	#plugins admin setting
 	echo "sv_region \"$REGION\"" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 	echo "\"$steamid\" \"99:z\"" >> /home/louis/l4d2/left4dead2/addons/sourcemod/configs/admins_simple.ini
-	echo "hostname \"$HOSTNAME\"" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 	echo "sv_steamgroup \"$steamgroup\"" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 	echo "rcon_password \"$password\"" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 fi
