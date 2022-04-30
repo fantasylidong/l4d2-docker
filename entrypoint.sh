@@ -49,4 +49,4 @@ then
 fi
 
 # Start Game
-cd l4d2 && ./srcds_run -console -game left4dead2 -tickrate 100 +tv_enable 1 -port "$PORT" +maxplayers "$PLAYERS" +map "$MAP"
+cd l4d2 && ./srcds_run -console -game left4dead2 -tickrate 100 -hltv +tv_port 6666 -port "$PORT" +maxplayers "$PLAYERS" +map "$MAP"
