@@ -31,7 +31,7 @@ then
 	
 	if [ "$plugin" = "annetv" ];
 	then
-		cp  -r /home/louis/annetv/* l4d2/left4dead2/
+		cp  -r /home/louis/annetv/* l4d2/
 		echo "annetv plugins packge installed"
 	fi
 	
