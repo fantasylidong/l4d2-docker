@@ -29,10 +29,10 @@ then
 		echo "neko plugins packge installed"
 	fi
 	
-	if [ "$plugin" = "PureMoreSIRealism" ];
+	if [ "$plugin" = "annetv" ];
 	then
-		cp  -r /home/louis/PureMoreSIRealism/* l4d2/left4dead2/
-		echo "PureMoreSIRealism plugins packge installed"
+		cp  -r /home/louis/annetv/* l4d2/left4dead2/
+		echo "annetv plugins packge installed"
 	fi
 	
 	if [ "$plugin" = "zone" ];
@@ -49,4 +49,4 @@ then
 fi
 
 # Start Game
-cd l4d2 && ./srcds_run -console -game left4dead2 -tickrate 100 -hltv +tv_port 6666 -port "$PORT" +maxplayers "$PLAYERS" +map "$MAP"
+cd l4d2 && ./srcds_run -console -game left4dead2 -tickrate 100 -port "$PORT" +maxplayers "$PLAYERS" +map "$MAP"
