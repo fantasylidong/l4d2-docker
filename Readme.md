@@ -8,9 +8,9 @@
 docker run -p 2333:2333/tcp -p 2333:2333/udp -e PORT=2333 -e MAP="c2m1_highway" -e REGION=255 -e HOSTNAME="LEO" -e password="123456" -e steamgroup="25622692,26419628" -e plugin="anne" -e steamid="STEAM_1:1:121430603" -v "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Left 4 Dead 2\\left4dead2\\addons":"/map" --name anne morzlee/l4d2
 ```
 
-如果是Windows系统，首先docker pull morzlee/l4d2 把docker镜像拉取出来，然后在在docker创建容器时增加一个volumes对应就行，如下图：
+如果是Windows系统，首先docker pull morzlee/l4d2 把docker镜像拉取出来，然后在在docker创建容器时增加一个volumes对应就行：
 
-![image-20211219114215492](https://github.com/fantasylidong/AnneServer/blob/main/image-20211219114215492.png)
+
 
 ### 修改服务器启动端口
 
