@@ -7,8 +7,8 @@ RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     dpkg-reconfigure --frontend=noninteractive locales && \
     update-locale LANG=en_US.UTF-8
 
-RUN echo "\n* soft core 0\n* hard core 0" >> /etc/security/limits.conf
-RUN echo "fs.suid_dumpable=0" >> /etc/sysctl.conf
+#RUN echo "\n* soft core 0\n* hard core 0" >> /etc/security/limits.conf
+#RUN echo "fs.suid_dumpable=0" >> /etc/sysctl.conf
 
 ENV LANG en_US.UTF-8 
 
