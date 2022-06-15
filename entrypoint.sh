@@ -19,7 +19,7 @@ then
 	if [ "$plugin" = "angel" ];
 	then
 		cp  -r /home/louis/AngelBeats/* l4d2/left4dead2/
-		echo "anglebeats plugins packge installed"
+		echo "AngelBeats plugins packge installed"
 	fi
 
 	if [ "$plugin" = "purecoop" ];
