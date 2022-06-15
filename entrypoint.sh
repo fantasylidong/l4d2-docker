@@ -16,9 +16,9 @@ then
 		echo "anne plugins packge installed"
 	fi
 
-	if [ "$plugin" = "angle" ];
+	if [ "$plugin" = "angel" ];
 	then
-		cp  -r /home/louis/anne/* l4d2/left4dead2/
+		cp  -r /home/louis/AngelBeats/* l4d2/left4dead2/
 		echo "anglebeats plugins packge installed"
 	fi
 
