@@ -26,6 +26,7 @@ RUN git clone -b zonemod-sourcetv https://github.com/fantasylidong/anne.git anne
 RUN git clone https://github.com/fantasylidong/purecoop.git
 RUN git clone -b mysql https://github.com/fantasylidong/neko.git
 RUN git clone https://github.com/fantasylidong/L4D2-Competitive-Rework.git
+RUN git clone https://github.com/fantasylidong/AngelBeats.git
 
 EXPOSE 27015/tcp
 EXPOSE 27015/udp

@@ -16,6 +16,12 @@ then
 		echo "anne plugins packge installed"
 	fi
 
+	if [ "$plugin" = "angle" ];
+	then
+		cp  -r /home/louis/anne/* l4d2/left4dead2/
+		echo "anglebeats plugins packge installed"
+	fi
+
 	if [ "$plugin" = "purecoop" ];
 	then
 		cp  -r /home/louis/purecoop/* l4d2/left4dead2/
