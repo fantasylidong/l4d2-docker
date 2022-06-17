@@ -2,8 +2,8 @@ name: ci
 
 on:
   push:
-    branches:
-      - 'master'
+    paths: 
+       - 'master/.github/workflows/docker-image2.yml'
 
 jobs:
   docker:
@@ -27,4 +27,5 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
+          file: Dockerfile
           tags: morzlee/l4d2:latest
