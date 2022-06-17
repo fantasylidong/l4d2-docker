@@ -2,8 +2,8 @@ name: ci
 
 on:
   push:
-    paths: 
-       - 'master/.github/workflows/docker-image2.yml'
+    branches:
+      - 'master'
 
 jobs:
   docker:
