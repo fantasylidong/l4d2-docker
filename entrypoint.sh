@@ -55,4 +55,4 @@ then
 fi
 
 # Start Game
-cd l4d2 && ./srcds_run -console -game left4dead2 -ip 0.0.0.0 -tickrate 100 -port "$PORT" +sv_clockcorrection_msecs 25 -timeout 10 +maxplayers "$PLAYERS" +map "$MAP"
+cd l4d2 && ./srcds_run -console -game left4dead2 -ip 0.0.0.0 -tickrate 100 -port "$PORT"  +maxplayers "$PLAYERS" +map "$MAP"
