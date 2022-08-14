@@ -1,9 +1,14 @@
 name: ci
 
 on:
+  workflow_dispatch:
+    inputs:
+      tags: 
+         description: 'Run Tags'
   push:
     branches:
       - 'master'
+
 
 jobs:
   docker:
