@@ -26,7 +26,7 @@ RUN rm -rf anne/left4dead2/addons/sourcemod/scripting/
 RUN git clone https://github.com/fantasylidong/purecoop.git
 RUN git clone -b mysql https://github.com/fantasylidong/neko.git
 RUN git clone https://github.com/fantasylidong/L4D2-Competitive-Rework.git
-RUN git clone https://github.com/fantasylidong/100tickPureVersus
+RUN git clone https://github.com/fantasylidong/100tickPureVersus.git
 
 EXPOSE 27015/tcp
 EXPOSE 27015/udp
