@@ -47,6 +47,12 @@ then
 		echo "zone plugins packge installed"
 	fi
 	
+	if [ "$plugin" = "pureversus" ];
+	then
+		cp  -r /home/louis/100tickPureVersus/* l4d2/left4dead2/
+		echo "pure versus packge installed"
+	fi
+	
 	#plugins admin setting
 	echo "sv_region \"$REGION\"" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 	echo "\"$steamid\" \"100:z\"" >> /home/louis/l4d2/left4dead2/addons/sourcemod/configs/admins_simple.ini
