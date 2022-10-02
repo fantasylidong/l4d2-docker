@@ -10,6 +10,6 @@ services:
       - REGION=255
       - plugin=null
       - steamid=STEAM_1:1:121430603
-      - steamgroup=25622692,26419628
+      - steamgroup=123456
       - password=123456
       - stripper=false
