@@ -14,6 +14,13 @@ then
 	then
 		cp  -r /home/louis/anne/* l4d2/
 		echo "anne plugins packge installed"
+		#cloud server settings
+		sed -i 's/nb_update_frequency\ 0.014/nb_update_frequency\ 0.03/' /home/louis/l4d2/left4dead2/cfg/networkconfig.cfg
+		sed -i 's/fps_max\ 150/fps_max\ 0/' /home/louis/l4d2/left4dead2/cfg/server.cfg
+		sed -i '47 s/\"2\"/\"16\"/' /home/louis/l4d2/left4dead2/addons/sourcemod/configs/sourcebans/sourcebans.cfg
+		cp /home/louis/l4d2/left4dead2/addons/hostname.txt /home/louis/l4d2/left4dead2/addons/sourcemod/configs/hostname/
+		cp /home/louis/l4d2/left4dead2/addons/advertisements.txt /home/louis/l4d2/left4dead2/addons/sourcemod/configs/advertisements.txt
+		cp /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/disabled/specrates.smx /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/optional/ 
 	fi
 
 	if [ "$plugin" = "angel" ];
@@ -50,9 +57,6 @@ then
 	if [ "$plugin" = "pureversus" ];
 	then
 		cp  -r /home/louis/100tickPureVersus/* l4d2/left4dead2/
-		if [ "$PORT" = "2353" ];
-			sed -i 's/mutation12/versus/g' /home/louis/l4d2/left4dead2/cfg/server.cfg
-		fi
 		echo "pure versus packge installed"
 	fi
 	
