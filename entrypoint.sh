@@ -80,8 +80,8 @@ then
 	fi
 	
 	#localserver change to static local ip
-	sed -i 's/home.trygek.com/10.0.0.4/g' /home/louis/l4d2/left4dead2/cfg/addons/sourcemod/configs/databases.cfg
-	sed -i 's/12345/3306/g' /home/louis/l4d2/left4dead2/cfg/addons/sourcemod/configs/databases.cfg
+	sed -i 's/home.trygek.com/10.0.0.4/g' /home/louis/l4d2/left4dead2/addons/sourcemod/configs/databases.cfg
+	sed -i 's/12345/3306/g' /home/louis/l4d2/left4dead2/addons/sourcemod/configs/databases.cfg
 	
 	#plugins admin setting
 	echo "sv_region \"$REGION\"" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
