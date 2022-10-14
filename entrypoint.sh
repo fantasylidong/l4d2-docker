@@ -13,6 +13,24 @@ then
 	if [ "$plugin" = "anne" ];
 	then
 		cp  -r /home/louis/anne/* l4d2/
+		if [ "$PORT" = "2330" ];
+			rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/optional/sam_vs.smx
+		fi
+		if [ "$PORT" = "2340" ];
+			sed -i 's/AnneHappy6.cfg/AnneHappy4.cfg/g' /home/louis/l4d2/left4dead2/cfg/cfgogl/AnneHappy/confogl_plugins.cfg
+			echo "sm_cvar ai_Tank_StopDistance 145" /home/louis/l4d2/left4dead2/cfg/cfgogl/AnneHappy/confogl_plugins.cfg
+			echo "sm_cvar ai_TankAirAngleRestrict 60" /home/louis/l4d2/left4dead2/cfg/cfgogl/AnneHappy/confogl_plugins.cfg
+		fi
+		if [ "$PORT" = "2341" ];
+			sed -i 's/AnneHappy6.cfg/AnneHappy5.cfg/g' /home/louis/l4d2/left4dead2/cfg/cfgogl/AnneHappy/confogl_plugins.cfg
+			echo "sm_cvar ai_Tank_StopDistance 140" /home/louis/l4d2/left4dead2/cfg/cfgogl/AnneHappy/confogl_plugins.cfg
+			echo "sm_cvar ai_TankAirAngleRestrict 60" /home/louis/l4d2/left4dead2/cfg/cfgogl/AnneHappy/confogl_plugins.cfg
+		fi
+		if [ "$PORT" = "2342" ];
+			sed -i 's/AnneHappy6.cfg/AnneHappy6.cfg/g' /home/louis/l4d2/left4dead2/cfg/cfgogl/AnneHappy/confogl_plugins.cfg
+			echo "sm_cvar ai_Tank_StopDistance 135" /home/louis/l4d2/left4dead2/cfg/cfgogl/AnneHappy/confogl_plugins.cfg
+			echo "sm_cvar ai_TankAirAngleRestrict 60" /home/louis/l4d2/left4dead2/cfg/cfgogl/AnneHappy/confogl_plugins.cfg
+		fi
 		echo "anne plugins packge installed"
 	fi
 
