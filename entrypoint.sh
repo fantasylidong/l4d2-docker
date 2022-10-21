@@ -19,9 +19,9 @@ newpluginpackage(){
 }
 cloudconfig(){
 	#cloud server settings
-	sed -i 's/nb_update_frequency\ 0.014/nb_update_frequency\ 0.03/' /home/louis/l4d2/left4dead2/cfg/networkconfig.cfg
-	sed -i 's/fps_max\ 150/fps_max\ 0/' /home/louis/l4d2/left4dead2/cfg/server.cfg
-	sed -i '47 s/\"2\"/\"16\"/' /home/louis/l4d2/left4dead2/addons/sourcemod/configs/sourcebans/sourcebans.cfg
+	sed -i 's/nb_update_frequency\ 0.014/nb_update_frequency\ 0.03/' >> /home/louis/l4d2/left4dead2/cfg/server.cfg
+	sed -i 's/fps_max\ 150/fps_max\ 0/' >> /home/louis/l4d2/left4dead2/cfg/server.cfg
+	sed -i '47 s/\"2\"/\"16\"/' >> /home/louis/l4d2/left4dead2/addons/sourcemod/configs/sourcebans/sourcebans.cfg
 	cp /home/louis/l4d2/left4dead2/addons/hostname.txt /home/louis/l4d2/left4dead2/addons/sourcemod/configs/hostname/
 	cp /home/louis/l4d2/left4dead2/addons/advertisements.txt /home/louis/l4d2/left4dead2/addons/sourcemod/configs/advertisements.txt
 	cp /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/disabled/specrates.smx /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/optional/ 
@@ -30,25 +30,25 @@ cloudconfig(){
 localconfig(){
 	if [ "$PORT" = "2330" ];
 	then
-		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/optional/sam_vs.smx
+		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/optional/AnneHappy/sam_vs.smx
 	fi
 	if [ "$PORT" = "2340" ];
 	then
-		sed -i 's/AnneHappy6.cfg/AnneHappy4.cfg/g' /home/louis/l4d2/left4dead2/cfg/cfgogl/AnneHappy/confogl_plugins.cfg
-		echo "sm_cvar ai_Tank_StopDistance 145" >> /home/louis/l4d2/left4dead2/cfg/cfgogl/AnneHappy/confogl_plugins.cfg
-		echo "sm_cvar ai_TankAirAngleRestrict 60" >> /home/louis/l4d2/left4dead2/cfg/cfgogl/AnneHappy/confogl_plugins.cfg
+		sed -i 's/AnneHappy6.cfg/AnneHappy4.cfg/g' /home/louis/l4d2/left4dead2/cfg/cfgogl/annehappy/confogl_plugins.cfg
+		sed -i 's/ai_Tank_StopDistance\ 135/ai_Tank_StopDistance\ 145/'>> /home/louis/l4d2/left4dead2/cfg/vote/hard_off.cfg
+		sed -i 's/ai_TankAirAngleRestrict\ 57/ai_Tank_StopDistance\ 60/' >> /home/louis/l4d2/left4dead2/cfg/vote/hard_off.cfg
 	fi
 	if [ "$PORT" = "2341" ];
 	then
-		sed -i 's/AnneHappy6.cfg/AnneHappy5.cfg/g' /home/louis/l4d2/left4dead2/cfg/cfgogl/AnneHappy/confogl_plugins.cfg
-		echo "sm_cvar ai_Tank_StopDistance 140" >> /home/louis/l4d2/left4dead2/cfg/cfgogl/AnneHappy/confogl_plugins.cfg
-		echo "sm_cvar ai_TankAirAngleRestrict 60" >> /home/louis/l4d2/left4dead2/cfg/cfgogl/AnneHappy/confogl_plugins.cfg
+		sed -i 's/AnneHappy6.cfg/AnneHappy5.cfg/g' /home/louis/l4d2/left4dead2/cfg/cfgogl/annehappy/confogl_plugins.cfg
+		sed -i 's/ai_Tank_StopDistance\ 135/ai_Tank_StopDistance\ 140/'>> /home/louis/l4d2/left4dead2/cfg/vote/hard_off.cfg
+		sed -i 's/ai_TankAirAngleRestrict\ 57/ai_Tank_StopDistance\ 60/' >> /home/louis/l4d2/left4dead2/cfg/vote/hard_off.cfg
 	fi
 	if [ "$PORT" = "2342" ];
 	then
 		sed -i 's/AnneHappy6.cfg/AnneHappy6.cfg/g' /home/louis/l4d2/left4dead2/cfg/cfgogl/AnneHappy/confogl_plugins.cfg
-		echo "sm_cvar ai_Tank_StopDistance 135" >> /home/louis/l4d2/left4dead2/cfg/cfgogl/AnneHappy/confogl_plugins.cfg
-		echo "sm_cvar ai_TankAirAngleRestrict 60" >> /home/louis/l4d2/left4dead2/cfg/cfgogl/AnneHappy/confogl_plugins.cfg
+		sed -i 's/ai_Tank_StopDistance\ 135/ai_Tank_StopDistance\ 135/'>> /home/louis/l4d2/left4dead2/cfg/vote/hard_off.cfg
+		sed -i 's/ai_TankAirAngleRestrict\ 57/ai_Tank_StopDistance\ 60/' >> /home/louis/l4d2/left4dead2/cfg/vote/hard_off.cfg
 	fi
 }
 # plugins Config
@@ -116,7 +116,7 @@ then
 		echo "pure versus packge installed"
 	fi
 	
-	if [ "$cloud" = "true" ];
+	if [ "$cloud" = "flase" ];
 	then
 		#localserver change to static local ip
 		sed -i 's/home.trygek.com/10.0.0.4/g' /home/louis/l4d2/left4dead2/addons/sourcemod/configs/databases.cfg
