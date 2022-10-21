@@ -97,7 +97,12 @@ then
 		cp -r /home/louis/anne/left4dead2/sound/ l4d2/left4dead2/
 		cp -r /home/louis/anne/left4dead2/model/ l4d2/left4dead2/
 		echo "zone plugins packge installed"
-		localconfig
+		if [ "$cloud" = "true" ];
+		then
+			cloudconfig
+		else
+			localconfig
+		fi
 		newpluginpackage
 	fi
 	
