@@ -62,6 +62,7 @@ then
 			cloudconfig
 		else
 			localconfig
+		fi
 		oldpluginpackage
 		echo "anne plugins packge installed"
 	fi
