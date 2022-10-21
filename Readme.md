@@ -1,20 +1,9 @@
 # 求生之路2 Docker image
 
-## 端口
-
-默认情况下，打开27015端口最合适，为了方便windows用户创建本地docker服务器，还增加了2333和2334两个端口（原因等会介绍）
-
-```
-docker run -p 2333:2333/tcp -p 2333:2333/udp -e PORT=2333 -e MAP="c2m1_highway" -e REGION=255 -e HOSTNAME="LEO" -e password="123456" -e steamgroup="25622692,26419628" -e plugin="anne" -e steamid="STEAM_1:1:121430603" -v "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Left 4 Dead 2\\left4dead2\\addons":"/map" --name anne morzlee/l4d2
-```
-
-如果是Windows系统，首先docker pull morzlee/l4d2 把docker镜像拉取出来，然后在在docker创建容器时增加一个volumes对应就行：
-
-
-
-### 修改服务器启动端口
+## 修改服务器启动端口
 
 只需要修改环境变量 `PORT` 即可解决
+PS: 桥接开放端口只有2333：2334
 
 ## 主机名称
 
@@ -42,24 +31,25 @@ e.g. 如果你的服务器在欧洲:
 
 ## 插件选择
 
-有3种插件可以选择，分别是Anne药役和neko多特和sirplease药抗
+有3种插件可以选择，分别是anne Anne药役单独包、zone Anne药役和药抗包、neko多特、purecoop纯净100t战役和pureversus纯净100tick对抗
 
-sirplease github address: https://github.com/SirPlease/L4D2-Competitive-Rework
-
-Anna Github address: https://github.com/Caibiii/AnneServer 
-
-neko Github address: https://github.com/himenekocn/NekoSpecials-L4D2
+sirplease github address: https://github.com/fantasylidong/purecoop
+anne Github address: https://github.com/fantasylidong/anne
+zone Github address: https://github.com/fantasylidong/CompetitiveWithAnne
+neko Github address: https://github.com/fantasylidong/neko
+pureversus Github address: https://github.com/fantasylidong/100tickPureVersus
 
 默认插件种类是anna，如果需要修改请自己修改参数
 
-`docker run -e plugin=anna`...
+`docker run -e plugin=anne`...
 
 | type            |
 | --------------- |
 | anne            |
+| zone            |
 | neko            |
-| sirplease       |
-| custombyyouself |
+| purecoop       |
+| pureversus |
 
 ## 第三方地图
 
@@ -76,3 +66,23 @@ steamgroup填写自己群组的值，多个可以用英文逗号连接
 password方便自己使用rcon server manage自己管理
 
 我为了自己方便，默认值全部写的我自己的值，注意修改
+
+## 启动命令
+docker run --ulimit core=0 --net=host --memory-swap 1000m -m 700m  -e TZ=Asia/Shanghai -e password="123456" -e steamgroup="123456" -e PORT=2333 -e MAP="c2m1_highway" -e REGION=255 -e plugin="anne" -e steamid="STEAM_1:1:121430603" -v "/keep/annemap":"/map" --name anne --restart=always morzlee/l4d2:latest &
+--net=host 使用本地网络，看你自己需求，也能桥接
+--memory-swap 1000m -m 700m 内存限制
+-e TZ=Asia/Shanghai 时区
+-e password="123456" rcon密码
+-e steamgroup="123456" 绑定的steam组
+-e PORT=2333 使用端口[桥接记得这个要对应]
+-e MAP="c2m1_highway" 初始地图
+-e REGION=255 设置服务器位置
+-e plugin="anne" 将使用的插件包名字
+-e steamid="STEAM_1:1:121430603" 设置管理员id
+-v "/keep/annemap":"/map" 设置硬盘映射，方便docker启动后软连接第三方地图到docker容器内
+--name anne 容器名字
+--restart=always 开机重启（随着docker启动而启动）
+morzlee/l4d2:latest 镜像名字
+& 在linux里表示后台运行
+
+ 
