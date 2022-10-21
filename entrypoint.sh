@@ -116,7 +116,7 @@ then
 		oldpluginpackage
 	fi
 	
-	if [ "$cloud" = "flase" ];
+	if [ "$cloud" = "false" ];
 	then
 		#localserver change to static local ip
 		sed -i 's/home.trygek.com/10.0.0.4/g' /home/louis/l4d2/left4dead2/addons/sourcemod/configs/databases.cfg
