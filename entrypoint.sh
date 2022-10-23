@@ -36,18 +36,18 @@ localconfig(){
 	then
 		sed -i 's/AnneHappy6.cfg/AnneHappy4.cfg/g' /home/louis/l4d2/left4dead2/cfg/cfgogl/annehappy/confogl_plugins.cfg
 		sed -i 's/ai_Tank_StopDistance\ 135/ai_Tank_StopDistance\ 145/' /home/louis/l4d2/left4dead2/cfg/vote/hard_off.cfg
-		sed -i 's/ai_TankAirAngleRestrict\ 57/ai_Tank_StopDistance\ 60/' /home/louis/l4d2/left4dead2/cfg/vote/hard_off.cfg
+		sed -i 's/ai_TankAirAngleRestrict\ 57/ai_TankAirAngleRestrict\ 60/' /home/louis/l4d2/left4dead2/cfg/vote/hard_off.cfg
 	fi
 	if [ "$PORT" = "2341" ];
 	then
 		sed -i 's/AnneHappy6.cfg/AnneHappy5.cfg/g' /home/louis/l4d2/left4dead2/cfg/cfgogl/annehappy/confogl_plugins.cfg
 		sed -i 's/ai_Tank_StopDistance\ 135/ai_Tank_StopDistance\ 140/' /home/louis/l4d2/left4dead2/cfg/vote/hard_off.cfg
-		sed -i 's/ai_TankAirAngleRestrict\ 57/ai_Tank_StopDistance\ 60/' /home/louis/l4d2/left4dead2/cfg/vote/hard_off.cfg
+		sed -i 's/ai_TankAirAngleRestrict\ 57/ai_TankAirAngleRestrict\ 60/' /home/louis/l4d2/left4dead2/cfg/vote/hard_off.cfg
 	fi
 	if [ "$PORT" = "2342" ];
 	then
 		sed -i 's/ai_Tank_StopDistance\ 135/ai_Tank_StopDistance\ 135/' /home/louis/l4d2/left4dead2/cfg/vote/hard_off.cfg
-		sed -i 's/ai_TankAirAngleRestrict\ 57/ai_Tank_StopDistance\ 60/' /home/louis/l4d2/left4dead2/cfg/vote/hard_off.cfg
+		sed -i 's/ai_TankAirAngleRestrict\ 57/ai_TankAirAngleRestrict\ 60/' /home/louis/l4d2/left4dead2/cfg/vote/hard_off.cfg
 	fi
 }
 # plugins Config
