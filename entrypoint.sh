@@ -31,6 +31,7 @@ localconfig(){
 	if [ "$PORT" = "2330" ];
 	then
 		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/optional/AnneHappy/sam_vs.smx
+		sed -i "135 s/secure/insecure/"  /home/louis/entrypoint.sh
 	fi
 	if [ "$PORT" = "2340" ];
 	then
