@@ -129,6 +129,7 @@ then
 	
 	#delete motd
 	rm /home/louis/l4d2/left4dead2/*motd.txt
+	rm /home/louis/l4d2/left4dead2/*host.txt
 fi
 
 # Start Game
