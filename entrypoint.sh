@@ -51,6 +51,10 @@ localconfig(){
 		sed -i 's/ai_TankAirAngleRestrict\ 57/ai_TankAirAngleRestrict\ 60/' /home/louis/l4d2/left4dead2/cfg/vote/hard_off.cfg
 	fi
 }
+copydanceresource(){
+	cp -r /home/louis/anne/left4dead2/sound/ l4d2/left4dead2/
+	cp -r /home/louis/anne/left4dead2/models/ l4d2/left4dead2/
+}
 # plugins Config
 if [ ! -d "/home/louis/l4d2/left4dead2/addons/sourcemod/" ];
 then
@@ -67,13 +71,6 @@ then
 		echo "anne plugins packge installed"
 	fi
 
-	if [ "$plugin" = "angel" ];
-	then
-		cp  -r /home/louis/AngelBeats/* l4d2/left4dead2/
-		echo "AngelBeats plugins packge installed"
-		oldpluginpackage
-	fi
-
 	if [ "$plugin" = "purecoop" ];
 	then
 		cp  -r /home/louis/purecoop/* l4d2/left4dead2/
@@ -85,6 +82,7 @@ then
 	if [ "$plugin" = "neko" ];
 	then
 		cp  -r /home/louis/neko/* l4d2/left4dead2/
+		copydanceresource
 		echo "neko plugins packge installed"
 		oldpluginpackage
 	fi
@@ -94,8 +92,7 @@ then
 		cp  -r /home/louis/CompetitiveWithAnne/* l4d2/left4dead2/
 		# nav file copy
 		cp -r /home/louis/anne/update/* l4d2/update/
-		cp -r /home/louis/anne/left4dead2/sound/ l4d2/left4dead2/
-		cp -r /home/louis/anne/left4dead2/models/ l4d2/left4dead2/
+		copydanceresource
 		echo "zone plugins packge installed"
 		if [ "$cloud" = "true" ];
 		then
@@ -109,6 +106,7 @@ then
 	if [ "$plugin" = "pureversus" ];
 	then
 		cp  -r /home/louis/100tickPureVersus/* l4d2/left4dead2/
+		copydanceresource
 		if [ "$PORT" = "2353" ];
 		then
 			sed -i 's/mutation12/versus/g' /home/louis/l4d2/left4dead2/cfg/server.cfg

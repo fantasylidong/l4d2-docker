@@ -21,12 +21,12 @@ RUN wget http://media.steampowered.com/installer/steamcmd_linux.tar.gz && tar -x
 RUN mkdir -p .steam/sdk32/ && ln -s ~/linux32/steamclient.so ~/.steam/sdk32/steamclient.so \
     && mkdir -p .steam/sdk64/ && ln -s ~/linux64/steamclient.so ~/.steam/sdk64/steamclient.so
 RUN ./steamcmd.sh +login anonymous +force_install_dir ./l4d2 +app_update 222860 +quit
-RUN git clone -b zonemod https://github.com/fantasylidong/anne.git
+RUN git clone --depth 1 -b zonemod https://github.com/fantasylidong/anne.git
 RUN rm -rf anne/left4dead2/addons/sourcemod/scripting/
-RUN git clone https://github.com/fantasylidong/purecoop.git
-RUN git clone -b mysql https://github.com/fantasylidong/neko.git
+RUN git clone --depth 1 https://github.com/fantasylidong/purecoop.git
+RUN git clone --depth 1 -b mysql https://github.com/fantasylidong/neko.git
 RUN git clone https://github.com/fantasylidong/CompetitiveWithAnne.git
-RUN git clone https://github.com/fantasylidong/100tickPureVersus.git
+RUN git clone --depth 1 https://github.com/fantasylidong/100tickPureVersus.git
 
 EXPOSE 27015/tcp
 EXPOSE 27015/udp
