@@ -41,7 +41,7 @@ ENV PORT=2333 \
 	password="123456" \
 	steamgroup="123456" \
 	stripper="false" \
-	steam64 = ""
+	steam64=""
 
 ADD entrypoint.sh entrypoint.sh
 ENTRYPOINT ["sh", "entrypoint.sh"]
