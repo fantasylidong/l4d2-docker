@@ -40,7 +40,8 @@ ENV PORT=2333 \
 	steamid="STEAM_1:1:121430603" \
 	password="123456" \
 	steamgroup="123456" \
-	stripper="false"
+	stripper="false" \
+	steam64 = ""
 
 ADD entrypoint.sh entrypoint.sh
 ENTRYPOINT ["sh", "entrypoint.sh"]

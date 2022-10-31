@@ -125,6 +125,12 @@ then
 	#plugins admin setting
 	echo "sv_region \"$REGION\"" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 	
+	#修改accelator log report
+	if [ -n "$steam64" ]
+	then
+		sed -i "s/1111111111/$steam64/g" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/core.cfg
+	fi
+	
 	#delete motd
 	rm /home/louis/l4d2/left4dead2/*motd.txt
 	rm /home/louis/l4d2/left4dead2/*host.txt
