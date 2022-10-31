@@ -8,7 +8,7 @@
 ln  -s  /map/*  l4d2/left4dead2/addons/
 ln  -s  /map2/*  l4d2/left4dead2/addons/
 oldpluginpackage(){
-	echo "\"$steamid\" \"100:z\"" >> /home/louis/l4d2/left4dead2/addons/sourcemod/configs/admins_simple.ini
+	echo "\n\"$steamid\" \"100:z\"" >> /home/louis/l4d2/left4dead2/addons/sourcemod/configs/admins_simple.ini
 	echo "sv_steamgroup \"$steamgroup\"" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 	echo "rcon_password \"$password\"" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 }
@@ -19,6 +19,7 @@ newpluginpackage(){
 }
 cloudconfig(){
 	#cloud server settings
+	echo "\nsv_tags hidden" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 	sed -i "s/nb_update_frequency\ 0.014/nb_update_frequency\ 0.03/" /home/louis/l4d2/left4dead2/cfg/server.cfg
 	sed -i "s/fps_max\ 150/fps_max\ 0/" /home/louis/l4d2/left4dead2/cfg/server.cfg
 	sed -i "47 s/\"2\"/\"16\"/" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/sourcebans/sourcebans.cfg
@@ -123,7 +124,7 @@ then
 	fi
 	
 	#plugins admin setting
-	echo "sv_region \"$REGION\"" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
+	echo "\nsv_region \"$REGION\"" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 	
 	#修改accelator log report
 	if [ -n "$steam64" ]
