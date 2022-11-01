@@ -19,7 +19,8 @@ newpluginpackage(){
 }
 cloudconfig(){
 	#cloud server settings
-	echo "\nsv_tags hidden" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
+	#插件处理hidden
+	#echo "\nsv_tags hidden" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 	sed -i "s/nb_update_frequency\ 0.014/nb_update_frequency\ 0.03/" /home/louis/l4d2/left4dead2/cfg/server.cfg
 	sed -i "s/fps_max\ 150/fps_max\ 0/" /home/louis/l4d2/left4dead2/cfg/server.cfg
 	sed -i "47 s/\"2\"/\"16\"/" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/sourcebans/sourcebans.cfg
