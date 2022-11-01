@@ -117,12 +117,12 @@ then
 		oldpluginpackage
 	fi
 	
-	if [ "$cloud" = "false" ];
-	then
-		#localserver change to static local ip
-		sed -i 's/home.trygek.com/10.0.0.4/g' /home/louis/l4d2/left4dead2/addons/sourcemod/configs/databases.cfg
-		sed -i 's/12345/3306/g' /home/louis/l4d2/left4dead2/addons/sourcemod/configs/databases.cfg
-	fi
+	#if [ "$cloud" = "false" ];
+	#then
+	#	#localserver change to static local ip
+	#	sed -i 's/home.trygek.com/10.0.0.4/g' /home/louis/l4d2/left4dead2/addons/sourcemod/configs/databases.cfg
+	#	sed -i 's/12345/3306/g' /home/louis/l4d2/left4dead2/addons/sourcemod/configs/databases.cfg
+	#fi
 	
 	#plugins admin setting
 	echo "\nsv_region \"$REGION\"" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
@@ -143,6 +143,18 @@ then
 	if [ -n "$mysqlport" ]
 	then
 		sed -i "s/12345/$mysqlport/g" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/databases.cfg
+	fi
+	
+	#修改数据库用户名
+	if [ -n "$mysqluser" ]
+	then
+		sed -i "s/morzlee/$mysqluser/g" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/databases.cfg
+	fi
+	
+	#修改数据库密码
+	if [ -n "$mysqlpassword" ]
+	then
+		sed -i "s/anne123/$mysqlpassword/g" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/databases.cfg
 	fi
 	
 	#delete motd

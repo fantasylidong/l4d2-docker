@@ -43,7 +43,9 @@ ENV PORT=2333 \
 	stripper="false" \
 	steam64="" \
 	mysql="" \
-	mysqlport=""
+	mysqlport="" \
+	mysqluser="" \
+	mysqlpassword=""
 
 ADD entrypoint.sh entrypoint.sh
 ENTRYPOINT ["sh", "entrypoint.sh"]
