@@ -133,6 +133,18 @@ then
 		sed -i "s/1111111111/$steam64/g" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/core.cfg
 	fi
 	
+	#修改数据库地址
+	if [ -n "$mysql" ]
+	then
+		sed -i "s/home.trygek.com/$mysql/g" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/databases.cfg
+	fi
+	
+	#修改数据库端口
+	if [ -n "$mysqlport" ]
+	then
+		sed -i "s/12345/$mysqlport/g" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/databases.cfg
+	fi
+	
 	#delete motd
 	rm /home/louis/l4d2/left4dead2/*motd.txt
 	rm /home/louis/l4d2/left4dead2/*host.txt
