@@ -45,7 +45,8 @@ ENV PORT=2333 \
 	mysql="" \
 	mysqlport="" \
 	mysqluser="" \
-	mysqlpassword=""
+	mysqlpassword="" \
+	dlurl=""
 
 ADD entrypoint.sh entrypoint.sh
 ENTRYPOINT ["sh", "entrypoint.sh"]

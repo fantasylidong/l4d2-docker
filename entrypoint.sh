@@ -157,6 +157,12 @@ then
 		sed -i "s/anne123/$mysqlpassword/g" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/databases.cfg
 	fi
 	
+	#修改模型下载链接
+	if [ -n "$mysqlpassword" ]
+	then
+		sed -i "s/sb.trygek.com/$dlurl/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
+	fi
+	
 	#delete motd
 	rm /home/louis/l4d2/left4dead2/*motd.txt
 	rm /home/louis/l4d2/left4dead2/*host.txt
