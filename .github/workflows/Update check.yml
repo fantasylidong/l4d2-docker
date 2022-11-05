@@ -25,6 +25,9 @@ on:
         description: 'Version'
         required: false
         default: ''	
+  push:
+     branches:
+       - 'master'
 
 jobs:
   jell:
