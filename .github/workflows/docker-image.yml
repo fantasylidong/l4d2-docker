@@ -6,9 +6,6 @@ on:
     inputs:
       tags: 
          description: 'Run Tags'
-  push:
-    branches:
-      - 'master'
 
 
 jobs:
