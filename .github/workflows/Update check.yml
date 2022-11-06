@@ -25,9 +25,6 @@ on:
         description: 'Version'
         required: false
         default: ''	
-  push:
-     branches:
-       - 'master'
 
 jobs:
   jell:
@@ -72,5 +69,5 @@ jobs:
     - name: 删除工作流
       uses: GitRML/delete-workflow-runs@main
       with:
-        retain_days: 3
+        retain_days: 1
  
