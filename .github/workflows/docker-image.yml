@@ -46,7 +46,7 @@ jobs:
         name: ssh key to guangzhou server deploy new docker image
         uses: appleboy/ssh-action@master
         with:
-          host: "${{ secrets.HOST2 },{ secrets.HOST3 }}"
+          host: "${{ secrets.HOST2 },${ secrets.HOST3 }}"
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
@@ -55,7 +55,7 @@ jobs:
         name: ssh key to shanghai server deploy new docker image
         uses: appleboy/ssh-action@master
         with:
-          host: "${{ secrets.HOST4 },{ secrets.HOST5 }}"
+          host: "${{ secrets.HOST4 },${ secrets.HOST5 }}"
           username: ${{ secrets.USERNAME2 }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
