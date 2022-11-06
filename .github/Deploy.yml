@@ -1,0 +1,23 @@
+name: deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      tags: 
+         description: 'Run Tags'
+
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: ssh key to guangzhou server deploy new docker image
+        uses: appleboy/ssh-action@master
+        with:
+          host: "${{ secrets.HOST1 }}:${{ secrets.PORT }},106.55.6.211,106.13.221.250,124.221.215.53,124.221.10.99"
+          sync: true
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            (./~/autoupdate.sh &)
