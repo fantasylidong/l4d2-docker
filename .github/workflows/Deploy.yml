@@ -21,4 +21,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            nohup ./autoupdate.sh > /dev/null 2>&10 &
+            screen -S update "./autoupdate.sh"
