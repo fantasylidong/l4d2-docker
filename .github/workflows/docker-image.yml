@@ -70,8 +70,8 @@ jobs:
           script: |
             sudo su -
             bash ~/autoupdate.sh &
-        name: ssh key to shanghai server2 deploy new docker image
       -
+        name: ssh key to shanghai server2 deploy new docker image
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST5 }}
