@@ -21,4 +21,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            screen -S update "./autoupdate.sh"
+            screen -S update bash -c "bash ~/autoupdate.sh"
