@@ -41,7 +41,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            bash ~/autoupdate.sh
+            bash ~/autoupdate.sh &
       -
         name: ssh key to guangzhou server deploy new docker image
         uses: appleboy/ssh-action@master
@@ -50,14 +50,14 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            bash ~/autoupdate.sh
+            bash ~/autoupdate.sh &
       -
-        name: ssh password to shanghai server deploy new docker image
+        name: ssh key to shanghai server deploy new docker image
         uses: appleboy/ssh-action@master
         with:
           host: "${{ secrets.HOST4 },{ secrets.HOST5 }}"
           username: ${{ secrets.USERNAME2 }}
-          key: ${{ secrets.PASSWORD }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             sudo su -
-            bash ~/autoupdate.sh
+            bash ~/autoupdate.sh &
