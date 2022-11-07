@@ -33,21 +33,13 @@ jobs:
           file: Dockerfile
           tags: morzlee/l4d2:latest
       -
-        name: ssh key to home deploy new docker image
+        name: deploy new docker image to all server
         uses: appleboy/ssh-action@master
         with:
-          host: "${{ secrets.HOST1 }}"
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.PORT }}
-          script: |
-            bash ~/autoupdate.sh &
-      -
-        name: ssh key to guangzhou server deploy new docker image
-        uses: appleboy/ssh-action@master
-        with:
-          host: "106.55.6.211,106.13.221.250,124.221.215.53,124.221.10.99"
+          host: "${{ secrets.HOST1 }}:${{ secrets.PORT }},106.55.6.211,106.13.221.250,124.221.215.53,124.221.10.99"
+          sync: true
+          command_timeout: "10m"
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            bash ~/autoupdate.sh &
+            screen -dm bash -c "./autoupdate.sh"
