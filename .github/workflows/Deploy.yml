@@ -21,4 +21,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            screen -dm bash -c "./autoupdate.sh ; exec bash"
+            screen -dm bash -c "./autoupdate.sh ; sleep 10"
