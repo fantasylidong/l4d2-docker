@@ -12,17 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       -
-        name: deploy new docker image by ssh proxy
+        name: deploy new docker image
         uses: appleboy/ssh-action@master
         with:
-          host: "106.55.6.211,106.13.221.250,124.221.215.53,124.221.10.99"
+          host: "${{ secrets.HOST1 }}:${{ secrets.PORT }}"
           sync: true
           command_timeout: "10m"
           username: ${{ secrets.USERNAME }}
-          proxy_host: ${{ secrets.HOST1 }}
-          proxy_username: ${{ secrets.USERNAME }}
-          proxy_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          proxy_port: ${{ secrets.PORT }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             screen -dm bash -c "./autoupdate.sh ; exec bash"
