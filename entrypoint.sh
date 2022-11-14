@@ -113,10 +113,6 @@ then
 		then
 			sed -i 's/mutation12/versus/g' /home/louis/l4d2/left4dead2/cfg/server.cfg
 		fi
-		if [ "$PORT" = "2353" ];
-		then
-			sed -i 's/mutation12/versus/g' /home/louis/l4d2/left4dead2/cfg/server.cfg
-		fi
 		echo "pure versus packge installed"
 		oldpluginpackage
 	fi
