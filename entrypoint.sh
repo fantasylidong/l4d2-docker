@@ -30,10 +30,13 @@ cloudconfig(){
 }
 
 localconfig(){
+	
 	if [ "$PORT" = "2330" ];
 	then
+		git -C /home/louis/CompetitiveWithAnne/ checkout test
+		cp  -r /home/louis/CompetitiveWithAnne/* l4d2/left4dead2/
 		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/optional/AnneHappy/sam_vs.smx
-		sed -i "179 s/secure/insecure/"  /home/louis/entrypoint.sh
+		sed -i "182 s/secure/insecure/"  /home/louis/entrypoint.sh
 		sed -i "s/join_autoupdate\ 1/join_autoupdate\ 0/"  /home/louis/l4d2/left4dead2/cfg/cfgogl/annehappy/shared_settings
 	fi
 	if [ "$PORT" = "2340" ];
