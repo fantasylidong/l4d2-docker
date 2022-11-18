@@ -1,4 +1,4 @@
-name: ci
+name: dockeronly
 
 on:
   workflow_dispatch:
