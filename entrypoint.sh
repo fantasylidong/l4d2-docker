@@ -33,7 +33,7 @@ localconfig(){
 	
 	if [ "$PORT" = "2330" ];
 	then
-		git -C /home/louis/CompetitiveWithAnne/ checkout test
+		#git -C /home/louis/CompetitiveWithAnne/ checkout test
 		cp  -r /home/louis/CompetitiveWithAnne/* l4d2/left4dead2/
 		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/optional/AnneHappy/sam_vs.smx
 		sed -i "182 s/secure/insecure/"  /home/louis/entrypoint.sh
