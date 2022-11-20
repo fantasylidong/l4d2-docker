@@ -25,7 +25,7 @@ jobs:
         name: deploy new docker image by ssh proxy
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.ALL_SERVER_HOST }}
+          host: "${{ secrets.ALL_SERVER_HOST }}"
           sync: true
           command_timeout: "10m"
           username: ${{ secrets.USERNAME }}
