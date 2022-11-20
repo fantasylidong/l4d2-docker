@@ -12,16 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       -
-        name: deploy new docker image
-        uses: appleboy/ssh-action@master
-        with:
-          host: "${{ secrets.HOST1 }}:${{ secrets.PORT }}"
-          command_timeout: "10m"
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            screen -dm bash -c "./autoupdate.sh ; sleep 10"
-      -
         name: deploy new docker image by ssh proxy
         uses: appleboy/ssh-action@master
         with:
