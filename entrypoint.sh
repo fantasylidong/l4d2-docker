@@ -24,7 +24,7 @@ cloudconfig(){
 	sed -i "s/nb_update_frequency\ 0.014/nb_update_frequency\ 0.03/" /home/louis/l4d2/left4dead2/cfg/server.cfg
 	sed -i "s/fps_max\ 150/fps_max\ 0/" /home/louis/l4d2/left4dead2/cfg/server.cfg
 	sed -i "47 s/\"2\"/\"16\"/" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/sourcebans/sourcebans.cfg
-	cp /home/louis/l4d2/left4dead2/addons/hostname.txt /home/louis/l4d2/left4dead2/addons/sourcemod/configs/hostname/
+	#cp /home/louis/l4d2/left4dead2/addons/hostname.txt /home/louis/l4d2/left4dead2/addons/sourcemod/configs/hostname/
 	cp /home/louis/l4d2/left4dead2/addons/advertisements* /home/louis/l4d2/left4dead2/addons/sourcemod/configs/
 }
 
@@ -59,6 +59,31 @@ localconfig(){
 copydanceresource(){
 	cp -r /home/louis/anne/left4dead2/sound/ l4d2/left4dead2/
 	cp -r /home/louis/anne/left4dead2/models/ l4d2/left4dead2/
+}
+anneremovemysql(){
+	#修改hostname插件端口对应port环境变量
+	if [ -n "$PORT" ]
+	then
+		sed -i "s/2330/$PORT/g" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/hostname/hostname.txt
+	fi
+	
+	if [ -n "$hostname" ]
+	then
+		sed -i "s/Anne电信测试服/$hostname/g" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/hostname/hostname.txt
+	fi
+	
+	if [ -n "$mysqlexist" ]
+	then
+		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/extend/l4d_stats.smx
+                rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/chat-processor.smx
+                rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/extend/hextags.smx
+                rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/extend/lilac.smx
+                rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/extend/sbpp_*
+                rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/extend/rpg.smx
+                rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/extend/chatlog.smx
+                rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/extend/veterans.smx
+                cp /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/disabled/rpg.smx /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/extend/
+	fi
 }
 # plugins Config
 if [ ! -d "/home/louis/l4d2/left4dead2/addons/sourcemod/" ];
@@ -105,6 +130,7 @@ then
 		else
 			localconfig
 		fi
+		anneremovemysql
 		newpluginpackage
 	fi
 	
