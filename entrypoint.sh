@@ -198,6 +198,12 @@ then
 		sed -i "s/sb.trygek.com/$dlurl/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
 	fi
 	
+	#private,把服务器设为只允许组员第一个进入
+	if [ -n "$private" ]
+	then
+		sed -i "s/sv_steamgroup_exclusive\ 0/sv_steamgroup_exclusive\ 1/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
+	fi
+	
 	#delete motd
 	rm /home/louis/l4d2/left4dead2/*motd.txt
 	rm /home/louis/l4d2/left4dead2/*host.txt
