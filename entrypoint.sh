@@ -202,6 +202,8 @@ then
 	if [ -n "$private" ]
 	then
 		sed -i "s/sv_steamgroup_exclusive\ 0/sv_steamgroup_exclusive\ 1/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
+		sed -i "s/sv_allow_lobby_connect_only\ 0/sv_allow_lobby_connect_only\ 1/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
+		echo "sm_cvar sv_hosting_lobby 1" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 	fi
 	
 	#delete motd
