@@ -207,6 +207,8 @@ then
 			sed -i "s/sv_allow_lobby_connect_only/\/\/sv_allow_lobby_connect_only/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
 			echo "sm_cvar sv_hosting_lobby 1" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 			sed -i "/sm_killlobbyres/d" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_settings.cfg
+			sed -i "/confogl_addcvar\ sv_allow_lobby_connect_only\ 0/d" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_cvars.cfg
+			sed -i "s/confogl_match_killlobbyres\ \ \ \ \ \ \ \ \ \ \"1\"/confogl_match_killlobbyres\ \ \ \ \ \ \ \ \ \ \"0\"/g" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_cvars.cfg
 		fi
 	fi
 	
