@@ -159,8 +159,11 @@ then
 	#	sed -i 's/12345/3306/g' /home/louis/l4d2/left4dead2/addons/sourcemod/configs/databases.cfg
 	#fi
 	
-	#plugins admin setting
+	#region setting
 	echo "\nsv_region \"$REGION\"" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
+	
+	#server language setting
+	sed -i "s/\"ServerLang\"\	\"en\"/\"ServerLang\"\	\"chi\"/g" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/core.cfg
 	
 	#修改accelator log report
 	if [ -n "$steam64" ]
