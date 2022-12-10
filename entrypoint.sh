@@ -204,8 +204,8 @@ then
 	#private,把服务器设为只允许组员第一个进入
 	if [ -n "$private" ]
 	then
-		sed -i "/sv_steamgroup_exclusive\ 0/d" /home/louis/l4d2/left4dead2/cfg/server.cfg
-		sed -i "/sm_cvar\ sv_steamgroup_exclusive\ 0/d" /home/louis/l4d2/left4dead2/cfg/server.cfg
+		sed -i "s/sm_cvar\ sv_steamgroup_exclusive/\/\/sm_cvar\ sv_steamgroup_exclusive/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
+		sed -i "s/sv_steamgroup_exclusive/\/\/sv_steamgroup_exclusive/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
 		if [ "$plugin" = "zone" ];
 		then
 			sed -i "s/sv_allow_lobby_connect_only/\/\/sv_allow_lobby_connect_only/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
