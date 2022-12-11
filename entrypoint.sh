@@ -130,6 +130,7 @@ then
 		else
 			localconfig
 		fi
+		sed -i "s/join_autoupdate\ 1/join_autoupdate\ 4/g" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_settings.cfg
 		anneremovemysql
 		newpluginpackage
 	fi
