@@ -207,15 +207,9 @@ then
 	then	
 		if [ "$plugin" = "zone" ];
 		then
-			if [ "$lobby" = "true" ];
-			then
-				sed -i "s/sm_cvar\ sv_steamgroup_exclusive/\/\/sm_cvar\ sv_steamgroup_exclusive/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
-				sed -i "s/sv_steamgroup_exclusive/\/\/sv_steamgroup_exclusive/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
-				echo "sm_cvar join_enable_autolobbycontrol 1" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
-			else
-				sed -i "s/sm_cvar\ sv_steamgroup_exclusive\ 0/sm_cvar\ sv_steamgroup_exclusive\ 1/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
-				sed -i "s/sv_steamgroup_exclusive\ 0/sv_steamgroup_exclusive\ 1/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
-			fi
+			sed -i "s/sm_cvar\ sv_steamgroup_exclusive/\/\/sm_cvar\ sv_steamgroup_exclusive/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
+			sed -i "s/sv_steamgroup_exclusive/\/\/sv_steamgroup_exclusive/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
+			echo "sm_cvar join_enable_autolobbycontrol 1" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 		else
 			sed -i "s/sm_cvar\ sv_steamgroup_exclusive\ 0/sm_cvar\ sv_steamgroup_exclusive\ 1/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
 			sed -i "s/sv_steamgroup_exclusive\ 0/sv_steamgroup_exclusive\ 1/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
