@@ -204,15 +204,30 @@ then
 	
 	#private,把服务器设为只允许组员第一个进入
 	if [ -n "$private" ]
-	then
-		sed -i "s/sm_cvar\ sv_steamgroup_exclusive/\/\/sm_cvar\ sv_steamgroup_exclusive/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
-		sed -i "s/sv_steamgroup_exclusive/\/\/sv_steamgroup_exclusive/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
+	then	
 		if [ "$plugin" = "zone" ];
 		then
-			sed -i "s/sv_allow_lobby_connect_only/\/\/sv_allow_lobby_connect_only/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
-			echo "sm_cvar join_enable_autolobbycontrol 1" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
-			echo "sm_cvar sv_hosting_lobby 1" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
-                        echo "sm_cvar sv_steamgroup_exclusive 0" >> /home/louis/l4d2/left4dead2/cfg/confogl_rates.cfg
+			if [ "$lobby" = "true" ];
+			then
+				sed -i "s/sm_cvar\ sv_steamgroup_exclusive/\/\/sm_cvar\ sv_steamgroup_exclusive/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
+				sed -i "s/sv_steamgroup_exclusive/\/\/sv_steamgroup_exclusive/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
+				echo "sm_cvar join_enable_autolobbycontrol 1" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
+			else
+				sed -i "s/sm_cvar\ sv_steamgroup_exclusive\ 0/sm_cvar\ sv_steamgroup_exclusive\ 1/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
+				sed -i "s/sv_steamgroup_exclusive\ 0/sv_steamgroup_exclusive\ 1/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
+			fi
+		else
+			sed -i "s/sm_cvar\ sv_steamgroup_exclusive\ 0/sm_cvar\ sv_steamgroup_exclusive\ 1/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
+			sed -i "s/sv_steamgroup_exclusive\ 0/sv_steamgroup_exclusive\ 1/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
+		fi
+	fi
+	
+	if [ "$lobby" = "true" ];
+	then
+		sed -i "s/sv_allow_lobby_connect_only/\/\/sv_allow_lobby_connect_only/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
+		echo "sm_cvar sv_hosting_lobby 1" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
+		if [ "$plugin" = "zone" ];
+		then
 			sed -i "/sm_killlobbyres/d" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_settings.cfg
 			sed -i "/confogl_addcvar\ sv_allow_lobby_connect_only\ 0/d" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_cvars.cfg
 			sed -i "s/confogl_match_killlobbyres\ \ \ \ \ \ \ \ \ \ \"1\"/confogl_match_killlobbyres\ \ \ \ \ \ \ \ \ \ \"0\"/g" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_cvars.cfg
