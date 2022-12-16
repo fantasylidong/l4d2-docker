@@ -36,6 +36,9 @@ localconfig(){
 		cp  -r /home/louis/CompetitiveWithAnne/* l4d2/left4dead2/
 		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/optional/AnneHappy/sam_vs.smx
 		sed -i "241 s/secure/insecure/"  /home/louis/entrypoint.sh
+		sed -i "s/join_autoupdate\ 1/join_autoupdate\ 0/g" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_settings.cfg
+		sed -i "s/join_autoupdate\ 4/join_autoupdate\ 0/g" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_settings.cfg
+		echo "sm_cvar join_autoupdate 0" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 	fi
 	if [ "$PORT" = "2340" ];
 	then
@@ -123,17 +126,12 @@ then
 		cp -r /home/louis/anne/update/* l4d2/update/
 		copydanceresource
 		echo "zone plugins packge installed"
+		sed -i "s/join_autoupdate\ 1/join_autoupdate\ 4/g" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_settings.cfg
 		if [ "$cloud" = "true" ];
 		then
 			cloudconfig
 		else
 			localconfig
-		fi
-		if [[ "$PORT" = "2330" ]] && [[ "$cloud" != "true" ]];
-		then
-			sed -i "s/join_autoupdate\ 1/join_autoupdate\ 0/g" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_settings.cfg
-		else
-			sed -i "s/join_autoupdate\ 1/join_autoupdate\ 4/g" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_settings.cfg
 		fi
 		anneremovemysql
 		newpluginpackage
