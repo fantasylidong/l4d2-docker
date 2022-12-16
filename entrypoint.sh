@@ -35,8 +35,7 @@ localconfig(){
 		#git -C /home/louis/CompetitiveWithAnne/ checkout test
 		cp  -r /home/louis/CompetitiveWithAnne/* l4d2/left4dead2/
 		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/optional/AnneHappy/sam_vs.smx
-		sed -i "182 s/secure/insecure/"  /home/louis/entrypoint.sh
-		sed -i "s/join_autoupdate\ 1/join_autoupdate\ 0/"  /home/louis/l4d2/left4dead2/cfg/cfgogl/annehappy/shared_settings
+		sed -i "241 s/secure/insecure/"  /home/louis/entrypoint.sh
 	fi
 	if [ "$PORT" = "2340" ];
 	then
@@ -130,7 +129,12 @@ then
 		else
 			localconfig
 		fi
-		sed -i "s/join_autoupdate\ 1/join_autoupdate\ 4/g" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_settings.cfg
+		if [[ "$PORT" = "2330" ]] && [[ "$cloud" != "true" ]];
+		then
+			sed -i "s/join_autoupdate\ 1/join_autoupdate\ 0/g" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_settings.cfg
+		else
+			sed -i "s/join_autoupdate\ 1/join_autoupdate\ 4/g" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_settings.cfg
+		fi
 		anneremovemysql
 		newpluginpackage
 	fi
