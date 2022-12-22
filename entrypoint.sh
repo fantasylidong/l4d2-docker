@@ -167,7 +167,12 @@ then
 	echo "\"$steamid\" \"100:z\"" >> /home/louis/l4d2/left4dead2/addons/sourcemod/configs/admins_simple.ini
 	
 	#server language setting
-	sed -i "s/\"ServerLang\"\	\"en\"/\"ServerLang\"\	\"chi\"/g" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/core.cfg
+	if [ -n "$lang" ]
+	then
+		sed -i "s/\"ServerLang\"\	\"en\"/\"ServerLang\"\	\"$lang\"/g" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/core.cfg
+	else
+		sed -i "s/\"ServerLang\"\	\"en\"/\"ServerLang\"\	\"chi\"/g" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/core.cfg
+	fi
 	
 	#修改accelator log report
 	if [ -n "$steam64" ]
