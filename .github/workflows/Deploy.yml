@@ -28,7 +28,7 @@ jobs:
         with:
           host: "${{ secrets.ALL_SERVER_HOST }}"
           timeout: "1m"
-          command_timeout: "10m"
+          command_timeout: "1m"
           username: ${{ secrets.USERNAME }}
           proxy_host: ${{ secrets.HOST1 }}
           proxy_username: ${{ secrets.USERNAME }}
