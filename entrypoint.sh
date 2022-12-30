@@ -236,6 +236,11 @@ then
 		fi
 	fi
 	
+	if [ -n "$hidden" ]
+	then	
+		echo "\nsv_tags\ hidden" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
+	fi
+	
 	#delete motd
 	rm /home/louis/l4d2/left4dead2/*motd.txt
 	rm /home/louis/l4d2/left4dead2/*host.txt
