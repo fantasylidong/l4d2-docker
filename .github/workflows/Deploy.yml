@@ -27,7 +27,6 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: "${{ secrets.ALL_SERVER_HOST }}"
-          sync: true
           timeout: "1m"
           command_timeout: "10m"
           username: ${{ secrets.USERNAME }}
