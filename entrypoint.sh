@@ -36,7 +36,7 @@ localconfig(){
 		#git -C /home/louis/CompetitiveWithAnne/ checkout test
 		cp  -r /home/louis/CompetitiveWithAnne/* l4d2/left4dead2/
 		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/optional/AnneHappy/sam_vs.smx
-		sed -i "239 s/-secure/-insecure/"  /home/louis/entrypoint.sh
+		sed -i "255 s/-secure/-insecure/"  /home/louis/entrypoint.sh
 		sed -i "s/join_autoupdate\ 1/join_autoupdate\ 0/g" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_settings.cfg
 		sed -i "s/join_autoupdate\ 4/join_autoupdate\ 0/g" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_settings.cfg
 		echo "sm_cvar join_autoupdate 0" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
@@ -169,7 +169,7 @@ then
 	
 	#region setting
 	echo "\nsv_region \"$REGION\"" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
-	echo "\"$steamid\" \"99:z\"" >> /home/louis/l4d2/left4dead2/addons/sourcemod/configs/admins_simple.ini
+	echo "\n\"$steamid\" \"99:z\"" >> /home/louis/l4d2/left4dead2/addons/sourcemod/configs/admins_simple.ini
 	
 	#server language setting
 	if [ -n "$lang" ]
