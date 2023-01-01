@@ -136,6 +136,10 @@ then
 		fi
 		anneremovemysql
 		newpluginpackage
+		if [ -n "$PLAYERS" ]
+		then
+			sed -i "s/mv_maxplayers\ 8/mv_maxplayers\ $PLAYERS/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
+		fi
 	fi
 	
 	if [ "$plugin" = "pureversus" ];
