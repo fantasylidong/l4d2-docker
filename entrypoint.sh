@@ -147,15 +147,15 @@ then
 		cp  -r /home/louis/100tickPureVersus/* l4d2/left4dead2/
 		copydanceresource
 
-                if [ "$PORT" = "2341" ];
-		then
-			sed -i 's/mutation12/versus/g' /home/louis/l4d2/left4dead2/cfg/server.cfg
-		fi
+                #if [ "$PORT" = "2341" ];
+		#then
+		#	sed -i 's/mutation12/versus/g' /home/louis/l4d2/left4dead2/cfg/server.cfg
+		#fi
 
-                if [ "$PORT" = "2342" ];
-		then
-			sed -i 's/mutation12/versus/g' /home/louis/l4d2/left4dead2/cfg/server.cfg
-		fi
+                #if [ "$PORT" = "2342" ];
+		#then
+		#	sed -i 's/mutation12/versus/g' /home/louis/l4d2/left4dead2/cfg/server.cfg
+		#fi
 		echo "pure versus packge installed"
 		oldpluginpackage
 	fi
