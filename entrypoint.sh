@@ -21,8 +21,8 @@ cloudconfig(){
 	#cloud server settings
 	#插件处理hidden
 	#echo "\nsv_tags hidden" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
-	sed -i "s/nb_update_frequency\ 0.014/nb_update_frequency\ 0.024/" /home/louis/l4d2/left4dead2/cfg/server.cfg
-	sed -i "s/fps_max\ 150/fps_max\ 0/" /home/louis/l4d2/left4dead2/cfg/server.cfg
+	#sed -i "s/nb_update_frequency\ 0.014/nb_update_frequency\ 0.024/" /home/louis/l4d2/left4dead2/cfg/server.cfg
+	#sed -i "s/fps_max\ 150/fps_max\ 0/" /home/louis/l4d2/left4dead2/cfg/server.cfg
 	sed -i "47 s/\"2\"/\"16\"/" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/sourcebans/sourcebans.cfg
 	#cp /home/louis/l4d2/left4dead2/addons/hostname.txt /home/louis/l4d2/left4dead2/addons/sourcemod/configs/hostname/
 	cp /home/louis/l4d2/left4dead2/addons/advertisements* /home/louis/l4d2/left4dead2/addons/sourcemod/configs/
@@ -31,12 +31,13 @@ cloudconfig(){
 
 localconfig(){
 	rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/optional/specrates.smx
+	sed -i "s/fps_max\ 0/fps_max\ 150/" /home/louis/l4d2/left4dead2/cfg/server.cfg
 	if [ "$PORT" = "2330" ];
 	then
 		#git -C /home/louis/CompetitiveWithAnne/ checkout test
 		cp  -r /home/louis/CompetitiveWithAnne/* l4d2/left4dead2/
 		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/optional/AnneHappy/sam_vs.smx
-		sed -i "255 s/-secure/-insecure/"  /home/louis/entrypoint.sh
+		sed -i "256 s/-secure/-insecure/"  /home/louis/entrypoint.sh
 		sed -i "s/join_autoupdate\ 1/join_autoupdate\ 0/g" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_settings.cfg
 		sed -i "s/join_autoupdate\ 4/join_autoupdate\ 0/g" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_settings.cfg
 		echo "sm_cvar join_autoupdate 0" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
