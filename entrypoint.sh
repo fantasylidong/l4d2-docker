@@ -157,6 +157,17 @@ then
 		#then
 		#	sed -i 's/mutation12/versus/g' /home/louis/l4d2/left4dead2/cfg/server.cfg
 		#fi
+		
+		if [ -n "$PORT" ]
+		then
+			sed -i "s/2351/$PORT/g" /home/louis/l4d2/left4dead2/addons/sourcemod/data/hostname.txt
+		fi
+
+		if [ -n "$hostname" ]
+		then
+			sed -i "s/电信服进阶写实包抗/$hostname/g" /home/louis/l4d2/left4dead2/addons/sourcemod/data/hostname.txt
+		fi
+		
 		echo "pure versus packge installed"
 		oldpluginpackage
 	fi
