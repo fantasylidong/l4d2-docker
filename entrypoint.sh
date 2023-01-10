@@ -181,7 +181,10 @@ then
 	
 	#region setting
 	echo "\nsv_region \"$REGION\"" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
-	echo "\n\"$steamid\" \"99:z\"" >> /home/louis/l4d2/left4dead2/addons/sourcemod/configs/admins_simple.ini
+	if [ -n "$steamid" ]
+	then
+		echo "\n\"$steamid\" \"99:z\"" >> /home/louis/l4d2/left4dead2/addons/sourcemod/configs/admins_simple.ini
+	fi
 	
 	#server language setting
 	if [ -n "$lang" ]
