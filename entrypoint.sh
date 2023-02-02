@@ -200,6 +200,12 @@ then
 		sed -i "s/1111111111/$steam64/g" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/core.cfg
 	fi
 	
+	#修改updaterfrequence
+	if [ -n "$freqency" ]
+	then
+		sed -i "s/nb_update_frequency\ 0.024/nb_update_frequency\ 0.0$freqency/" /home/louis/l4d2/left4dead2/cfg/server.cfg
+	fi
+	
 	#修改数据库地址
 	if [ -n "$mysql" ]
 	then
