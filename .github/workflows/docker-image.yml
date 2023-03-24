@@ -43,18 +43,3 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             screen -dm bash -c "./autoupdate.sh ; sleep 10"
-      -
-        name: deploy new docker image by ssh proxy
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.ALL_SERVER_HOST }}
-          timeout: "1m"
-          command_timeout: "10m"
-          username: ${{ secrets.USERNAME }}
-          proxy_host: ${{ secrets.HOST1 }}
-          proxy_username: ${{ secrets.USERNAME }}
-          proxy_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          proxy_port: ${{ secrets.PORT }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            screen -dm bash -c "./autoupdate.sh ; sleep 10"
