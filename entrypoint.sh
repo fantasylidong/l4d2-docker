@@ -23,7 +23,8 @@ cloudconfig(){
 	#echo "\nsv_tags hidden" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 	#sed -i "s/nb_update_frequency\ 0.014/nb_update_frequency\ 0.024/" /home/louis/l4d2/left4dead2/cfg/server.cfg
 	#sed -i "s/fps_max\ 150/fps_max\ 0/" /home/louis/l4d2/left4dead2/cfg/server.cfg
-	sed -i "47 s/\"2\"/\"16\"/" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/sourcebans/sourcebans.cfg
+	if [! -n "$serverid" ]
+		sed -i "47 s/\"2\"/\"16\"/" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/sourcebans/sourcebans.cfg
 	#cp /home/louis/l4d2/left4dead2/addons/hostname.txt /home/louis/l4d2/left4dead2/addons/sourcemod/configs/hostname/
 	cp /home/louis/l4d2/left4dead2/addons/advertisements* /home/louis/l4d2/left4dead2/addons/sourcemod/configs/
 	cp /home/louis/l4d2/left4dead2/addons/admins_simple.ini /home/louis/l4d2/left4dead2/addons/sourcemod/configs/
@@ -265,6 +266,11 @@ then
 	if [ -n "$hidden" ]
 	then	
 		echo "\nsv_tags\ hidden" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
+	fi
+	
+	if [ -n "$serverid" ]
+	then
+		sed -i "47 s/\"2\"/\"$serverid\"/" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/sourcebans/sourcebans.cfg
 	fi
 	
 	#delete motd
