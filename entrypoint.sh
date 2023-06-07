@@ -25,6 +25,7 @@ cloudconfig(){
 	#sed -i "s/fps_max\ 150/fps_max\ 0/" /home/louis/l4d2/left4dead2/cfg/server.cfg
 	if [! -n "$serverid" ]
 		sed -i "47 s/\"2\"/\"16\"/" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/sourcebans/sourcebans.cfg
+	fi
 	#cp /home/louis/l4d2/left4dead2/addons/hostname.txt /home/louis/l4d2/left4dead2/addons/sourcemod/configs/hostname/
 	cp /home/louis/l4d2/left4dead2/addons/advertisements* /home/louis/l4d2/left4dead2/addons/sourcemod/configs/
 	cp /home/louis/l4d2/left4dead2/addons/admins_simple.ini /home/louis/l4d2/left4dead2/addons/sourcemod/configs/
