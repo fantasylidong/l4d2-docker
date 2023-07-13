@@ -38,6 +38,7 @@ localconfig(){
   	then
 		sed -i "s/fps_max\ 0/fps_max\ 150/" /home/louis/l4d2/left4dead2/cfg/server.cfg
   	else
+   		sed -i "18 s/0/1/" /home/louis/l4d2/left4dead2/cfg/addonconfig.cfg
    		sed -i "s/nb_update_frequency\ 0.024/nb_update_frequency\ 0.014/" /home/louis/l4d2/left4dead2/cfg/server.cfg
      		echo -e "\nsm plugins load anticheat/l4d2_nobhaps.smx" >> /home/louis/l4d2/left4dead2/cfg/generalfixes.cfg
   	fi
