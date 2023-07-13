@@ -39,6 +39,7 @@ localconfig(){
 		sed -i "s/fps_max\ 0/fps_max\ 150/" /home/louis/l4d2/left4dead2/cfg/server.cfg
   	else
    		sed -i "s/nb_update_frequency\ 0.024/nb_update_frequency\ 0.014/" /home/louis/l4d2/left4dead2/cfg/server.cfg
+     		echo -e "\nsm plugins load anticheat/l4d2_nobhaps.smx" >> /home/louis/l4d2/left4dead2/cfg/generalfixes.cfg
   	fi
 	if [ "$PORT" = "2330" ];
 	then
@@ -191,7 +192,7 @@ then
 	echo "\nsv_region \"$REGION\"" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 	if [ -n "$steamid" ]
 	then
-		echo "\n\"$steamid\" \"99:z\"" >> /home/louis/l4d2/left4dead2/addons/sourcemod/configs/admins_simple.ini
+		echo -e "\n\"$steamid\" \"99:z\"" >> /home/louis/l4d2/left4dead2/addons/sourcemod/configs/admins_simple.ini
 	fi
 	
 	#server language setting
