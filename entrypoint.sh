@@ -34,7 +34,12 @@ cloudconfig(){
 
 localconfig(){
 	rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/optional/specrates.smx
-	sed -i "s/fps_max\ 0/fps_max\ 150/" /home/louis/l4d2/left4dead2/cfg/server.cfg
+ 	if [ "$challenge" != "true" ];
+  	then
+		sed -i "s/fps_max\ 0/fps_max\ 150/" /home/louis/l4d2/left4dead2/cfg/server.cfg
+  	else
+   		sed -i "s/nb_update_frequency\ 0.024/nb_update_frequency\ 0.014/" /home/louis/l4d2/left4dead2/cfg/server.cfg
+  	fi
 	if [ "$PORT" = "2330" ];
 	then
 		#git -C /home/louis/CompetitiveWithAnne/ checkout test
@@ -273,7 +278,7 @@ then
 	if [ -n "$serverid" ]
 	then
 		sed -i "47 s/\"2\"/\"$serverid\"/" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/sourcebans/sourcebans.cfg
-	fi
+	fi  		
 	
 	#delete motd
 	rm /home/louis/l4d2/left4dead2/*motd.txt
