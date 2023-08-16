@@ -133,6 +133,10 @@ then
 	
 	if [ "$plugin" = "zone" ];
 	then
+ 		if [ "$mutition12" = "true" ];
+    		then
+      			git -C /home/louis/CompetitiveWithAnne/ checkout mutation12
+	 	fi
 		cp  -r /home/louis/CompetitiveWithAnne/* l4d2/left4dead2/
 		# nav file copy
 		cp -r /home/louis/anne/update/* l4d2/update/
@@ -158,15 +162,11 @@ then
 		cp  -r /home/louis/100tickPureVersus/* l4d2/left4dead2/
 		copydanceresource
 
-                #if [ "$PORT" = "2341" ];
-		#then
-		#	sed -i 's/mutation12/versus/g' /home/louis/l4d2/left4dead2/cfg/server.cfg
-		#fi
+                if [ "$MUTITION12" != "true" ];
+		then
+			sed -i 's/mutation12/versus/g' /home/louis/l4d2/left4dead2/cfg/server.cfg
+		fi
 
-                #if [ "$PORT" = "2342" ];
-		#then
-		#	sed -i 's/mutation12/versus/g' /home/louis/l4d2/left4dead2/cfg/server.cfg
-		#fi
 		
 		if [ -n "$PORT" ]
 		then
