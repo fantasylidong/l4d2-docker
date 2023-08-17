@@ -136,6 +136,8 @@ then
  		if [ "$mutition12" = "true" ];
     		then
       			git -C /home/louis/CompetitiveWithAnne/ checkout mutation12
+	 		rm /home/louis/l4d2/left4dead2/addons/Anne.vpk
+    			rm /home/louis/l4d2/left4dead2/addons/knift.vpk
 	 	fi
 		cp  -r /home/louis/CompetitiveWithAnne/* l4d2/left4dead2/
 		# nav file copy
