@@ -133,7 +133,7 @@ then
 	
 	if [ "$plugin" = "zone" ];
 	then
- 		if [ "$mutition" = "true" ];
+ 		if [ "$mutation" = "true" ];
     		then
       			git -C /home/louis/CompetitiveWithAnne/ checkout mutation12
 	 		rm /home/louis/l4d2/left4dead2/addons/Anne.vpk
