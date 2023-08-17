@@ -133,7 +133,7 @@ then
 	
 	if [ "$plugin" = "zone" ];
 	then
- 		if [ "$mutition12" = "true" ];
+ 		if [ "$mutition" = "true" ];
     		then
       			git -C /home/louis/CompetitiveWithAnne/ checkout mutation12
 	 		rm /home/louis/l4d2/left4dead2/addons/Anne.vpk
@@ -164,7 +164,7 @@ then
 		cp  -r /home/louis/100tickPureVersus/* l4d2/left4dead2/
 		copydanceresource
 
-                if [ "$MUTITION12" != "true" ];
+                if [ "$mutation" != "true" ];
 		then
 			sed -i 's/mutation12/versus/g' /home/louis/l4d2/left4dead2/cfg/server.cfg
 		fi
