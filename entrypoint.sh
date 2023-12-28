@@ -30,6 +30,7 @@ cloudconfig(){
 	#cp /home/louis/l4d2/left4dead2/addons/hostname.txt /home/louis/l4d2/left4dead2/addons/sourcemod/configs/hostname/
 	cp /home/louis/l4d2/left4dead2/addons/advertisements* /home/louis/l4d2/left4dead2/addons/sourcemod/configs/
 	cp /home/louis/l4d2/left4dead2/addons/admins_simple.ini /home/louis/l4d2/left4dead2/addons/sourcemod/configs/
+ 	cp /home/louis/l4d2/left4dead2/addons/shared_plugins.cfg /home/louis/l4d2/left4dead2/cfg/cfgogl/annehappy/shared_plugins.cfg
 }
 
 localconfig(){
