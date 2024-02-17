@@ -1,7 +1,9 @@
 #!/bin/bash
 # Update Game
+if [ ! -n "$update" ];
+then
 ./steamcmd.sh +login anonymous +force_install_dir ./l4d2 +app_update 222860 +quit
-
+fi
 #Softlink l4d2 maps to addons folder
 #It would more convenience while you want add custom map. Exspecially when you have sourcemod plugins
 #you just need mount your extra map folder to docker container /map . 
