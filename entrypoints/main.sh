@@ -3,7 +3,9 @@ main() {
 	#Softlink l4d2 maps to addons folder
 	#It would more convenience while you want add custom map. Exspecially when you have sourcemod plugins
 	#you just need mount your extra map folder to docker container /map .
-	ln -s /map/* l4d2/left4dead2/addons/
+	for i in $(ls /map/*); do
+		ln -sf $i l4d2/left4dead2/addons/
+	done
 
 	# plugins Config
 	if [ ! -d "/home/louis/l4d2/left4dead2/addons/sourcemod/" ]; then
