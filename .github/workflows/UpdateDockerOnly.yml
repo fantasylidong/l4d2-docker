@@ -33,4 +33,4 @@ jobs:
         with:
           push: true
           file: Dockerfile
-          tags: rosmeowtis/anne:latest
+          tags: morzlee/l4d2:latest

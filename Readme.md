@@ -63,13 +63,13 @@ podman container exec anne1 sh ./refresh-addons.sh
 
 1. 从 docker.io 获取更新。
 
-这需要你能连接到 docker.io 或者其镜像，迷迭香修改了 Dockerfile 文件，`rosmeowtis/anne` 将 2.2.3.4 版本的求生服务端纳入了持久缓存，在初次拉取镜像后，再更新镜像只需要下载一些较小的增量层。
+这需要你能连接到 docker.io 或者其镜像，迷迭香修改了 Dockerfile 文件，`morzlee/l4d2` 将 2.2.3.4 版本的求生服务端纳入了持久缓存，在初次拉取镜像后，再更新镜像只需要下载一些较小的增量层。
 
 ```sh
 # docker
-docker pull rosmeowtis/anne
+docker pull morzlee/l4d2
 # podman
-podman pull rosmeowtis/anne
+podman pull morzlee/l4d2
 # 或者用 compose
 docker compose -f docker-compose.yml pull
 podman-compose -f docker-compose.yml pull
@@ -190,6 +190,6 @@ docker run --ulimit core=0 --net=host --memory-swap 1000m -m 700m  -e TZ=Asia/Sh
 + -v "/keep/annemap":"/map" 设置硬盘映射，方便docker启动后软连接第三方地图到docker容器内
 + --name anne 容器名字
 + --restart=always 开机重启（随着docker启动而启动）
-+ morzlee/l4d2:latest 镜像名字（这是东的镜像，迷迭香提供的镜像名为 `rosmeowtis/anne`）
++ morzlee/l4d2:latest 镜像名字（这是东的镜像，迷迭香提供的分支镜像名为 `rosmeowtis/anne`）
 + & 在linux里表示后台运行
 
