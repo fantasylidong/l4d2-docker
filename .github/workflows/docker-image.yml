@@ -31,7 +31,7 @@ jobs:
         with:
           push: true
           file: Dockerfile
-          tags: morzlee/l4d2:latest
+          tags: rosmeowtis/anne:latest
       -
         name: deploy new docker image
         uses: appleboy/ssh-action@master

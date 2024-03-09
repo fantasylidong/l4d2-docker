@@ -5,6 +5,9 @@ on:
     inputs:
       tags: 
          description: 'Run Tags'
+  push:
+    branches:
+      - build
 
 
 jobs:
@@ -30,4 +33,4 @@ jobs:
         with:
           push: true
           file: Dockerfile
-          tags: morzlee/l4d2:latest
+          tags: rosmeowtis/anne:latest
