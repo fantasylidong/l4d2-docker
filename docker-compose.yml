@@ -45,3 +45,4 @@ services:
     volumes:
       # 宿主机上的路径:容器中的路径
       - "/keep/maps:/map"
+      - "/keep/sm_configs:/sm_configs"
