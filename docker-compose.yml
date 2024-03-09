@@ -1,4 +1,4 @@
-version: 1.0
+version: "3.8"
 services:
   l4d2:
     image: morzlee/l4d2
