@@ -47,6 +47,7 @@ RUN mkdir -p .steam/sdk32/ && ln -sf ~/linux32/steamclient.so ~/.steam/sdk32/ste
 
 EXPOSE 27015/tcp
 EXPOSE 27015/udp
+VOLUME [ "/map" ]
 
 ENV PORT=2333 \
 	PLAYERS=8 \
@@ -66,5 +67,5 @@ ENV PORT=2333 \
 	dlurl=""
 
 
-COPY ./entrypoints /home/louis/
-ENTRYPOINT ["sh", "entrypoints/main.sh"]
+COPY --chown=louis:louis ./entrypoints /home/louis/
+ENTRYPOINT ["sh", "main.sh"]
