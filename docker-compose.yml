@@ -1,15 +1,22 @@
 version: "3.8"
 services:
-  l4d2:
-    image: morzlee/l4d2
+  anne1:
+    container_name: anne1
+    image: rosmeowtis/anne
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEEDUPDATE: "no"
+        # NEEDUPDATE: $(date +%s)
     ports:
-    - "27015:27015"
-    - "27015:27015/udp"
+      - "27015:27015"
+      - "27015:27015/udp"
     environment:
-      - HOSTNAME=leo
-      - REGION=255
-      - plugin=null
-      - steamid=STEAM_1:1:121430603
-      - steamgroup=123456
-      - password=123456
-      - cloud=false
+      HOSTNAME: "leo"
+      REGION: "255"
+      plugin: "null"
+      steamid: "STEAM_1:1:121430603"
+      steamgroup: "123456"
+      password: "123456"
+      cloud: "false"
