@@ -1,4 +1,4 @@
-FROM debian:buster-slim AS install
+FROM debian:buster-slim AS install_system
 
 RUN dpkg --add-architecture i386 && apt-get update
 RUN apt-get install -y curl iputils-ping wget file tar bzip2 locales gzip unzip bsdmainutils python3 lib32z1 util-linux ca-certificates binutils bc jq tmux netcat lib32gcc1 lib32stdc++6 git nano
@@ -13,6 +13,8 @@ RUN useradd -m louis
 WORKDIR /home/louis
 USER louis
 
+FROM install_system AS install_game
+
 # 安装 steamcmd 和 left 4 dead 2
 RUN wget http://media.steampowered.com/installer/steamcmd_linux.tar.gz && tar -xzf steamcmd_linux.tar.gz \
 	&& rm steamcmd_linux.tar.gz && ./steamcmd.sh +quit
@@ -24,7 +26,7 @@ RUN git clone --depth 1 -b mysql https://github.com/fantasylidong/neko.git
 RUN git clone --depth 1 https://github.com/fantasylidong/CompetitiveWithAnne.git
 RUN git clone --depth 1 https://github.com/fantasylidong/100tickPureVersus.git
 
-FROM install AS update
+FROM install_game AS update
 
 # 如果需要更新镜像，则构建时添加 --build-arg NEEDUPDATE=$(date +%s) 参数以消除后续缓存
 # $(date +%s) 是获取当前时间戳，以保证唯一性
