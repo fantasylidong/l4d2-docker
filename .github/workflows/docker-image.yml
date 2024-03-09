@@ -12,6 +12,8 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      - name: 刷新NEEDUPDATE变量，以放弃update阶段缓存
+        run: echo "NEEDUPDATE=$( date +%s )" >> $GITHUB_ENV
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -34,6 +36,8 @@ jobs:
           tags: rosmeowtis/anne:latest
           cache-from: type=registry,ref=rosmeowtis/anne:latest
           cache-to: type=inline
+          build-args:
+            - NEEDUPDATE: ${{ env.NEEDUPDATE }}
       -
         name: deploy new docker image
         uses: appleboy/ssh-action@master
