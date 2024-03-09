@@ -24,7 +24,20 @@ RUN git clone --depth 1 -b mysql https://github.com/fantasylidong/neko.git
 RUN git clone --depth 1 https://github.com/fantasylidong/CompetitiveWithAnne.git
 RUN git clone --depth 1 https://github.com/fantasylidong/100tickPureVersus.git
 
-FROM install AS game
+FROM install AS update
+
+# 如果需要更新镜像，则构建时添加 --build-arg NEEDUPDATE=$(date +%s) 参数以消除后续缓存
+# $(date +%s) 是获取当前时间戳，以保证唯一性
+ARG NEEDUPDATE="no"
+RUN ./steamcmd.sh +force_install_dir ./l4d2 +login anonymous +app_update 222860 validate +quit
+
+RUN git -C anne pull --unshallow
+RUN git -C purecoop pull --unshallow
+RUN git -C neko pull --unshallow
+RUN git -C CompetitiveWithAnne pull --unshallow
+RUN git -C 100tickPureVersus pull --unshallow
+
+FROM update AS game
 
 RUN rm -rf anne/left4dead2/addons/sourcemod/scripting/
 RUN mkdir -p .steam/sdk32/ && ln -sf ~/linux32/steamclient.so ~/.steam/sdk32/steamclient.so \
