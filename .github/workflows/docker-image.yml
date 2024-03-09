@@ -12,26 +12,33 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      - name: 刷新NEEDUPDATE变量，以放弃update阶段缓存
+        run: echo "NEEDUPDATE=$( date +%s )" >> $GITHUB_ENV
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       -
         name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
       -
         name: Login to DockerHub
-        uses: docker/login-action@v2 
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Build and push
         id: docker_build
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5
         with:
+          context: .
           push: true
           file: Dockerfile
           tags: morzlee/l4d2:latest
+          cache-from: type=registry,ref=morzlee/l4d2:latest
+          cache-to: type=inline
+          build-args: |
+            NEEDUPDATE=${{ env.NEEDUPDATE }}
       -
         name: deploy new docker image
         uses: appleboy/ssh-action@master

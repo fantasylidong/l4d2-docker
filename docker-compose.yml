@@ -1,15 +1,47 @@
-version: 1.0
+version: "3.8"
 services:
-  l4d2:
+  anne1:
+    container_name: anne1
+    # 必须采用 host 模式，然后在环境变量中指定端口，否则连接不上
+    network_mode: host
     image: morzlee/l4d2
-    ports:
-    - "27015:27015"
-    - "27015:27015/udp"
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEEDUPDATE: "no"
+        # NEEDUPDATE: $(date +%s)
     environment:
-      - HOSTNAME=leo
-      - REGION=255
-      - plugin=null
-      - steamid=STEAM_1:1:121430603
-      - steamgroup=123456
-      - password=123456
-      - cloud=false
+      # 选择哪个插件组，zone是现在的Anne+Zonemod整合包
+      plugin: "zone"
+      # 按云服配置，不限帧（否则限帧150）
+      cloud: "true"
+      # 东8区
+      TZ: "Asia/Shanghai"
+      # Steam 地区，4 表示亚洲，可决定此服务器在 openserverbrowser 中的分类和匹配玩家来源
+      REGION: 4
+      # rcon密码
+      password: "123456"
+      # mysql配置，如果没有数据库则留空
+      mysqlexist: "false"
+      mysql: ""
+      mysqlport: ""
+      mysqluser: ""
+      mysqlpassword: ""
+      # 初始超管
+      steamid: ""
+      # 崩溃报告上传网站需要的账号
+      steamid64: ""
+      steamgroup: ""
+      # 绑定端口，由于是 host 网络模式，这里的端口就是主机的端口
+      PORT: 27001
+      # 设置服务器名称
+      hostname: "Anne测试服#1"
+      # 把默认地图设成闪电突袭2（需要服务器 /keep/maps 下面有对应的vpk）
+      # MAP: "l4d2_stadium1_apartment"
+      # 如果没装三方图就用下面的替代
+      MAP: "c1m1_hotel"
+    volumes:
+      # 宿主机上的路径:容器中的路径
+      - "/keep/maps:/map"
+      - "/keep/sm_configs:/sm_configs"
