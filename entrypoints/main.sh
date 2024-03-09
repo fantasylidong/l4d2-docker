@@ -3,7 +3,7 @@
 # $(pwd) = /home/louis
 
 main() {
-	exec ./refresh-addons.sh
+	sh ./refresh-addons.sh
 
 	# plugins Config
 	if [ ! -d "/home/louis/l4d2/left4dead2/addons/sourcemod/" ]; then
