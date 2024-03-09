@@ -85,9 +85,9 @@ main() {
 		#fi
 
 		#region setting
-		echo "\nsv_region \"$REGION\"" >>/home/louis/l4d2/left4dead2/cfg/server.cfg
+		echo -e "\nsv_region \"$REGION\"" >>/home/louis/l4d2/left4dead2/cfg/server.cfg
 		if [ -n "$steamid" ]; then
-			echo "\n\"$steamid\" \"99:z\"" >>/home/louis/l4d2/left4dead2/addons/sourcemod/configs/admins_simple.ini
+			echo -e "\n\"$steamid\" \"99:z\"" >>/home/louis/l4d2/left4dead2/addons/sourcemod/configs/admins_simple.ini
 		fi
 
 		#server language setting
@@ -151,12 +151,12 @@ main() {
 				sed -i "/sm_killlobbyres/d" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_settings.cfg
 				sed -i "/confogl_addcvar\ sv_allow_lobby_connect_only\ 0/d" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_cvars.cfg
 				sed -i "s/confogl_match_killlobbyres\ \ \ \ \ \ \ \ \ \ \"1\"/confogl_match_killlobbyres\ \ \ \ \ \ \ \ \ \ \"0\"/g" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_cvars.cfg
-				#echo "\nsm_forcematch zonemod_mutation12" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
+				#echo -e "\nsm_forcematch zonemod_mutation12" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 			fi
 		fi
 
 		if [ -n "$hidden" ]; then
-			echo "\nsv_tags\ hidden" >>/home/louis/l4d2/left4dead2/cfg/server.cfg
+			echo -e "\nsv_tags\ hidden" >>/home/louis/l4d2/left4dead2/cfg/server.cfg
 		fi
 
 		if [ -n "$serverid" ]; then
@@ -172,7 +172,7 @@ main() {
 	cd l4d2 && ./srcds_run -console -game left4dead2 -ip 0.0.0.0 -tickrate 100 -port "$PORT" +maxplayers "$PLAYERS" +map "$MAP" -secure
 }
 oldpluginpackage() {
-	echo "\n\"$steamid\" \"99:z\"" >>/home/louis/l4d2/left4dead2/addons/sourcemod/configs/admins_simple.ini
+	echo -e "\n\"$steamid\" \"99:z\"" >>/home/louis/l4d2/left4dead2/addons/sourcemod/configs/admins_simple.ini
 	echo "sv_steamgroup \"$steamgroup\"" >>/home/louis/l4d2/left4dead2/cfg/server.cfg
 	echo "rcon_password \"$password\"" >>/home/louis/l4d2/left4dead2/cfg/server.cfg
 }
@@ -184,7 +184,7 @@ newpluginpackage() {
 cloudconfig() {
 	#cloud server settings
 	#插件处理hidden
-	#echo "\nsv_tags hidden" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
+	#echo -e "\nsv_tags hidden" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 	#sed -i "s/nb_update_frequency\ 0.014/nb_update_frequency\ 0.024/" /home/louis/l4d2/left4dead2/cfg/server.cfg
 	#sed -i "s/fps_max\ 150/fps_max\ 0/" /home/louis/l4d2/left4dead2/cfg/server.cfg
 	if [! -n "$serverid" ]; then
@@ -203,7 +203,7 @@ localconfig() {
 	else
 		sed -i "18 s/0/1/" /home/louis/l4d2/left4dead2/cfg/addonconfig.cfg
 		sed -i "s/nb_update_frequency\ 0.024/nb_update_frequency\ 0.014/" /home/louis/l4d2/left4dead2/cfg/server.cfg
-		echo "\nsm plugins load anticheat/l4d2_nobhaps.smx" >>/home/louis/l4d2/left4dead2/cfg/generalfixes.cfg
+		echo -e "\nsm plugins load anticheat/l4d2_nobhaps.smx" >>/home/louis/l4d2/left4dead2/cfg/generalfixes.cfg
 	fi
 	if [ "$PORT" = "2330" ]; then
 		#git -C /home/louis/CompetitiveWithAnne/ checkout test
