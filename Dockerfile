@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:buster-slim AS install
 
 RUN dpkg --add-architecture i386 && apt-get update
 RUN apt-get install -y curl iputils-ping wget file tar bzip2 locales gzip unzip bsdmainutils python3 lib32z1 util-linux ca-certificates binutils bc jq tmux netcat lib32gcc1 lib32stdc++6 git nano
@@ -18,15 +18,17 @@ RUN wget http://media.steampowered.com/installer/steamcmd_linux.tar.gz && tar -x
 	&& rm steamcmd_linux.tar.gz && ./steamcmd.sh +quit
 RUN ./steamcmd.sh +force_install_dir ./l4d2 +login anonymous +app_update 222860 validate +quit
 
-RUN mkdir -p .steam/sdk32/ && ln -s ~/linux32/steamclient.so ~/.steam/sdk32/steamclient.so \
-	&& mkdir -p .steam/sdk64/ && ln -s ~/linux64/steamclient.so ~/.steam/sdk64/steamclient.so
-
 RUN git clone --depth 1 -b zonemod https://github.com/fantasylidong/anne.git
-RUN rm -rf anne/left4dead2/addons/sourcemod/scripting/
 RUN git clone --depth 1 https://github.com/fantasylidong/purecoop.git
 RUN git clone --depth 1 -b mysql https://github.com/fantasylidong/neko.git
 RUN git clone --depth 1 https://github.com/fantasylidong/CompetitiveWithAnne.git
 RUN git clone --depth 1 https://github.com/fantasylidong/100tickPureVersus.git
+
+FROM install AS game
+
+RUN rm -rf anne/left4dead2/addons/sourcemod/scripting/
+RUN mkdir -p .steam/sdk32/ && ln -sf ~/linux32/steamclient.so ~/.steam/sdk32/steamclient.so \
+	&& mkdir -p .steam/sdk64/ && ln -sf ~/linux64/steamclient.so ~/.steam/sdk64/steamclient.so
 
 EXPOSE 27015/tcp
 EXPOSE 27015/udp
