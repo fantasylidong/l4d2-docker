@@ -20,7 +20,7 @@ RUN wget http://media.steampowered.com/installer/steamcmd_linux.tar.gz && tar -x
     && rm steamcmd_linux.tar.gz && ./steamcmd.sh +quit
 RUN mkdir -p .steam/sdk32/ && ln -s ~/linux32/steamclient.so ~/.steam/sdk32/steamclient.so \
     && mkdir -p .steam/sdk64/ && ln -s ~/linux64/steamclient.so ~/.steam/sdk64/steamclient.so
-RUN ./steamcmd.sh +login anonymous +force_install_dir ./l4d2 +app_update 222860 +quit
+RUN ./steamcmd.sh +force_install_dir ./l4d2 +login anonymous +app_update 222860 validate +quit
 RUN git clone --depth 1 -b zonemod https://github.com/fantasylidong/anne.git
 RUN rm -rf anne/left4dead2/addons/sourcemod/scripting/
 RUN git clone --depth 1 https://github.com/fantasylidong/purecoop.git
