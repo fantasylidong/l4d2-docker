@@ -36,8 +36,8 @@ jobs:
           tags: rosmeowtis/anne:latest
           cache-from: type=registry,ref=rosmeowtis/anne:latest
           cache-to: type=inline
-          build-args:
-            - NEEDUPDATE: ${{ env.NEEDUPDATE }}
+          build-args: |
+            NEEDUPDATE=${{ env.NEEDUPDATE }}
       -
         name: deploy new docker image
         uses: appleboy/ssh-action@master
