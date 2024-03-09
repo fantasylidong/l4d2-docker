@@ -7,20 +7,20 @@ RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     dpkg-reconfigure --frontend=noninteractive locales && \
     update-locale LANG=en_US.UTF-8
 
-#RUN echo "\n* soft core 0\n* hard core 0" >> /etc/security/limits.conf
-#RUN echo "fs.suid_dumpable=0" >> /etc/sysctl.conf
-
 ENV LANG en_US.UTF-8 
 
 RUN useradd -m louis
 WORKDIR /home/louis
 USER louis
 
+# 安装 steamcmd 和 left 4 dead 2
 RUN wget http://media.steampowered.com/installer/steamcmd_linux.tar.gz && tar -xzf steamcmd_linux.tar.gz \
     && rm steamcmd_linux.tar.gz && ./steamcmd.sh +quit
+RUN ./steamcmd.sh +force_install_dir ./l4d2 +login anonymous +app_update 222860 validate +quit
+
 RUN mkdir -p .steam/sdk32/ && ln -s ~/linux32/steamclient.so ~/.steam/sdk32/steamclient.so \
     && mkdir -p .steam/sdk64/ && ln -s ~/linux64/steamclient.so ~/.steam/sdk64/steamclient.so
-RUN ./steamcmd.sh +force_install_dir ./l4d2 +login anonymous +app_update 222860 validate +quit
+
 RUN git clone --depth 1 -b zonemod https://github.com/fantasylidong/anne.git
 RUN rm -rf anne/left4dead2/addons/sourcemod/scripting/
 RUN git clone --depth 1 https://github.com/fantasylidong/purecoop.git
