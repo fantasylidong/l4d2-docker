@@ -4,7 +4,7 @@ services:
     container_name: anne1
     # 必须采用 host 模式，然后在环境变量中指定端口，否则连接不上
     network_mode: host
-    image: rosmeowtis/anne
+    image: morzlee/l4d2
     build:
       context: .
       dockerfile: Dockerfile
