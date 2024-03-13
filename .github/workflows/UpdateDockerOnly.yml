@@ -36,8 +36,8 @@ jobs:
           context: .
           push: true
           file: Dockerfile
-          tags: morzlee/l4d2:latest
-          cache-from: type=registry,ref=morzlee/l4d2:latest
+          tags: rosmeowtis/anne:latest
+          cache-from: type=registry,ref=rosmeowtis/anne:latest
           cache-to: type=inline
           build-args: |
             NEEDUPDATE=${{ env.NEEDUPDATE }}
