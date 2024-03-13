@@ -3,8 +3,6 @@
 # $(pwd) = /home/louis
 
 main() {
-	sh ./refresh-addons.sh
-
 	# plugins Config
 	if [ ! -d "/home/louis/l4d2/left4dead2/addons/sourcemod/" ]; then
 		if [ "$plugin" = "anne" ]; then
@@ -165,10 +163,8 @@ main() {
 		rm /home/louis/l4d2/left4dead2/*motd.txt
 		rm /home/louis/l4d2/left4dead2/*host.txt
 	fi
-
-	# Start Game
-	cd l4d2 && ./srcds_run -console -game left4dead2 -ip 0.0.0.0 -tickrate 100 -port "$PORT" +maxplayers "$PLAYERS" +map "$MAP" -secure
 }
+
 oldpluginpackage() {
 	echo -e "\n\"$steamid\" \"99:z\"" >>/home/louis/l4d2/left4dead2/addons/sourcemod/configs/admins_simple.ini
 	echo "sv_steamgroup \"$steamgroup\"" >>/home/louis/l4d2/left4dead2/cfg/server.cfg

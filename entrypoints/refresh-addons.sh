@@ -14,4 +14,4 @@ for i in $(ls /sm_configs); do
     ln -sf /sm_configs/$i l4d2/left4dead2/addons/
 done
 
-echo "[Init] 刷新了 l4d2/left4dead2/addons 中的软连接
+echo "[Init] 刷新了 l4d2/left4dead2/addons 中的软连接"
