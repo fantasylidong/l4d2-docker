@@ -68,4 +68,4 @@ ENV PORT=2333 \
 
 
 COPY --chown=louis:louis ./entrypoints /home/louis/
-ENTRYPOINT ["sh", "main.sh"]
+ENTRYPOINT ["/bin/bash", "entrypoint.sh"]
