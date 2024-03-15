@@ -33,7 +33,6 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v5
         with:
-          context: .
           push: true
           file: Dockerfile
           tags: morzlee/l4d2:latest
