@@ -36,7 +36,7 @@ RUN ./steamcmd.sh +force_install_dir ./l4d2 +login anonymous +app_update 222860 
 RUN git -C anne pull --unshallow
 RUN git -C purecoop pull --unshallow
 RUN git -C neko pull --unshallow
-RUN git -C CompetitiveWithAnne pull --unshallow
+#RUN git -C CompetitiveWithAnne pull --unshallow
 RUN git -C 100tickPureVersus pull --unshallow
 
 FROM update AS game
