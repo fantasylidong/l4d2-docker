@@ -23,8 +23,9 @@ RUN ./steamcmd.sh +force_install_dir ./l4d2 +login anonymous +app_update 222860 
 RUN git clone --depth 1 -b zonemod https://github.com/fantasylidong/anne.git
 RUN git clone --depth 1 https://github.com/fantasylidong/purecoop.git
 RUN git clone --depth 1 -b mysql https://github.com/fantasylidong/neko.git
-RUN git clone --depth 1 https://github.com/fantasylidong/CompetitiveWithAnne.git
 RUN git clone --depth 1 https://github.com/fantasylidong/100tickPureVersus.git
+# 缓存期也拉取完整的仓库
+RUN git clone https://github.com/fantasylidong/CompetitiveWithAnne.git
 
 FROM install_game AS update
 
@@ -36,8 +37,9 @@ RUN ./steamcmd.sh +force_install_dir ./l4d2 +login anonymous +app_update 222860 
 RUN git -C anne pull --unshallow
 RUN git -C purecoop pull --unshallow
 RUN git -C neko pull --unshallow
-RUN git -C CompetitiveWithAnne pull --unshallow
 RUN git -C 100tickPureVersus pull --unshallow
+# 更新仓库
+RUN git -C CompetitiveWithAnne pull
 
 FROM update AS game
 
