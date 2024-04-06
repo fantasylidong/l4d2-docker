@@ -35,8 +35,8 @@ jobs:
         with:
           push: true
           file: Dockerfile
-          tags: rosmeowtis/anne:latest
-          cache-from: type=registry,ref=rosmeowtis/anne:buildcache
-          cache-to: type=registry,ref=rosmeowtis/anne:buildcache,mode=max,compression=zstd
+          tags: morzlee/l4d2:latest
+          cache-from: type=registry,ref=morzlee/l4d2:buildcache
+          cache-to: type=registry,ref=morzlee/l4d2:buildcache,mode=max,compression=zstd
           build-args: |
             NEEDUPDATE=${{ env.NEEDUPDATE }}
