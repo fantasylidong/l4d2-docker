@@ -1,11 +1,11 @@
 name: ci-nocahe
 
 on:
+  repository_dispatch:
   workflow_dispatch:
     inputs:
       tags: 
          description: 'Run Tags'
-
 
 jobs:
   docker:
