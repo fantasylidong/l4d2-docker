@@ -17,7 +17,7 @@ main() {
 		fi
 
 		if [ "$plugin" = "purecoop" ]; then
-			cp -r /home/louis/purecoop/* l4d2/left4dead2/
+			cp -r /home/louis/purecoop/* /home/louis/l4d2/left4dead2/
 			echo "purecoop plugins packge installed"
 			oldpluginpackage
 		fi
@@ -35,9 +35,9 @@ main() {
 				rm /home/louis/l4d2/left4dead2/addons/Anne.vpk
 				rm /home/louis/l4d2/left4dead2/addons/knift.vpk
 			fi
-			cp -r /home/louis/CompetitiveWithAnne/* l4d2/left4dead2/
+			cp -r /home/louis/CompetitiveWithAnne/* /home/louis/l4d2/left4dead2/
 			# nav file copy
-			cp -r /home/louis/anne/update/* l4d2/update/
+			cp -r /home/louis/anne/update/* /home/louis/l4d2/update/
 			copydanceresource
 			echo "zone plugins packge installed"
 			sed -i "s/join_autoupdate\ 1/join_autoupdate\ 4/g" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_settings.cfg
@@ -54,7 +54,7 @@ main() {
 		fi
 
 		if [ "$plugin" = "pureversus" ]; then
-			cp -r /home/louis/100tickPureVersus/* l4d2/left4dead2/
+			cp -r /home/louis/100tickPureVersus/* /home/louis/l4d2/left4dead2/
 			copydanceresource
 
 			if [ "$mutation" != "true" ]; then
@@ -228,8 +228,8 @@ localconfig() {
 	fi
 }
 copydanceresource() {
-	cp -r /home/louis/anne/left4dead2/sound/ l4d2/left4dead2/
-	cp -r /home/louis/anne/left4dead2/models/ l4d2/left4dead2/
+	cp -r /home/louis/anne/left4dead2/sound/ /home/louis/l4d2/left4dead2/
+	cp -r /home/louis/anne/left4dead2/models/ /home/louis/l4d2/left4dead2/
 }
 anneremovemysql() {
 	#修改hostname插件端口对应port环境变量
