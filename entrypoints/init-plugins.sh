@@ -151,6 +151,10 @@ main() {
 			fi
 		fi
 
+  		if [ "$password" = "false" ]; then
+			sed -i "s/rcon_password/\/\/rcon_password/g" /home/louis/l4d2/left4dead2/cfg/server.cfg
+		fi
+
 		if [ -n "$hidden" ]; then
 			echo -e "\nsv_tags\ hidden" >>/home/louis/l4d2/left4dead2/cfg/server.cfg
 		fi
