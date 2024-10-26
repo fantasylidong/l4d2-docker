@@ -18,8 +18,14 @@ FROM install_system AS install_game
 # 安装 steamcmd 和 left 4 dead 2
 RUN wget http://media.steampowered.com/installer/steamcmd_linux.tar.gz && tar -xzf steamcmd_linux.tar.gz \
 	&& rm steamcmd_linux.tar.gz && ./steamcmd.sh +quit
-RUN ./steamcmd.sh +force_install_dir ./l4d2 +login anonymous +app_update 222860 validate +quit
+# 使用指定的 manifest ID 6147995229860625109 下载 Left 4 Dead 2 的特定版本
+RUN ./steamcmd.sh +force_install_dir ./l4d2 +login anonymous \
+    +app_update 222860 validate +quit \
+    && ./steamcmd.sh +login anonymous \
+    +download_depot 222860 222861 6147995229860625109 +quit
 
+# 修改 steam.inf 文件，将服务器版本从 2.2.4.1 改为 2.2.4.2
+RUN sed -i 's/2.2.4.1/2.2.4.2/' /home/louis/l4d2/left4dead2/steam.inf
 RUN git clone --depth 1 -b zonemod https://github.com/fantasylidong/anne.git
 RUN git clone --depth 1 https://github.com/fantasylidong/purecoop.git
 RUN git clone --depth 1 -b mysql https://github.com/fantasylidong/neko.git
