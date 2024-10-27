@@ -40,7 +40,7 @@ FROM install_game AS update
 # 如果需要更新镜像，则构建时添加 --build-arg NEEDUPDATE=$(date +%s) 参数以消除后续缓存
 # $(date +%s) 是获取当前时间戳，以保证唯一性
 ARG NEEDUPDATE="no"
-RUN ./steamcmd.sh +force_install_dir ./l4d2 +login anonymous +app_update 222860 validate +quit
+#RUN ./steamcmd.sh +force_install_dir ./l4d2 +login anonymous +app_update 222860 validate +quit
 
 RUN git -C anne pull --unshallow
 RUN git -C purecoop pull --unshallow
