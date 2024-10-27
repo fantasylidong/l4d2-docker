@@ -25,7 +25,7 @@ RUN rm -rf /home/louis/Steam && ./steamcmd.sh +quit
 RUN ./steamcmd.sh +force_install_dir ./l4d2 +login anonymous +app_update 222860 validate +quit
 
 # Step 2: Download specific depot version with manifest ID
-RUN ./steamcmd.sh +login ${{ secrets.STEAMNAME }} ${{ secrets.STEAMPASS }} +download_depot 222860 554 6147995229860625109 +quit
+RUN ./steamcmd.sh +login anonymous +download_depot 222860 222863 5657507392606841196 +quit
 # Modify steam.inf file to change the version number
 RUN sed -i 's/2.2.4.1/2.2.4.2/' /home/louis/l4d2/left4dead2/steam.inf
 RUN git clone --depth 1 -b zonemod https://github.com/fantasylidong/anne.git
