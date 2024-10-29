@@ -24,10 +24,6 @@ RUN rm -rf /home/louis/Steam && ./steamcmd.sh +quit
 # Step 1: Install Left 4 Dead 2 files
 RUN ./steamcmd.sh +force_install_dir ./l4d2 +login anonymous +app_update 222860 validate +quit
 
-# Step 2: Download specific depot version with manifest ID
-RUN ./steamcmd.sh +login anonymous +download_depot 222860 222863 5657507392606841196 +quit
-# Modify steam.inf file to change the version number
-RUN sed -i 's/2.2.4.1/2.2.4.2/' /home/louis/l4d2/left4dead2/steam.inf
 RUN git clone --depth 1 -b zonemod https://github.com/fantasylidong/anne.git
 RUN git clone --depth 1 https://github.com/fantasylidong/purecoop.git
 RUN git clone --depth 1 -b mysql https://github.com/fantasylidong/neko.git
@@ -40,7 +36,7 @@ FROM install_game AS update
 # 如果需要更新镜像，则构建时添加 --build-arg NEEDUPDATE=$(date +%s) 参数以消除后续缓存
 # $(date +%s) 是获取当前时间戳，以保证唯一性
 ARG NEEDUPDATE="no"
-#RUN ./steamcmd.sh +force_install_dir ./l4d2 +login anonymous +app_update 222860 validate +quit
+RUN ./steamcmd.sh +force_install_dir ./l4d2 +login anonymous +app_update 222860 validate +quit
 
 RUN git -C anne pull --unshallow
 RUN git -C purecoop pull --unshallow
