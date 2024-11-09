@@ -1,4 +1,4 @@
-FROM debian:buster-slim AS install_system
+FROM debian:stable-slim AS install_system
 
 RUN dpkg --add-architecture i386 && apt-get update
 RUN apt-get install -y curl iputils-ping wget file tar bzip2 locales gzip unzip bsdmainutils python3 lib32z1 util-linux ca-certificates binutils bc jq tmux netcat lib32gcc1 lib32stdc++6 git nano
