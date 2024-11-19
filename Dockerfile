@@ -1,7 +1,7 @@
 FROM debian:stable-slim AS install_system
 
 RUN dpkg --add-architecture i386 && apt-get update
-RUN apt-get install -y curl iputils-ping wget file tar bzip2 locales gzip unzip bsdmainutils python3 lib32z1 util-linux ca-certificates binutils bc jq tmux netcat lib32gcc-s1 lib32stdc++6 git nano
+RUN apt-get install -y curl iputils-ping wget file tar bzip2 locales gzip unzip bsdmainutils python3 lib32z1 util-linux ca-certificates binutils bc jq tmux netcat-openbsd lib32gcc-s1 lib32stdc++6 git nano
 
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
 	dpkg-reconfigure --frontend=noninteractive locales && \
