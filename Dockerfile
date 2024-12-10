@@ -16,7 +16,8 @@ USER louis
 FROM install_system AS install_game
 
 # 写入acf文件方便匿名下载
-RUN mkdir -p "$(dirname '/home/louis/l4d2/steamapps/appmanifest_222860.acf')" && echo '"AppState"
+RUN mkdir -p /home/louis/l4d2/steamapps && \
+    echo '"AppState"
 {
 	"appid"		"222860"
 	"Universe"		"1"
@@ -57,7 +58,7 @@ RUN mkdir -p "$(dirname '/home/louis/l4d2/steamapps/appmanifest_222860.acf')" &&
 	"MountedConfig"
 	{
 	}
-}' > '/home/louis/l4d2/steamapps/appmanifest_222860.acf'
+}' > /home/louis/l4d2/steamapps/appmanifest_222860.acf
 
 
 # 安装 steamcmd 和 left 4 dead 2
