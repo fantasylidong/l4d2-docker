@@ -16,7 +16,7 @@ USER louis
 FROM install_system AS install_game
 
 # 写入acf文件方便匿名下载
-mkdir -p "$(dirname '/home/louis/l4d2/steamapps/appmanifest_222860.acf')" && echo '"AppState"
+RUN mkdir -p "$(dirname '/home/louis/l4d2/steamapps/appmanifest_222860.acf')" && echo '"AppState"
 {
 	"appid"		"222860"
 	"Universe"		"1"
