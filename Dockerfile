@@ -15,6 +15,51 @@ USER louis
 
 FROM install_system AS install_game
 
+# 写入acf文件方便匿名下载
+mkdir -p "$(dirname '/home/louis/l4d2/steamapps/appmanifest_222860.acf')" && echo '"AppState"
+{
+	"appid"		"222860"
+	"Universe"		"1"
+	"name"		"Left 4 Dead 2 Dedicated Server"
+	"StateFlags"		"4"
+	"installdir"		"Left 4 Dead 2 Dedicated Server"
+	"LastUpdated"		"1733184988"
+	"LastPlayed"		"0"
+	"SizeOnDisk"		"9790163293"
+	"StagingSize"		"0"
+	"buildid"		"16546402"
+	"LastOwner"		"76561200483768437"
+	"UpdateResult"		"0"
+	"BytesToDownload"		"5027232"
+	"BytesDownloaded"		"5027232"
+	"BytesToStage"		"18559223"
+	"BytesStaged"		"18559223"
+	"TargetBuildID"		"16546402"
+	"AutoUpdateBehavior"		"0"
+	"AllowOtherDownloadsWhileRunning"		"0"
+	"ScheduledAutoUpdate"		"0"
+	"InstalledDepots"
+	{
+		"222861"
+		{
+			"manifest"		"4827977561765481436"
+			"size"		"9549160153"
+		}
+		"222863"
+		{
+			"manifest"		"3515563682502255567"
+			"size"		"241003140"
+		}
+	}
+	"UserConfig"
+	{
+	}
+	"MountedConfig"
+	{
+	}
+}' > '/home/louis/l4d2/steamapps/appmanifest_222860.acf'
+
+
 # 安装 steamcmd 和 left 4 dead 2
 RUN wget http://media.steampowered.com/installer/steamcmd_linux.tar.gz && tar -xzf steamcmd_linux.tar.gz \
 	&& rm steamcmd_linux.tar.gz && ./steamcmd.sh +quit
