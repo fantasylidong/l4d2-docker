@@ -15,13 +15,6 @@ USER louis
 
 FROM install_system AS install_game
 
-# 写入acf文件方便匿名下载
-RUN mkdir -p /home/louis/l4d2/steamapps && \
-    wget -O /home/louis/l4d2/steamapps/appmanifest_222860.acf https://file.trygek.com/appmanifest_222860.acf
-
-
-
-
 # 安装 steamcmd 和 left 4 dead 2
 RUN wget http://media.steampowered.com/installer/steamcmd_linux.tar.gz && tar -xzf steamcmd_linux.tar.gz \
 	&& rm steamcmd_linux.tar.gz && ./steamcmd.sh +quit
@@ -43,7 +36,7 @@ FROM install_game AS update
 # 如果需要更新镜像，则构建时添加 --build-arg NEEDUPDATE=$(date +%s) 参数以消除后续缓存
 # $(date +%s) 是获取当前时间戳，以保证唯一性
 ARG NEEDUPDATE="no"
-RUN ./steamcmd.sh +force_install_dir ./l4d2 +login anonymous +app_update 222860 validate +quit
+RUN ./steamcmd.sh +force_install_dir ./l4d2 +@sSteamCmdForcePlatformType linux +login anonymous +app_update 222860 validate +quit
 
 RUN git -C anne pull --unshallow
 RUN git -C purecoop pull --unshallow
