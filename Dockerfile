@@ -22,7 +22,7 @@ RUN wget http://media.steampowered.com/installer/steamcmd_linux.tar.gz && tar -x
 RUN rm -rf /home/louis/Steam && ./steamcmd.sh +quit
 
 # Step 1: Install Left 4 Dead 2 files
-RUN ./steamcmd.sh +force_install_dir ./l4d2 +login anonymous +app_update 222860 validate +quit
+RUN ./steamcmd.sh +force_install_dir ./l4d2 +@sSteamCmdForcePlatformType linux +login anonymous +app_update 222860 validate +quit
 
 RUN git clone --depth 1 -b zonemod https://github.com/fantasylidong/anne.git
 RUN git clone --depth 1 https://github.com/fantasylidong/purecoop.git
