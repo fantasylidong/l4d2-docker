@@ -35,14 +35,3 @@ jobs:
           tags: morzlee/l4d2:latest
           build-args: |
             NEEDUPDATE=${{ env.NEEDUPDATE }}
-      -
-        name: deploy new docker image
-        uses: appleboy/ssh-action@master
-        with:
-          host: "${{ secrets.HOST1 }}:${{ secrets.PORT }}"
-          timeout: "1m"
-          command_timeout: "10m"
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            screen -dm bash -c "./autoupdate.sh ; sleep 10"
