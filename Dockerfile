@@ -25,9 +25,9 @@ RUN rm -rf /home/louis/Steam && ./steamcmd.sh +quit
 RUN ./steamcmd.sh +force_install_dir ./l4d2 +@sSteamCmdForcePlatformType windows +login anonymous +app_update 222860 validate +quit && ./steamcmd.sh +force_install_dir ./l4d2 +@sSteamCmdForcePlatformType linux +login anonymous +app_update 222860 validate +quit
 
 RUN git clone --depth 1 -b zonemod https://github.com/fantasylidong/anne.git
-RUN git clone --depth 1 https://github.com/fantasylidong/purecoop.git
-RUN git clone --depth 1 -b mysql https://github.com/fantasylidong/neko.git
-RUN git clone --depth 1 https://github.com/fantasylidong/100tickPureVersus.git
+#RUN git clone --depth 1 https://github.com/fantasylidong/purecoop.git
+#RUN git clone --depth 1 -b mysql https://github.com/fantasylidong/neko.git
+#RUN git clone --depth 1 https://github.com/fantasylidong/100tickPureVersus.git
 # 缓存期也拉取完整的仓库
 RUN git clone https://github.com/fantasylidong/CompetitiveWithAnne.git
 
