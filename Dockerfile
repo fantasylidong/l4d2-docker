@@ -39,9 +39,6 @@ ARG NEEDUPDATE="no"
 RUN ./steamcmd.sh +force_install_dir ./l4d2 +@sSteamCmdForcePlatformType linux +login anonymous +app_update 222860 validate +quit
 
 RUN git -C anne pull --unshallow
-RUN git -C purecoop pull --unshallow
-RUN git -C neko pull --unshallow
-RUN git -C 100tickPureVersus pull --unshallow
 # 更新仓库
 RUN git -C CompetitiveWithAnne pull
 
