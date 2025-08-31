@@ -87,11 +87,11 @@ main() {
 		fi
 
 		#server language setting
-		if [ -n "$lang" ]; then
-			sed -i "s/\"ServerLang\"\	\"en\"/\"ServerLang\"\	\"$lang\"/g" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/core.cfg
-		else
-			sed -i "s/\"ServerLang\"\	\"en\"/\"ServerLang\"\	\"chi\"/g" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/core.cfg
-		fi
+		#if [ -n "$lang" ]; then
+			#sed -i "s/\"ServerLang\"\	\"en\"/\"ServerLang\"\	\"$lang\"/g" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/core.cfg
+		#else
+			#sed -i "s/\"ServerLang\"\	\"en\"/\"ServerLang\"\	\"chi\"/g" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/core.cfg
+		#fi
 
 		#修改accelator log report
 		if [ -n "$steam64" ]; then
