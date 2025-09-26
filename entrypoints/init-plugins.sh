@@ -230,7 +230,7 @@ localconfig() {
 copydanceresource() {
 	cp -r /home/louis/anne/left4dead2/sound/ /home/louis/l4d2/left4dead2/
 	cp -r /home/louis/anne/left4dead2/models/ /home/louis/l4d2/left4dead2/
-	cp -r /home/louis/anne/left4dead2/materials/ l4d2/left4dead2/
+	cp -r /home/louis/anne/left4dead2/materials/ /home/louis/l4d2/left4dead2/
 }
 anneremovemysql() {
 	#修改hostname插件端口对应port环境变量
