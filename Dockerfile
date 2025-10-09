@@ -53,7 +53,7 @@ EXPOSE 27015/udp
 VOLUME [ "/map", "/sm_configs" ]
 
 ENV PORT=2333 \
-	PLAYERS=8 \
+	PLAYERS=31 \
 	MAP="c2m1_highway" \
 	REGION=255 \
 	HOSTNAME="leo fighting" \
