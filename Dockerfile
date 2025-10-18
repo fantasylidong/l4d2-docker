@@ -1,11 +1,12 @@
 FROM debian:stable-slim AS install_system
 
 RUN dpkg --add-architecture i386 && apt-get update
-RUN apt-get install -y curl iputils-ping wget file tar bzip2 locales gzip unzip bsdmainutils python3 lib32z1 util-linux ca-certificates binutils bc jq tmux netcat-openbsd lib32gcc-s1 lib32stdc++6 git nano
+RUN apt-get install -y curl iputils-ping wget file tar bzip2 locales gzip unzip bsdmainutils python3 lib32z1 util-linux ca-certificates binutils bc jq tmux netcat-openbsd lib32gcc-s1 lib32stdc++6 git nano \
+    && apt-get install -y inotify-tools  # <-- 新增：安装 inotify-tools
 
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
-	dpkg-reconfigure --frontend=noninteractive locales && \
-	update-locale LANG=en_US.UTF-8
+    dpkg-reconfigure --frontend=noninteractive locales && \
+    update-locale LANG=en_US.UTF-8
 
 ENV LANG en_US.UTF-8 
 
@@ -17,12 +18,13 @@ FROM install_system AS install_game
 
 # 安装 steamcmd 和 left 4 dead 2
 RUN wget http://media.steampowered.com/installer/steamcmd_linux.tar.gz && tar -xzf steamcmd_linux.tar.gz \
-	&& rm steamcmd_linux.tar.gz && ./steamcmd.sh +quit
+    && rm steamcmd_linux.tar.gz && ./steamcmd.sh +quit
 # Clean any previous SteamCMD files
 RUN rm -rf /home/louis/Steam && ./steamcmd.sh +quit
 
 # Step 1: Install Left 4 Dead 2 files
-RUN ./steamcmd.sh +force_install_dir ./l4d2 +@sSteamCmdForcePlatformType windows +login anonymous +app_update 222860 validate +quit && ./steamcmd.sh +force_install_dir ./l4d2 +@sSteamCmdForcePlatformType linux +login anonymous +app_update 222860 validate +quit
+RUN ./steamcmd.sh +force_install_dir ./l4d2 +@sSteamCmdForcePlatformType windows +login anonymous +app_update 222860 validate +quit \
+ && ./steamcmd.sh +force_install_dir ./l4d2 +@sSteamCmdForcePlatformType linux   +login anonymous +app_update 222860 validate +quit
 
 RUN git clone --depth 1 -b zonemod https://github.com/fantasylidong/anne.git
 #RUN git clone --depth 1 https://github.com/fantasylidong/purecoop.git
@@ -44,9 +46,17 @@ RUN git -C CompetitiveWithAnne pull
 
 FROM update AS game
 
+# 清理 scripting 目录（保持你的原逻辑）
 RUN rm -rf anne/left4dead2/addons/sourcemod/scripting/
 RUN mkdir -p .steam/sdk32/ && ln -sf ~/linux32/steamclient.so ~/.steam/sdk32/steamclient.so \
-	&& mkdir -p .steam/sdk64/ && ln -sf ~/linux64/steamclient.so ~/.steam/sdk64/steamclient.so
+    && mkdir -p .steam/sdk64/ && ln -sf ~/linux64/steamclient.so ~/.steam/sdk64/steamclient.so
+
+# --- 新增：放置监听脚本，并赋可执行权限（仍然在用户 louis 下） ---
+USER root
+COPY --chown=root:root link_watcher.sh /usr/local/bin/link_watcher.sh
+RUN chmod +x /usr/local/bin/link_watcher.sh
+USER louis
+# ---------------------------------------------------------------
 
 EXPOSE 27015/tcp
 EXPOSE 27015/udp
