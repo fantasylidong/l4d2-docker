@@ -254,7 +254,7 @@ anneremovemysql() {
 		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/extend/l4d2_damage_show.smx
 		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/extend/punch_angle.smx
 		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/extend/l4d2_blacklist.smx
-		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/extend/killsound.smx
+		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/extend/l4d2_hitsound.smx
 		cp /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/disabled/rpg.smx /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/extend/
 	fi
 }
