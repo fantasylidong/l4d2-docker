@@ -32,6 +32,8 @@ jobs:
         with:
           push: true
           file: Dockerfile
+          target: game_from_image
           tags: morzlee/l4d2:latest
           build-args: |
             NEEDUPDATE=${{ env.NEEDUPDATE }}
+            L4D2_SOURCE_IMAGE=morzlee/l4d2:latest

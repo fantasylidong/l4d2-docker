@@ -86,6 +86,29 @@ docker compose -f docker-compose.yml build
 podman-compose -f docker-compose.yml build
 ```
 
+如果 SteamCMD 匿名下载 `222860` 失败，又不想登录 Steam，可以从一个已经包含求生之路2服务端文件的旧镜像复制 `/home/louis/l4d2`，然后重新编译当前 Dockerfile 的插件和入口层。这个方法不会更新游戏服务端本体，只是复用来源镜像里已经下载好的那份文件。
+
+```sh
+docker pull morzlee/l4d2:latest
+
+docker buildx build \
+  --target game_from_image \
+  --build-arg L4D2_SOURCE_IMAGE=morzlee/l4d2:latest \
+  -t morzlee/l4d2:rebuilt \
+  .
+```
+
+如果你有自己保存的旧镜像，可以把 `L4D2_SOURCE_IMAGE` 改成那个 tag，例如 `my-registry/l4d2-cache:2026-06-01`。前提是来源镜像里存在完整的 `/home/louis/l4d2`，至少要有 `left4dead2/` 和 `srcds_run`。
+
+另一种兜底方案是先在宿主机准备完整服务端目录，再把这个目录作为构建上下文复制进镜像。注意这里需要的是完整的 `l4d2` 服务端目录，不是单独的“验证文件”；目录里最好保留 `steamapps/appmanifest_222860.acf`。
+
+```sh
+docker buildx build \
+  --target game_local \
+  --build-context l4d2_server=/keep/l4d2 \
+  -t morzlee/l4d2:local \
+  .
+```
 ## 修改服务器启动端口
 
 修改环境变量 `PORT`，示例 compose 文件使用的端口是 27001，可自行修改为其他值。

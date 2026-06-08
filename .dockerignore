@@ -1,2 +1,10 @@
 Readme.md
 README_EN.md
+l4d2/
+Steam/
+steamapps/
+steamcmd_linux.tar.gz
+secrets/
+*.vpk
+*.bsp
+*.dem

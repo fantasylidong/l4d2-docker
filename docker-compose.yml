@@ -8,8 +8,16 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      # 如果 SteamCMD 匿名下载不可用，可以改用本地已下载好的服务端目录构建：
+      # target: game_local
+      # additional_contexts:
+      #   l4d2_server: /absolute/path/to/l4d2
+      # 或者从已有镜像复制已下载好的求生之路2服务端文件，再重新编译镜像：
+      # target: game_from_image
       args:
         NEEDUPDATE: "no"
+        # target: game_from_image 时可以指定来源镜像，默认是 morzlee/l4d2:latest
+        # L4D2_SOURCE_IMAGE: "morzlee/l4d2:latest"
         # NEEDUPDATE: $(date +%s)
     environment:
       # 选择哪个插件组，zone是现在的Anne+Zonemod整合包

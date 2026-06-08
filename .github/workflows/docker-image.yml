@@ -32,11 +32,13 @@ jobs:
         with:
           push: true
           file: Dockerfile
+          target: game_from_image
           tags: morzlee/l4d2:latest
           cache-from: type=registry,ref=morzlee/l4d2:buildcache
           cache-to: type=registry,ref=morzlee/l4d2:buildcache,mode=max,compression=zstd
           build-args: |
             NEEDUPDATE=${{ env.NEEDUPDATE }}
+            L4D2_SOURCE_IMAGE=morzlee/l4d2:latest
       -
         name: deploy new docker image
         uses: appleboy/ssh-action@master
