@@ -30,14 +30,7 @@ main() {
 		fi
 
 		if [ "$plugin" = "zone" ]; then
-			if [ "$mutation" = "true" ]; then
-				git -C /home/louis/CompetitiveWithAnne/ checkout mutation12
-				rm /home/louis/l4d2/left4dead2/addons/Anne.vpk
-				rm /home/louis/l4d2/left4dead2/addons/knift.vpk
-			fi
 			cp -r /home/louis/CompetitiveWithAnne/* /home/louis/l4d2/left4dead2/
-			# nav file copy
-			cp -r /home/louis/anne/update/* /home/louis/l4d2/update/
 			copydanceresource
 			echo "zone plugins packge installed"
 			sed -i "s/join_autoupdate\ 1/join_autoupdate\ 4/g" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_settings.cfg
@@ -56,10 +49,6 @@ main() {
 		if [ "$plugin" = "pureversus" ]; then
 			cp -r /home/louis/100tickPureVersus/* /home/louis/l4d2/left4dead2/
 			copydanceresource
-
-			if [ "$mutation" != "true" ]; then
-				sed -i 's/mutation12/versus/g' /home/louis/l4d2/left4dead2/cfg/server.cfg
-			fi
 
 			if [ -n "$PORT" ]; then
 				sed -i "s/2351/$PORT/g" /home/louis/l4d2/left4dead2/addons/sourcemod/data/hostname.txt
@@ -147,7 +136,6 @@ main() {
 				sed -i "/sm_killlobbyres/d" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_settings.cfg
 				sed -i "/confogl_addcvar\ sv_allow_lobby_connect_only\ 0/d" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_cvars.cfg
 				sed -i "s/confogl_match_killlobbyres\ \ \ \ \ \ \ \ \ \ \"1\"/confogl_match_killlobbyres\ \ \ \ \ \ \ \ \ \ \"0\"/g" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_cvars.cfg
-				#echo -e "\nsm_forcematch zonemod_mutation12" >> /home/louis/l4d2/left4dead2/cfg/server.cfg
 			fi
 		fi
 
@@ -228,9 +216,11 @@ localconfig() {
 	fi
 }
 copydanceresource() {
-	cp -r /home/louis/anne/left4dead2/sound/ /home/louis/l4d2/left4dead2/
-	cp -r /home/louis/anne/left4dead2/models/ /home/louis/l4d2/left4dead2/
-	cp -r /home/louis/anne/left4dead2/materials/ /home/louis/l4d2/left4dead2/
+	if [ -d /home/louis/anne/left4dead2 ]; then
+		cp -r /home/louis/anne/left4dead2/sound/ /home/louis/l4d2/left4dead2/
+		cp -r /home/louis/anne/left4dead2/models/ /home/louis/l4d2/left4dead2/
+		cp -r /home/louis/anne/left4dead2/materials/ /home/louis/l4d2/left4dead2/
+	fi
 }
 anneremovemysql() {
 	#修改hostname插件端口对应port环境变量
