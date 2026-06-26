@@ -33,6 +33,8 @@ services:
       # 崩溃报告上传网站需要的账号
       steamid64: ""
       steamgroup: ""
+      # true 时启动命令追加 -nomaster，不向 Steam 主服务器注册
+      nomaster: "false"
       # 绑定端口，由于是 host 网络模式，这里的端口就是主机的端口
       PORT: 27001
       # 设置服务器名称

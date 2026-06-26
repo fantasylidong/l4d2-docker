@@ -197,7 +197,7 @@ password方便自己使用rcon server manage自己管理。
 裸docker指令（不推荐，建议看最上面的 compose 文件方法）
 
 ```ssh
-docker run --ulimit core=0 --net=host --memory-swap 1000m -m 700m  -e TZ=Asia/Shanghai -e password="123456" -e steamgroup="123456" -e PORT=2333 -e MAP="c2m1_highway" -e REGION=255 -e plugin="anne" -e steamid="STEAM_1:1:121430603" -v "/keep/annemap":"/map" --name anne --restart=always morzlee/l4d2:latest &
+docker run --ulimit core=0 --net=host --memory-swap 1000m -m 700m  -e TZ=Asia/Shanghai -e password="123456" -e steamgroup="123456" -e nomaster="true" -e PORT=2333 -e MAP="c2m1_highway" -e REGION=255 -e plugin="anne" -e steamid="STEAM_1:1:121430603" -v "/keep/annemap":"/map" --name anne --restart=always morzlee/l4d2:latest &
 ```
 
 + --net=host 使用本地网络，看你自己需求，也能桥接
@@ -205,6 +205,7 @@ docker run --ulimit core=0 --net=host --memory-swap 1000m -m 700m  -e TZ=Asia/Sh
 + -e TZ=Asia/Shanghai 时区
 + -e password="123456" rcon密码
 + -e steamgroup="123456" 绑定的steam组
++ -e nomaster="true" 启动命令追加 `-nomaster`，不向 Steam 主服务器注册
 + -e PORT=2333 使用端口[桥接记得这个要对应]
 + -e MAP="c2m1_highway" 初始地图
 + -e REGION=255 设置服务器位置
