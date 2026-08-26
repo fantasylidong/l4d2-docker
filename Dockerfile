@@ -124,12 +124,18 @@ RUN echo "$NEEDUPDATE" >/tmp/needupdate-plugins \
     && find . -type f -name '*.nav' -exec cp --parents -t /home/louis/CompetitiveWithAnne/maps/anne_nav/ {} + \
     && test -n "$(find /home/louis/CompetitiveWithAnne/maps/anne_nav -type f -name '*.nav' -print -quit)" \
     && printf '\n/maps/anne_nav/\n' >> /home/louis/CompetitiveWithAnne/.git/info/exclude \
+    && mkdir -p /home/louis/anne/left4dead2 \
+    && cp -a /tmp/anne/left4dead2/sound /tmp/anne/left4dead2/models /tmp/anne/left4dead2/materials /home/louis/anne/left4dead2/ \
+    && test -d /home/louis/anne/left4dead2/sound \
+    && test -d /home/louis/anne/left4dead2/models \
+    && test -d /home/louis/anne/left4dead2/materials \
     && rm -rf /tmp/anne /tmp/needupdate-plugins
 
 FROM runtime_system AS runtime_common
 
 COPY --chown=louis:louis --from=steamcmd_runtime /home/louis/steamcmd-runtime/ /home/louis/
 COPY --chown=louis:louis --from=plugin_sources /home/louis/CompetitiveWithAnne /home/louis/CompetitiveWithAnne
+COPY --chown=louis:louis --from=plugin_sources /home/louis/anne /home/louis/anne
 COPY --chown=louis:louis ./entrypoints /home/louis/
 
 USER root
