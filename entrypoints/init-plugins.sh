@@ -2,6 +2,28 @@
 
 # $(pwd) = /home/louis
 
+mysql_exists() {
+	local value="${mysqlexist:-false}"
+	case "$value" in
+		1|[Tt][Rr][Uu][Ee]|[Yy][Ee][Ss]|[Oo][Nn]) return 0 ;;
+		*) return 1 ;;
+	esac
+}
+
+autoupdate_mode() {
+	if mysql_exists; then
+		printf '2\n'
+	else
+		printf '1\n'
+	fi
+}
+
+configureautoupdate() {
+	local mode
+	mode="$(autoupdate_mode)"
+	sed -i -E "s/join_autoupdate[[:space:]]+[0-2]/join_autoupdate $mode/g" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_settings.cfg
+}
+
 main() {
 	# plugins Config
 	if [ ! -d "/home/louis/l4d2/left4dead2/addons/sourcemod/" ]; then
@@ -33,7 +55,6 @@ main() {
 			cp -r /home/louis/CompetitiveWithAnne/* /home/louis/l4d2/left4dead2/
 			copydanceresource
 			echo "zone plugins packge installed"
-			sed -i "s/join_autoupdate\ 1/join_autoupdate\ 4/g" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_settings.cfg
 			if [ "$cloud" = "true" ]; then
 				cloudconfig
 			else
@@ -151,9 +172,13 @@ main() {
 			sed -i "47 s/\"2\"/\"$serverid\"/" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/sourcebans/sourcebans.cfg
 		fi
 
-		#delete motd
-		rm /home/louis/l4d2/left4dead2/*motd.txt
-		rm /home/louis/l4d2/left4dead2/*host.txt
+			#delete motd
+			rm /home/louis/l4d2/left4dead2/*motd.txt
+			rm /home/louis/l4d2/left4dead2/*host.txt
+		fi
+
+	if [ "${plugin:-}" = "zone" ] && [ -d /home/louis/l4d2/left4dead2/cfg/cfgogl ]; then
+		configureautoupdate
 	fi
 }
 
@@ -196,9 +221,6 @@ localconfig() {
 		cp -r /home/louis/CompetitiveWithAnne/* l4d2/left4dead2/
 		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/optional/AnneHappy/sam_vs.smx
 		sed -i "256 s/-secure/-insecure/" /home/louis/entrypoint.sh
-		sed -i "s/join_autoupdate\ 1/join_autoupdate\ 0/g" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_settings.cfg
-		sed -i "s/join_autoupdate\ 4/join_autoupdate\ 0/g" /home/louis/l4d2/left4dead2/cfg/cfgogl/*/shared_settings.cfg
-		echo "sm_cvar join_autoupdate 0" >>/home/louis/l4d2/left4dead2/cfg/server.cfg
 	fi
 	if [ "$PORT" = "2340" ]; then
 		sed -i 's/AnneHappy6.cfg/AnneHappy4.cfg/g' /home/louis/l4d2/left4dead2/cfg/cfgogl/annehappy/confogl_plugins.cfg
@@ -232,20 +254,37 @@ anneremovemysql() {
 		sed -i "s/Anne电信测试服/$hostname/g" /home/louis/l4d2/left4dead2/addons/sourcemod/configs/hostname/hostname.txt
 	fi
 
-	if [ -n "$mysqlexist" ]; then
-		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/extend/l4d_stats.smx
-		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/chat-processor.smx
-		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/extend/hextags.smx
-		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/extend/lilac.smx
-		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/extend/sbpp_*
-		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/extend/rpg.smx
-		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/extend/chatlog.smx
-		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/extend/veterans.smx
-		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/extend/l4d2_damage_show.smx
-		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/extend/punch_angle.smx
-		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/extend/l4d2_blacklist.smx
-		rm /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/extend/l4d2_hitsound.smx
+	if ! mysql_exists; then
+		local plugin_dir=/home/louis/l4d2/left4dead2/addons/sourcemod/plugins
+		local removals=(
+			extend/l4d_stats
+			extend/sbpp_admcfg
+			extend/sbpp_checker
+			extend/sbpp_comms
+			extend/sbpp_main
+			extend/sbpp_report
+			extend/sbpp_sleuth
+			extend/lilac
+			extend/chatlog
+			extend/veterans
+			extend/l4d2_damage_show
+			extend/l4d2_blacklist
+			extend/l4d2_hitsound
+			extend/l4d2_scripted_hud
+			extend/global_chat
+			extend/l4d_player_count_unload_mode
+			optional/AnneHappy/annehappy_dynamic_ai_difficulty
+			optional/AnneHappy/anne_traitor_quota
+		)
+		local plugin
+		for plugin in "${removals[@]}"; do
+			rm -f "$plugin_dir/$plugin.smx"
+		done
+		rm -f "$plugin_dir/extend/rpg.smx"
 		cp /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/disabled/rpg.smx /home/louis/l4d2/left4dead2/addons/sourcemod/plugins/extend/
 	fi
 }
-main
+
+if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+	main
+fi

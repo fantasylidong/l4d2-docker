@@ -22,7 +22,7 @@ services:
       REGION: 4
       # rcon密码
       password: "123456"
-      # mysql配置，如果没有数据库则留空
+      # 是否已配置外部 MySQL；false 使用无数据库插件和更新清单，true 使用有数据库版本
       mysqlexist: "false"
       mysql: ""
       mysqlport: ""
