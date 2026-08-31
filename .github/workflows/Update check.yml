@@ -12,19 +12,15 @@
 name: Update Checker
 
 env:
-  REPO_URL: https://github.com/fantasylidong/CompetitiveWithAnne
-  REPO_BRANCH: master
-  TZ: Asia/Shanghai
+  COMPETITIVE_REPO_URL: https://github.com/fantasylidong/CompetitiveWithAnne
+  COMPETITIVE_REPO_BRANCH: master
+  ANNE_REPO_URL: https://github.com/fantasylidong/anne
+  ANNE_REPO_BRANCH: zonemod
 
 on:
   schedule:
     - cron: 45 20 * * *
   workflow_dispatch:
-    inputs:
-      version:
-        description: 'Version'
-        required: false
-        default: ''	
 
 jobs:
   jell:
@@ -35,36 +31,33 @@ jobs:
     - name: 获取提交哈希值
       id: getHash
       run: |
-        git clone --depth 1 $REPO_URL -b $REPO_BRANCH .
-        echo "::set-output name=commitHash::$(git rev-parse HEAD)"
+        git clone --depth 1 "$COMPETITIVE_REPO_URL" -b "$COMPETITIVE_REPO_BRANCH" "$RUNNER_TEMP/competitive"
+        git clone --depth 1 "$ANNE_REPO_URL" -b "$ANNE_REPO_BRANCH" "$RUNNER_TEMP/anne"
+        echo "competitive_ref=$(git -C "$RUNNER_TEMP/competitive" rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+        echo "anne_ref=$(git -C "$RUNNER_TEMP/anne" rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
     - name: 比较提交哈希值
       id: cacheHash
       uses: actions/cache@v4
       with:
         path: .commitHash
-        key: HEAD-${{ steps.getHash.outputs.commitHash }}
+        key: HEAD-${{ steps.getHash.outputs.competitive_ref }}-${{ steps.getHash.outputs.anne_ref }}
 
     - name: 保存新的哈希值
       if: steps.cacheHash.outputs.cache-hit != 'true'
       run: |
-        echo ${{ steps.getHash.outputs.commitHash }} | tee .commitHash
-        
-    - name: 设置当前的日期
-      id: date
-      run: |
-        echo "date=$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_ENV
-        echo "date2=$(date +'%m/%d %Y')" >> $GITHUB_ENV
-        echo "date3=$(date +'%m.%d')" >> $GITHUB_ENV
-        echo "date4=$(date +'%m.%d.%H')" >> $GITHUB_ENV        
-        sudo timedatectl set-timezone "$TZ"
+        printf '%s\n%s\n' \
+          "${{ steps.getHash.outputs.competitive_ref }}" \
+          "${{ steps.getHash.outputs.anne_ref }}" > .commitHash
 
     - name: 触发编译
       if: steps.cacheHash.outputs.cache-hit != 'true'
       uses: peter-evans/repository-dispatch@v1
       with:
         token: ${{ secrets.REPO_TOKEN }}
-        event-type: ${{ env.date3 }} ${{ github.event.inputs.version }}
+        event-type: plugin-update
+        client-payload: >-
+          {"competitive_ref":"${{ steps.getHash.outputs.competitive_ref }}","anne_ref":"${{ steps.getHash.outputs.anne_ref }}"}
     
     - name: 删除工作流
       uses: GitRML/delete-workflow-runs@main

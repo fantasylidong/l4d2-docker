@@ -2,45 +2,75 @@ name: ci
 
 on:
   workflow_dispatch:
-    inputs:
-      tags: 
-         description: 'Run Tags'
-
 
 jobs:
   docker:
     runs-on: ubuntu-latest
+    env:
+      COMPETITIVE_REF: master
+      ANNE_REF: zonemod
     steps:
-      - name: 刷新NEEDUPDATE变量，以放弃update阶段缓存
-        run: echo "NEEDUPDATE=$( date +%s )" >> $GITHUB_ENV
-      -
-        name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-      -
-        name: Set up Docker Buildx
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Test Docker layering rules
+        run: bash tests/test-docker-workflows.sh
+      - name: Refresh game update token
+        run: echo "GAME_UPDATE_TOKEN=$(date +%s)" >> "$GITHUB_ENV"
+      - name: Resolve plugin refs
+        id: plugin_refs
+        shell: bash
+        run: |
+          resolve_ref() {
+            local repo="$1" requested="$2" listing resolved
+            if [[ "$requested" =~ ^[0-9a-fA-F]{40}$ ]]; then
+              printf '%s\n' "$requested"
+              return
+            fi
+            listing="$(git ls-remote "$repo" "refs/heads/$requested")"
+            [[ -n "$listing" ]] || listing="$(git ls-remote "$repo" "refs/tags/$requested^{}")"
+            [[ -n "$listing" ]] || listing="$(git ls-remote "$repo" "refs/tags/$requested")"
+            resolved="${listing%%[[:space:]]*}"
+            [[ -n "$resolved" ]] || { echo "Unable to resolve $requested from $repo" >&2; return 1; }
+            printf '%s\n' "$resolved"
+          }
+          echo "competitive_ref=$(resolve_ref https://github.com/fantasylidong/CompetitiveWithAnne.git "$COMPETITIVE_REF")" >> "$GITHUB_OUTPUT"
+          echo "anne_ref=$(resolve_ref https://github.com/fantasylidong/anne.git "$ANNE_REF")" >> "$GITHUB_OUTPUT"
+      - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-      -
-        name: Login to DockerHub
+      - name: Login to DockerHub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Build and push
-        id: docker_build
+      - name: Build and push game base image
         uses: docker/build-push-action@v5
         with:
           push: true
+          pull: true
           file: Dockerfile
-          target: game_from_image
-          tags: morzlee/l4d2:latest
-          cache-from: type=registry,ref=morzlee/l4d2:buildcache
-          cache-to: type=registry,ref=morzlee/l4d2:buildcache,mode=max,compression=zstd
+          target: game_base
+          platforms: linux/amd64
+          tags: morzlee/l4d2:game-base
+          cache-from: type=registry,ref=morzlee/l4d2:buildcache-game
+          cache-to: type=registry,ref=morzlee/l4d2:buildcache-game,mode=max,compression=zstd
           build-args: |
-            NEEDUPDATE=${{ env.NEEDUPDATE }}
-            L4D2_SOURCE_IMAGE=morzlee/l4d2:latest
-      -
-        name: deploy new docker image
+            NEEDUPDATE=${{ env.GAME_UPDATE_TOKEN }}
+      - name: Build and push plugin image
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          pull: true
+          file: Dockerfile
+          target: plugin_from_game_base
+          platforms: linux/amd64
+          tags: morzlee/l4d2:latest
+          cache-from: type=registry,ref=morzlee/l4d2:buildcache-plugin
+          cache-to: type=registry,ref=morzlee/l4d2:buildcache-plugin,mode=max,compression=zstd
+          build-args: |
+            COMPETITIVE_REF=${{ steps.plugin_refs.outputs.competitive_ref }}
+            ANNE_REF=${{ steps.plugin_refs.outputs.anne_ref }}
+            L4D2_SOURCE_IMAGE=morzlee/l4d2:game-base
+      - name: deploy new docker image
         uses: appleboy/ssh-action@master
         with:
           host: "${{ secrets.HOST1 }}:${{ secrets.PORT }}"

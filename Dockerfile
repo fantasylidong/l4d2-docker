@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1.7
 
 ARG IMAGE_PLATFORM=linux/amd64
-ARG L4D2_SOURCE_IMAGE=morzlee/l4d2:latest
+ARG L4D2_SOURCE_IMAGE=morzlee/l4d2:game-base
 
 FROM --platform=$IMAGE_PLATFORM debian:stable-slim AS runtime_system
 
@@ -19,7 +19,9 @@ RUN dpkg --add-architecture i386 \
         lib32gcc-s1 \
         lib32stdc++6 \
         lib32z1 \
+        libcurl4t64:i386 \
         nano \
+    && ln -sf libcurl.so.4 /usr/lib/i386-linux-gnu/libcurl.so \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/* /tmp/*
 
 RUN useradd -m louis
@@ -95,30 +97,20 @@ RUN mkdir -p /home/louis/l4d2/steamapps \
     && mkdir -p /home/louis/runtime-home \
     && cp -R /home/louis/l4d2 /home/louis/runtime-home/l4d2
 
-FROM --platform=$IMAGE_PLATFORM ${L4D2_SOURCE_IMAGE} AS l4d2_source_image
-
-FROM runtime_system AS install_game_image
-
-RUN --mount=from=l4d2_source_image,source=/home/louis,target=/source,readonly \
-    cp -R /source/l4d2 /home/louis/l4d2 \
-    && if [ -d /source/linux32 ]; then cp -R /source/linux32 /home/louis/linux32; fi \
-    && if [ -d /source/linux64 ]; then cp -R /source/linux64 /home/louis/linux64; fi
-
-RUN test -d /home/louis/l4d2/left4dead2 \
-    && test -f /home/louis/l4d2/srcds_run \
-    && (test -f /home/louis/l4d2/steamapps/appmanifest_222860.acf || \
-        echo 'warning: steamapps/appmanifest_222860.acf not found in source image') \
-    && mkdir -p /home/louis/runtime-home \
-    && cp -R /home/louis/l4d2 /home/louis/runtime-home/l4d2 \
-    && if [ -d /home/louis/linux32 ]; then cp -R /home/louis/linux32 /home/louis/runtime-home/linux32; fi \
-    && if [ -d /home/louis/linux64 ]; then cp -R /home/louis/linux64 /home/louis/runtime-home/linux64; fi
-
 FROM build_system AS plugin_sources
 
-ARG NEEDUPDATE="no"
-RUN echo "$NEEDUPDATE" >/tmp/needupdate-plugins \
-    && git clone --depth 1 -b zonemod https://github.com/fantasylidong/anne.git /tmp/anne \
-    && git clone --depth 1 https://github.com/fantasylidong/CompetitiveWithAnne.git /home/louis/CompetitiveWithAnne \
+ARG ANNE_REF=zonemod
+ARG COMPETITIVE_REF=master
+RUN git init /tmp/anne \
+    && git -C /tmp/anne remote add origin https://github.com/fantasylidong/anne.git \
+    && git -C /tmp/anne fetch --depth 1 origin "$ANNE_REF" \
+    && git -C /tmp/anne checkout --detach FETCH_HEAD \
+    && git init /home/louis/CompetitiveWithAnne \
+    && git -C /home/louis/CompetitiveWithAnne remote add origin https://github.com/fantasylidong/CompetitiveWithAnne.git \
+    && git -C /home/louis/CompetitiveWithAnne fetch --depth 1 origin "$COMPETITIVE_REF" \
+    && git -C /home/louis/CompetitiveWithAnne checkout -B master FETCH_HEAD \
+    && git -C /home/louis/CompetitiveWithAnne config branch.master.remote origin \
+    && git -C /home/louis/CompetitiveWithAnne config branch.master.merge refs/heads/master \
     && mkdir -p /home/louis/CompetitiveWithAnne/maps/anne_nav \
     && cd /tmp/anne/update/maps \
     && find . -type f -name '*.nav' -exec cp --parents -t /home/louis/CompetitiveWithAnne/maps/anne_nav/ {} + \
@@ -129,13 +121,11 @@ RUN echo "$NEEDUPDATE" >/tmp/needupdate-plugins \
     && test -d /home/louis/anne/left4dead2/sound \
     && test -d /home/louis/anne/left4dead2/models \
     && test -d /home/louis/anne/left4dead2/materials \
-    && rm -rf /tmp/anne /tmp/needupdate-plugins
+    && rm -rf /tmp/anne
 
 FROM runtime_system AS runtime_common
 
 COPY --chown=louis:louis --from=steamcmd_runtime /home/louis/steamcmd-runtime/ /home/louis/
-COPY --chown=louis:louis --from=plugin_sources /home/louis/CompetitiveWithAnne /home/louis/CompetitiveWithAnne
-COPY --chown=louis:louis --from=plugin_sources /home/louis/anne /home/louis/anne
 COPY --chown=louis:louis ./entrypoints /home/louis/
 
 USER root
@@ -164,7 +154,7 @@ ENV PORT=2333 \
 
 ENTRYPOINT ["/bin/bash", "entrypoint.sh"]
 
-FROM runtime_common AS game
+FROM runtime_common AS game_base
 
 COPY --chown=louis:louis --from=game_files /home/louis/runtime-home/ /home/louis/
 RUN mkdir -p /home/louis/.steam/sdk32/ /home/louis/.steam/sdk64/ \
@@ -183,7 +173,12 @@ RUN mkdir -p /home/louis/.steam/sdk32/ /home/louis/.steam/sdk64/ \
         echo 'warning: no 64-bit steamclient.so found for ~/.steam/sdk64'; \
     fi
 
-FROM runtime_common AS game_local
+FROM game_base AS game
+
+COPY --chown=louis:louis --from=plugin_sources /home/louis/CompetitiveWithAnne /home/louis/CompetitiveWithAnne
+COPY --chown=louis:louis --from=plugin_sources /home/louis/anne /home/louis/anne
+
+FROM runtime_common AS game_local_base
 
 COPY --chown=louis:louis --from=install_game_local /home/louis/runtime-home/ /home/louis/
 RUN mkdir -p /home/louis/.steam/sdk32/ /home/louis/.steam/sdk64/ \
@@ -202,7 +197,30 @@ RUN mkdir -p /home/louis/.steam/sdk32/ /home/louis/.steam/sdk64/ \
         echo 'warning: no 64-bit steamclient.so found for ~/.steam/sdk64'; \
     fi
 
-FROM runtime_common AS game_from_image
+FROM game_local_base AS game_local
+
+COPY --chown=louis:louis --from=plugin_sources /home/louis/CompetitiveWithAnne /home/louis/CompetitiveWithAnne
+COPY --chown=louis:louis --from=plugin_sources /home/louis/anne /home/louis/anne
+
+FROM --platform=$IMAGE_PLATFORM ${L4D2_SOURCE_IMAGE} AS l4d2_source_image
+
+FROM runtime_system AS install_game_image
+
+RUN --mount=from=l4d2_source_image,source=/home/louis,target=/source,readonly \
+    cp -R /source/l4d2 /home/louis/l4d2 \
+    && if [ -d /source/linux32 ]; then cp -R /source/linux32 /home/louis/linux32; fi \
+    && if [ -d /source/linux64 ]; then cp -R /source/linux64 /home/louis/linux64; fi
+
+RUN test -d /home/louis/l4d2/left4dead2 \
+    && test -f /home/louis/l4d2/srcds_run \
+    && (test -f /home/louis/l4d2/steamapps/appmanifest_222860.acf || \
+        echo 'warning: steamapps/appmanifest_222860.acf not found in source image') \
+    && mkdir -p /home/louis/runtime-home \
+    && cp -R /home/louis/l4d2 /home/louis/runtime-home/l4d2 \
+    && if [ -d /home/louis/linux32 ]; then cp -R /home/louis/linux32 /home/louis/runtime-home/linux32; fi \
+    && if [ -d /home/louis/linux64 ]; then cp -R /home/louis/linux64 /home/louis/runtime-home/linux64; fi
+
+FROM runtime_common AS game_from_image_base
 
 COPY --chown=louis:louis --from=install_game_image /home/louis/runtime-home/ /home/louis/
 RUN mkdir -p /home/louis/.steam/sdk32/ /home/louis/.steam/sdk64/ \
@@ -220,5 +238,16 @@ RUN mkdir -p /home/louis/.steam/sdk32/ /home/louis/.steam/sdk64/ \
     else \
         echo 'warning: no 64-bit steamclient.so found for ~/.steam/sdk64'; \
     fi
+
+FROM game_from_image_base AS game_from_image
+
+COPY --chown=louis:louis --from=plugin_sources /home/louis/CompetitiveWithAnne /home/louis/CompetitiveWithAnne
+COPY --chown=louis:louis --from=plugin_sources /home/louis/anne /home/louis/anne
+
+FROM l4d2_source_image AS plugin_from_game_base
+
+RUN rm -rf /home/louis/CompetitiveWithAnne /home/louis/anne
+COPY --chown=louis:louis --from=plugin_sources /home/louis/CompetitiveWithAnne /home/louis/CompetitiveWithAnne
+COPY --chown=louis:louis --from=plugin_sources /home/louis/anne /home/louis/anne
 
 FROM game AS final
