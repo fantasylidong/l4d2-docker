@@ -64,10 +64,11 @@ for workflow in "${plugin_workflows[@]}"; do
 	assert_contains "$workflow" 'COMPETITIVE_REF=${{ steps.plugin_refs.outputs.competitive_ref }}'
 	assert_contains "$workflow" 'ANNE_REF=${{ steps.plugin_refs.outputs.anne_ref }}'
 	assert_contains "$workflow" 'if: steps.game_base.outputs.exists != '\''true'\'''
-	assert_contains "$workflow" 'target: game_base'
+	assert_contains "$workflow" 'target: game_from_image_base'
+	assert_contains "$workflow" 'L4D2_SOURCE_IMAGE=morzlee/l4d2:latest'
 	assert_contains "$workflow" 'run: bash tests/test-docker-workflows.sh'
 	assert_not_contains "$workflow" 'date +%s'
-	assert_not_contains "$workflow" 'L4D2_SOURCE_IMAGE=morzlee/l4d2:latest'
+	assert_not_contains "$workflow" 'NEEDUPDATE=bootstrap'
 	assert_not_contains "$workflow" 'setup-qemu-action'
 done
 

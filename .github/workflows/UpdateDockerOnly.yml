@@ -58,13 +58,13 @@ jobs:
           push: true
           pull: true
           file: Dockerfile
-          target: game_base
+          target: game_from_image_base
           platforms: linux/amd64
           tags: morzlee/l4d2:game-base
           cache-from: type=registry,ref=morzlee/l4d2:buildcache-game
           cache-to: type=registry,ref=morzlee/l4d2:buildcache-game,mode=max,compression=zstd
           build-args: |
-            NEEDUPDATE=bootstrap
+            L4D2_SOURCE_IMAGE=morzlee/l4d2:latest
       - name: Build and push plugin image
         uses: docker/build-push-action@v5
         with:
