@@ -14,4 +14,5 @@ bash ./refresh-addons.sh
 bash ./init-plugins.sh
 [ -e ./enthooks/post-init.sh ] && bash ./enthooks/post-init.sh || echo "[Rosmeowtis]: skip post-init hook"
 #bash ./update.sh
+bash ./configure-matchmaking.sh || exit $?
 bash ./run.sh

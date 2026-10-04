@@ -43,6 +43,9 @@ services:
       steamgroup: ""
       # true 时启动命令追加 -nomaster，不向 Steam 主服务器注册
       nomaster: "false"
+      # 每次启动及换图使用公开搜索；保持大厅预约由匹配管理插件处理。
+      # 不与旧 private 或 lobby=true 同时使用。
+      SRCDS_PUBLIC_MATCHMAKING: "false"
       # 绑定端口，由于是 host 网络模式，这里的端口就是主机的端口
       PORT: 27001
       # 设置服务器名称

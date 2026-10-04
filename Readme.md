@@ -188,6 +188,24 @@ steamid 可以在游戏中打开控制台，输入 `status` 指令查询。
 
 steamgroup填写自己群组的值，多个可以用英文逗号连接。
 
+### 公开大厅匹配与更新持久化
+
+设置 `SRCDS_PUBLIC_MATCHMAKING=true` 后，每次容器启动都会在插件初始化和
+自定义 post-init hook 完成后生成 `cfg/anne-public-matchmaking.cfg`，并在
+`server.cfg` 最后执行它。该配置清空 `sv_search_key`，设置
+`sv_steamgroup_exclusive=0`、`sv_allow_lobby_connect_only=0`、`sv_lan=0`；
+换图会再次应用。Steam 组仍由 `steamgroup` 设置，预约 cookie 和
+`sv_hosting_lobby` 继续由匹配管理插件控制。此开关不保证 Steam 一定分配玩家。
+
+默认 false 保留旧行为。不要与旧 `private` 或 `lobby=true` 同时设置；
+旧镜像甚至将 `private=false` 当成非空值启用，公开模式会拒绝这些冲突。
+修改已有容器的环境变量需要重建容器；设置必须保存在 Compose 或宿主机 env 中。
+
+使用 Anne 的一键部署脚本时，在 `/root/l4d2-docker.env` 设置
+`L4D2_SRCDS_PUBLIC_MATCHMAKING=true`，并使用支持此选项的新版脚本。
+该脚本在 base 镜像提交前安装相同的启动逻辑，之后照常执行
+`bash /root/l4d2-docker.sh --update` 即可，无需拉取新的基础镜像。
+
 password方便自己使用rcon server manage自己管理。
 
 我为了自己方便，默认值全部写的我自己的值，注意修改。
