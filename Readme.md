@@ -194,7 +194,8 @@ steamgroup填写自己群组的值，多个可以用英文逗号连接。
 自定义 post-init hook 完成后生成 `cfg/anne-public-matchmaking.cfg`，并在
 `server.cfg` 最后执行它。该配置清空 `sv_search_key`，设置
 `sv_steamgroup_exclusive=0`、`sv_allow_lobby_connect_only=0`、`sv_lan=0`；
-换图会再次应用。Steam 组仍由 `steamgroup` 设置，预约 cookie 和
+换图会再次应用。非空 `steamgroup`（逗号分隔的数字 ID）也会写入此配置，
+避免旧 server.cfg 覆盖组列表；预约 cookie 和
 `sv_hosting_lobby` 继续由匹配管理插件控制。此开关不保证 Steam 一定分配玩家。
 
 默认 false 保留旧行为。不要与旧 `private` 或 `lobby=true` 同时设置；

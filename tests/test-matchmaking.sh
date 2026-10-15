@@ -62,6 +62,10 @@ done
 for bad in invalid; do
   if SRCDS_PUBLIC_MATCHMAKING="$bad" bash "$script" "$work/cfg" >/dev/null 2>&1; then exit 1; fi
 done
+SRCDS_PUBLIC_MATCHMAKING=true steamgroup=3,4,5 bash "$script" "$work/cfg"
+grep -qx 'sv_steamgroup "3,4,5"' "$work/cfg/anne-public-matchmaking.cfg"
+if SRCDS_PUBLIC_MATCHMAKING=true steamgroup='3;quit' bash "$script" "$work/cfg" >/dev/null 2>&1; then exit 1; fi
+grep -qx 'sv_steamgroup "3,4,5"' "$work/cfg/anne-public-matchmaking.cfg"
 if SRCDS_PUBLIC_MATCHMAKING=true private=false bash "$script" "$work/cfg" >/dev/null 2>&1; then exit 1; fi
 if SRCDS_PUBLIC_MATCHMAKING=true lobby=true bash "$script" "$work/cfg" >/dev/null 2>&1; then exit 1; fi
 if SRCDS_PUBLIC_MATCHMAKING=true bash "$script" "$work/missing" >/dev/null 2>&1; then exit 1; fi

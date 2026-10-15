@@ -40,6 +40,10 @@ if [[ -n "${private:-}" || "${lobby:-}" == true ]]; then
   echo "Public matchmaking requires legacy private and lobby=true to be unset" >&2
   exit 1
 fi
+if [[ -n "${steamgroup:-}" && ! "$steamgroup" =~ ^[0-9]+(,[0-9]+)*$ ]]; then
+  echo "Invalid steamgroup: expected comma-separated numeric group IDs" >&2
+  exit 1
+fi
 if [[ ! -f "$server_cfg" ]]; then
   echo "Public matchmaking requires an initialized server.cfg" >&2
   exit 1
@@ -50,6 +54,9 @@ temporary="$(mktemp "$cfg_dir/.anne-public-matchmaking.XXXXXX")"
   printf '%s\n' "$marker"
   printf '%s\n' 'sv_search_key ""' 'sv_steamgroup_exclusive 0' \
     'sv_allow_lobby_connect_only 0' 'sv_lan 0'
+  if [[ -n "${steamgroup:-}" ]]; then
+    printf 'sv_steamgroup "%s"\n' "$steamgroup"
+  fi
   printf '%s\n' '// Reservation cookie and sv_hosting_lobby remain plugin-managed.'
 } >"$temporary"
 chmod 0644 "$temporary"
