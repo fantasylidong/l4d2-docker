@@ -56,8 +56,8 @@ prune_empty_dirs() {
   done
 }
 
-# 冷启动：把已有文件先全部链接一次
-find "$SRC" -type f -print0 | while IFS= read -r -d '' f; do
+# 上传器的隐藏目录保存私有记录和临时文件，不能遍历或链接进游戏。
+find "$SRC" -mindepth 1 -name '.*' -prune -o -type f -print0 | while IFS= read -r -d '' f; do
   link_one "$f"
 done
 
@@ -66,6 +66,7 @@ done
 # - CLOSE_WRITE|CREATE|MOVED_TO 触发链接/覆盖
 # - DELETE|MOVED_FROM 触发在 DST 侧删除对应符号链接
 inotifywait -m -r \
+  --exclude '(^|/)\.' \
   -e close_write,create,moved_to,delete,moved_from \
   --format '%e|%w%f' --quiet "$SRC" |
 while IFS='|' read -r ev path; do

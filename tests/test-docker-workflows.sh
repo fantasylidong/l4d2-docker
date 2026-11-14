@@ -47,6 +47,10 @@ assert_contains "$dockerfile" 'FROM --platform=$IMAGE_PLATFORM ${L4D2_SOURCE_IMA
 assert_contains "$dockerfile" 'FROM runtime_system AS install_game_image'
 assert_contains "$dockerfile" 'FROM game_from_image_base AS game_from_image'
 assert_contains "$dockerfile" 'FROM l4d2_source_image AS plugin_from_game_base'
+watcher_copy_line="$(line_of "$dockerfile" 'COPY --chown=root:root --chmod=0755 link_watcher.sh /usr/local/bin/link_watcher.sh')"
+plugin_target_line="$(line_of "$dockerfile" 'FROM l4d2_source_image AS plugin_from_game_base')"
+final_target_line="$(line_of "$dockerfile" 'FROM game AS final')"
+((watcher_copy_line > plugin_target_line && watcher_copy_line < final_target_line)) || die 'Plugin builds must refresh the map watcher from source'
 assert_not_contains "$dockerfile" 'needupdate-plugins'
 
 game_target_line="$(line_of "$dockerfile" 'FROM game_base AS game')"

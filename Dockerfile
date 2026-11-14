@@ -246,6 +246,7 @@ COPY --chown=louis:louis --from=plugin_sources /home/louis/anne /home/louis/anne
 
 FROM l4d2_source_image AS plugin_from_game_base
 
+COPY --chown=root:root --chmod=0755 link_watcher.sh /usr/local/bin/link_watcher.sh
 RUN rm -rf /home/louis/CompetitiveWithAnne /home/louis/anne
 COPY --chown=louis:louis --from=plugin_sources /home/louis/CompetitiveWithAnne /home/louis/CompetitiveWithAnne
 COPY --chown=louis:louis --from=plugin_sources /home/louis/anne /home/louis/anne
